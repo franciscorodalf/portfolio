@@ -9,7 +9,7 @@ const contactStatus = document.getElementById('contact-status');
 const bootScreen = document.getElementById('boot-screen');
 const typedCursor = document.getElementById('typed-cursor');
 
-const EMAILJS_SERVICE_ID = window.EMAILJS_SERVICE_ID || 'service_88ms1x4';
+const EMAILJS_SERVICE_ID = window.EMAILJS_SERVICE_ID || 'service_zwlnbki';
 const EMAILJS_TEMPLATE_ID = window.EMAILJS_TEMPLATE_ID || 'template_raefnko';
 const EMAILJS_PUBLIC_KEY = window.EMAILJS_PUBLIC_KEY || 'TQsonF9_ymrUuvag7';
 
@@ -132,54 +132,44 @@ function initContactForm() {
   if (!contactForm) return;
 
   const submitButton = contactForm.querySelector('button[type="submit"]');
-  const submitLabel = submitButton?.querySelector('.btn-text')?.textContent || 'Enviar mensaje';
+  const submitLabel =
+    submitButton?.querySelector('.btn-text')?.textContent || 'Enviar mensaje';
 
-  const emailjsInstance = globalThis.emailjs || globalThis.EmailJS || globalThis.window?.emailjs;
-  const missingCreds = [EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, EMAILJS_PUBLIC_KEY].some(value => !value || value.startsWith('your_'));
-
-  if (!emailjsInstance) {
-    console.error('EmailJS SDK no encontrado. Asegúrate de cargar @emailjs/browser antes del script principal.');
-    updateContactStatus('> error: EmailJS no inicializado ⚠️');
+  // EmailJS está en window porque lo cargamos antes
+  if (!window.emailjs) {
+    console.error('EmailJS no está disponible');
+    updateContactStatus('> error: EmailJS no cargado ⚠️');
     contactForm.addEventListener('submit', e => {
       e.preventDefault();
-      updateContactStatus('> error: EmailJS no inicializado ⚠️');
+      updateContactStatus('> error: EmailJS no cargado ⚠️');
     });
     return;
   }
 
-  if (missingCreds) {
-    console.error('Credenciales de EmailJS incompletas. Revisa SERVICE_ID, TEMPLATE_ID y PUBLIC_KEY.');
-    updateContactStatus('> error: credenciales EmailJS incompletas ⚠️');
-    contactForm.addEventListener('submit', e => {
-      e.preventDefault();
-      updateContactStatus('> error: credenciales EmailJS incompletas ⚠️');
-    });
-    return;
-  }
-
-  try {
-    emailjsInstance.init({ publicKey: EMAILJS_PUBLIC_KEY });
-  } catch (error) {
-    console.error('EmailJS init failed:', error);
-    updateContactStatus('> error: EmailJS init falló ⚠️');
-    return;
-  }
+  // inicializar
+  window.emailjs.init(EMAILJS_PUBLIC_KEY);
 
   contactForm.addEventListener('submit', async event => {
     event.preventDefault();
+
     const formData = new FormData(contactForm);
-    const params = Object.fromEntries(formData.entries());
+    const params = {
+      name: formData.get('name'),
+      email: formData.get('email'),
+      message: formData.get('message')
+    };
 
     updateContactStatus('> sending message...');
     setSubmitting(true);
 
     try {
-      await emailjsInstance.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, params);
+      await window.emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, params, EMAILJS_PUBLIC_KEY);
       updateContactStatus('> message sent ✅');
       contactForm.reset();
-    } catch (error) {
-      console.error('EmailJS send error:', error);
-      updateContactStatus('> error: intenta de nuevo ⚠️');
+    } catch (err) {
+      console.error('EmailJS send error:', err);
+      const reason = err?.text || err?.message || 'intenta de nuevo';
+      updateContactStatus(`> error: ${reason} ⚠️`);
     } finally {
       setSubmitting(false);
     }
@@ -188,14 +178,12 @@ function initContactForm() {
   function setSubmitting(isSubmitting) {
     if (!submitButton) return;
     submitButton.disabled = isSubmitting;
-    if (submitButton.querySelector('.btn-text')) {
-      submitButton.querySelector('.btn-text').textContent = isSubmitting ? 'Enviando...' : submitLabel;
-    } else {
-      submitButton.textContent = isSubmitting ? 'Enviando...' : submitLabel;
-    }
+    const btnText = submitButton.querySelector('.btn-text');
+    if (btnText) btnText.textContent = isSubmitting ? 'Enviando...' : submitLabel;
+    else submitButton.textContent = isSubmitting ? 'Enviando...' : submitLabel;
   }
-
 }
+
 
 function updateContactStatus(text) {
   if (!contactStatus) return;
