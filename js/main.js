@@ -131,49 +131,68 @@ function initIdeasAccordion() {
 function initContactForm() {
   if (!contactForm) return;
 
-  if (window.emailjs && !EMAILJS_PUBLIC_KEY.startsWith('your_')) {
+  const submitButton = contactForm.querySelector('button[type="submit"]');
+  const submitLabel = submitButton?.querySelector('.btn-text')?.textContent || 'Enviar mensaje';
+
+  const emailjsInstance = window.emailjs;
+  const missingCreds = [EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, EMAILJS_PUBLIC_KEY].some(value => !value || value.startsWith('your_'));
+  const canUseEmailJS = Boolean(emailjsInstance) && !missingCreds;
+
+  if (canUseEmailJS) {
     try {
-      window.emailjs.init(EMAILJS_PUBLIC_KEY);
+      emailjsInstance.init({ publicKey: EMAILJS_PUBLIC_KEY });
     } catch (error) {
-      console.warn('EmailJS init failed:', error);
+      console.error('EmailJS init failed:', error);
     }
   } else {
-    console.warn('EmailJS SDK no disponible. Se usará modo demo.');
+    console.warn('EmailJS no disponible o credenciales incompletas. Se usa modo demo.');
   }
 
-  contactForm.addEventListener('submit', event => {
+  contactForm.addEventListener('submit', async event => {
     event.preventDefault();
     const formData = new FormData(contactForm);
     const params = Object.fromEntries(formData.entries());
 
     updateContactStatus('> sending message...');
+    setSubmitting(true);
 
-    if (EMAILJS_SERVICE_ID.startsWith('your_') || EMAILJS_TEMPLATE_ID.startsWith('your_') || EMAILJS_PUBLIC_KEY.startsWith('your_')) {
-      setTimeout(() => {
-        updateContactStatus('> message sent ✅');
-        contactForm.reset();
-      }, 1800);
+    if (!canUseEmailJS) {
+      await simulateDemoResponse();
       return;
     }
 
-    if (!window.emailjs || EMAILJS_PUBLIC_KEY.startsWith('your_')) {
-      setTimeout(() => {
-        updateContactStatus('> message sent ✅ (modo demo)');
-        contactForm.reset();
-      }, 1500);
-      return;
+    try {
+      await emailjsInstance.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, params);
+      updateContactStatus('> message sent ✅');
+      contactForm.reset();
+    } catch (error) {
+      console.error('EmailJS send error:', error);
+      updateContactStatus('> error: intenta de nuevo ⚠️');
+    } finally {
+      setSubmitting(false);
     }
-
-    window.emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, params)
-      .then(() => {
-        updateContactStatus('> message sent ✅');
-        contactForm.reset();
-      })
-      .catch(error => {
-        console.error(error);
-        updateContactStatus('> error: intenta de nuevo ⚠️');
-      });
   });
+
+  function setSubmitting(isSubmitting) {
+    if (!submitButton) return;
+    submitButton.disabled = isSubmitting;
+    if (submitButton.querySelector('.btn-text')) {
+      submitButton.querySelector('.btn-text').textContent = isSubmitting ? 'Enviando...' : submitLabel;
+    } else {
+      submitButton.textContent = isSubmitting ? 'Enviando...' : submitLabel;
+    }
+  }
+
+  function simulateDemoResponse() {
+    return new Promise(resolve => {
+      setTimeout(() => {
+        updateContactStatus('> message sent ✅ (demo)');
+        contactForm.reset();
+        setSubmitting(false);
+        resolve();
+      }, 1600);
+    });
+  }
 }
 
 function updateContactStatus(text) {
@@ -422,7 +441,6 @@ function getColorByLanguage(lang) {
     'C#': '#178600',
     Dart: '#00B4AB',
     Flutter: '#02569B',
-    Kotlin: '#A97BFF',
     SQL: '#4479A1',
     MySQL: '#4479A1',
     Unity: '#555555'
