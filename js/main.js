@@ -134,7 +134,7 @@ function initContactForm() {
   const submitButton = contactForm.querySelector('button[type="submit"]');
   const submitLabel = submitButton?.querySelector('.btn-text')?.textContent || 'Enviar mensaje';
 
-  const emailjsInstance = window.emailjs;
+  const emailjsInstance = globalThis.emailjs || globalThis.EmailJS || globalThis.window?.emailjs;
   const missingCreds = [EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, EMAILJS_PUBLIC_KEY].some(value => !value || value.startsWith('your_'));
 
   if (!emailjsInstance) {
