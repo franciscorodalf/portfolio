@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Fran | Portfolio</title>
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="libs/splide.min.css" />
+  <link rel="stylesheet" href="libs/animate.min.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" integrity="sha384-5vQj0/fkgCGa9WVcICDmS2u3VU8SzyF9VZEOWe6fVt2EshEWzMVO5iymM7jNwOkH" crossorigin="anonymous">
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body class="theme-dark">
+  <div class="boot-screen" id="boot-screen">
+    <div class="boot-log">
+      <p>&gt; initializing...</p>
+      <p>&gt; loading assets...</p>
+      <p>&gt; welcome, Fran.</p>
+    </div>
+  </div>
+  <div class="noise-overlay" aria-hidden="true"></div>
+
+  <header class="top-bar">
+    <div class="brand">
+      <span class="brand-logo">F</span>
+      <span class="brand-name">fran.dev</span>
+    </div>
+    <nav class="top-nav" aria-label="Principal">
+      <a href="#hero">Inicio</a>
+      <a href="#about">Sobre mí</a>
+      <a href="#skills">Stack</a>
+      <a href="#projects">Proyectos</a>
+      <a href="#ideas">Ideas</a>
+      <a href="#goals">Objetivos</a>
+      <a href="#contact">Contacto</a>
+    </nav>
+    <button id="theme-toggle" class="theme-toggle" type="button" aria-label="Cambiar tema">
+      <span class="icon-sun">☀</span>
+      <span class="icon-moon">☾</span>
+    </button>
+  </header>
+
+  <main class="main-shell">
+    <section id="hero" class="panel hero" data-aos="fade-up" data-aos-delay="200">
+      <div class="hero-intro">
+        <p class="hero-tag">#desarrollador_multiplataforma</p>
+        <h1 class="hero-title"><span id="typed-text"></span><span class="cursor" id="typed-cursor"></span></h1>
+        <div class="hero-console">
+          <p><span class="prompt">status:</span> online</p>
+          <p><span class="prompt">role:</span> Estudiante de 2º DAM</p>
+          <p><span class="prompt">location:</span> Santa Úrsula · Tenerife</p>
+          <p><span class="prompt">focus:</span> mobile dev &amp; creative coding</p>
+        </div>
+        <ul class="hero-bio">
+          <li>🎓 Estudiante de 2º de Desarrollo de Aplicaciones Multiplataforma</li>
+          <li>💻 Apasionado por la programación, la tecnología y los retos</li>
+          <li>🌍 Desde Tenerife, España</li>
+        </ul>
+        <div class="hero-actions">
+          <a class="btn primary" href="https://github.com/franciscorodalf/franciscorodalf/raw/main/CV%20Francisco%20Yariel.pdf" target="_blank" rel="noopener">Ver CV</a>
+          <a class="btn ghost" href="#contact">Contactar</a>
+        </div>
+        <div class="status">
+          <span class="dot"></span> Disponible
+        </div>
+      </div>
+      <div class="hero-visual" data-aos="zoom-in" data-aos-delay="400">
+        <div class="crt-frame">
+          <div class="crt-inner">
+            <span class="crt-line">&lt;code /&gt;</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="goals" class="panel" data-aos="fade-up">
+      <h2>&gt; objetivos_actuales()</h2>
+      <p class="section-lead">Metas que guían mi aprendizaje y próximos proyectos.</p>
+      <ul class="goals-list">
+        <li>Terminar el ciclo de Desarrollo de Aplicaciones Multiplataforma con resultados sobresalientes.</li>
+        <li>Consolidar conocimientos en Java, Flutter y bases de datos SQL.</li>
+        <li>Publicar al menos un proyecto completo en GitHub cada trimestre.</li>
+        <li>Mejorar la estructura y documentación de todos mis repositorios.</li>
+        <li>Construir un portfolio interactivo que muestre mis proyectos con filtros y demos.</li>
+        <li>Afianzar Python para automatización y scripts de soporte.</li>
+        <li>Seguir aprendiendo y experimentando con nuevas tecnologías.</li>
+      </ul>
+    </section>
+
+    <section id="about" class="panel" data-aos="fade-up">
+      <h2>&gt; sobre_mi()</h2>
+      <div class="about-grid">
+        <div class="about-photo">
+          <div class="photo-frame">
+            <img src="assets/profile-placeholder.svg" alt="Retrato pixelado de Francisco Yariel" />
+          </div>
+        </div>
+        <div class="about-copy">
+          <p>
+            Soy Francisco Yariel, estudiante de 2º de Desarrollo de Aplicaciones Multiplataforma con base en telecomunicaciones.
+            Me apasiona construir soluciones sólidas donde diseño, hardware y software se encuentran.
+          </p>
+          <ul class="about-highlights">
+            <li>Prácticas Erasmus en Bowwe (Polonia, 2025) diseñando y automatizando funnels web.</li>
+            <li>Experiencia en soporte técnico, redes y despliegues multiplataforma.</li>
+            <li>En constante evolución con Java, Flutter y bases de datos SQL.</li>
+          </ul>
+          <div class="about-stats">
+            <div class="stat-card">
+              <span class="stat-value">2º</span>
+              <span class="stat-label">DAM en curso</span>
+            </div>
+            <div class="stat-card">
+              <span class="stat-value">12</span>
+              <span class="stat-label">proyectos en GitHub</span>
+            </div>
+            <div class="stat-card">
+              <span class="stat-value">4</span>
+              <span class="stat-label">áreas técnicas</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="timeline">
+        <div class="timeline-item">
+          <span class="timeline-dot"></span>
+          <div class="timeline-content">
+            <h3>2022 · Fundamentos técnicos</h3>
+            <p>Formación en telecomunicaciones, hardware y redes como base para el desarrollo.</p>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <span class="timeline-dot"></span>
+          <div class="timeline-content">
+            <h3>2023 · Desarrollo multiplataforma</h3>
+            <p>Primeros proyectos con Java, Kotlin y Flutter, combinando mobile y backend.</p>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <span class="timeline-dot"></span>
+          <div class="timeline-content">
+            <h3>2025 · Erasmus en Bowwe</h3>
+            <p>Prácticas en Polonia mejorando funnels, automatizaciones y soporte full-stack.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="skills" class="panel" data-aos="fade-up">
+      <h2>&gt; tech_stack()</h2>
+      <p class="section-lead">Lenguajes, frameworks y herramientas que uso a diario.</p>
+      <div class="stack-categories">
+        <div class="stack-group" data-aos="fade-right">
+          <h3>Lenguajes</h3>
+          <div class="stack-icons">
+            <button class="stack-item" data-tooltip="Java: backend, Android, OOP profunda">
+              <img src="assets/icons/java.svg" alt="Java">
+              <span>Java</span>
+            </button>
+            <button class="stack-item" data-tooltip="Kotlin: mobile nativo y proyectos académicos.">
+              <span class="stack-emoji">🟣</span>
+              <span>Kotlin</span>
+            </button>
+            <button class="stack-item" data-tooltip="Dart: apps Flutter de alto rendimiento.">
+              <span class="stack-emoji">🌀</span>
+              <span>Dart</span>
+            </button>
+            <button class="stack-item" data-tooltip="Python: automatización y scripting creativo">
+              <img src="assets/icons/python.svg" alt="Python">
+              <span>Python</span>
+            </button>
+            <button class="stack-item" data-tooltip="JavaScript: interactividad web moderna">
+              <img src="assets/icons/javascript.svg" alt="JavaScript">
+              <span>JavaScript</span>
+            </button>
+            <button class="stack-item" data-tooltip="PHP: backends rápidos y APIs REST">
+              <img src="assets/icons/php.svg" alt="PHP">
+              <span>PHP</span>
+            </button>
+          </div>
+        </div>
+        <div class="stack-group" data-aos="fade-right" data-aos-delay="100">
+          <h3>Frameworks</h3>
+          <div class="stack-icons">
+            <button class="stack-item" data-tooltip="Flutter: apps móviles nativas multiplataforma">
+              <img src="assets/icons/flutter.svg" alt="Flutter">
+              <span>Flutter</span>
+            </button>
+            <button class="stack-item" data-tooltip="Unity: experiencias 2D/3D interactivas">
+              <img src="assets/icons/unity.svg" alt="Unity">
+              <span>Unity</span>
+            </button>
+            <button class="stack-item" data-tooltip="HTMX: frontends reactivos minimalistas">
+              <img src="assets/icons/htmx.svg" alt="HTMX">
+              <span>HTMX</span>
+            </button>
+          </div>
+        </div>
+        <div class="stack-group" data-aos="fade-right" data-aos-delay="150">
+          <h3>Herramientas</h3>
+          <div class="stack-icons">
+            <button class="stack-item" data-tooltip="Git: control de versiones y colaboración">
+              <img src="assets/icons/git.svg" alt="Git">
+              <span>Git</span>
+            </button>
+            <button class="stack-item" data-tooltip="CSS: diseño responsive con flair retro">
+              <img src="assets/icons/css.svg" alt="CSS">
+              <span>CSS</span>
+            </button>
+            <button class="stack-item" data-tooltip="HTML: bases sólidas para la web">
+              <img src="assets/icons/htmx.svg" alt="HTML">
+              <span>HTML</span>
+            </button>
+            <button class="stack-item" data-tooltip="SQL y MySQL para modelar y consultar datos.">
+              <img src="assets/icons/mysql.svg" alt="SQL · MySQL">
+              <span>SQL · MySQL</span>
+            </button>
+          </div>
+        </div>
+        <div class="stack-group" data-aos="fade-right" data-aos-delay="200">
+          <h3>Otros</h3>
+          <div class="stack-icons">
+            <button class="stack-item" data-tooltip="Diseño de interfaces, accesibilidad y motion design.">
+              <span class="stack-emoji">🎨</span>
+              <span>Design systems</span>
+            </button>
+            <button class="stack-item" data-tooltip="APIs REST, automatización, integraciones cloud.">
+              <span class="stack-emoji">☁️</span>
+              <span>APIs &amp; Cloud</span>
+            </button>
+            <button class="stack-item" data-tooltip="Metodologías ágiles y documentación técnica.">
+              <span class="stack-emoji">📂</span>
+              <span>Productividad</span>
+            </button>
+            <button class="stack-item" data-tooltip="Android Studio, VS Code, Odoo, Linux y Windows.">
+              <span class="stack-emoji">🧰</span>
+              <span>Tooling</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="projects" class="panel" data-aos="fade-up">
+      <h2>&gt; proyectos_destacados()</h2>
+      <p class="section-lead">Integración directa desde GitHub con metadatos, filtros y modales.</p>
+      <div class="projects-controls" role="toolbar" aria-label="Filtros de proyectos">
+        <button class="filter-btn active" data-filter="all" type="button">Todos</button>
+        <button class="filter-btn" data-filter="apps" type="button">Apps</button>
+        <button class="filter-btn" data-filter="games" type="button">Juegos</button>
+        <button class="filter-btn" data-filter="tools" type="button">Utilidades</button>
+      </div>
+      <div id="repo-container" class="projects-grid" data-state="loading">Cargando proyectos...</div>
+    </section>
+
+    <section id="ideas" class="panel" data-aos="fade-up">
+      <h2>&gt; proyectos_en_mente()</h2>
+      <div class="ideas-accordion">
+        <article class="idea-card">
+          <button class="idea-toggle" type="button" aria-expanded="false">
+            <span class="idea-icon">🧘‍♂️</span>
+            <span class="idea-title">App de autocontrol digital</span>
+            <span class="idea-caret">▸</span>
+          </button>
+          <div class="idea-content">
+            <p>Aplicación que bloquea apps elegidas para evitar distracciones y se desbloquean haciendo flexiones frente a la cámara gracias a visión por computadora.</p>
+            <p class="idea-goal">Objetivo: unir programación, IA y bienestar físico.</p>
+          </div>
+        </article>
+        <article class="idea-card">
+          <button class="idea-toggle" type="button" aria-expanded="false">
+            <span class="idea-icon">♠️</span>
+            <span class="idea-title">Tres en raya con cartas</span>
+            <span class="idea-caret">▸</span>
+          </button>
+          <div class="idea-content">
+            <p>Versión avanzada del clásico tres en raya mezclando cartas con habilidades únicas y un sistema competitivo.</p>
+            <p class="idea-goal">Objetivo: crear una experiencia estratégica, divertida y rejugable.</p>
+          </div>
+        </article>
+        <article class="idea-card">
+          <button class="idea-toggle" type="button" aria-expanded="false">
+            <span class="idea-icon">🌑</span>
+            <span class="idea-title">Juego de sombras</span>
+            <span class="idea-caret">▸</span>
+          </button>
+          <div class="idea-content">
+            <p>Videojuego móvil donde eres una sombra que solo puede moverse dentro de zonas oscuras con puzles de luz y plataformas.</p>
+            <p class="idea-goal">Objetivo: combinar diseño artístico con mecánicas originales.</p>
+          </div>
+        </article>
+        <article class="idea-card">
+          <button class="idea-toggle" type="button" aria-expanded="false">
+            <span class="idea-icon">🌐</span>
+            <span class="idea-title">Portfolio interactivo</span>
+            <span class="idea-caret">▸</span>
+          </button>
+          <div class="idea-content">
+            <p>Un sitio web para reunir todos mis proyectos con filtros por tipo, enlaces directos y animaciones suaves.</p>
+            <p class="idea-goal">Objetivo: ofrecer una forma distinta y visual de mostrar mi trabajo.</p>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section id="contact" class="panel" data-aos="fade-up">
+      <h2>&gt; contacto()</h2>
+      <p class="section-lead">¿Tienes una idea? Pingéame y la prototipamos.</p>
+      <div class="contact-layout">
+        <form id="contact-form" class="contact-form">
+          <label>
+            <span class="label">Nombre</span>
+            <input type="text" name="user_name" required placeholder="Tu nombre">
+          </label>
+          <label>
+            <span class="label">Correo</span>
+            <input type="email" name="user_email" required placeholder="nombre@dominio.dev">
+          </label>
+          <label>
+            <span class="label">Mensaje</span>
+            <textarea name="message" rows="4" required placeholder="> Hola Fran, hablemos de..."></textarea>
+          </label>
+          <button class="btn primary" type="submit">
+            <span class="btn-text">Enviar mensaje</span>
+          </button>
+          <div class="tooltip-console" role="status" aria-live="polite">
+            <span id="contact-status">&gt; waiting input...</span>
+          </div>
+        </form>
+        <div class="contact-info">
+          <div class="contact-links">
+            <a class="social-link linkedin" href="https://www.linkedin.com/in/francisco-yariel-rodriguez-alfonso-1569b1371" target="_blank" rel="noopener">LinkedIn</a>
+            <a class="social-link github" href="https://github.com/franciscorodalf" target="_blank" rel="noopener">GitHub</a>
+            <a class="social-link cv" href="https://github.com/franciscorodalf/franciscorodalf/raw/main/CV%20Francisco%20Yariel.pdf" target="_blank" rel="noopener">Ver CV</a>
+          </div>
+          <div class="map-card">
+            <span class="map-icon">🌍</span>
+            <div>
+              <p class="map-title">Santa Úrsula · Tenerife</p>
+              <p class="map-sub">francuban1278@gmail.com · franciscoyarielrodriguezalfons@gmail.com</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="panel footer">
+    <p>© 2025 Francisco Yariel Rodríguez Alfonso · Hecho con <span class="green">LOVE</span> y un toque retro.</p>
+  </footer>
+
+  <div id="project-modal" class="modal hidden" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+    <div class="modal-backdrop"></div>
+    <div class="modal-window">
+      <button class="modal-close" type="button" aria-label="Cerrar modal">×</button>
+      <div class="modal-body">
+        <div class="modal-header">
+          <h3 id="modal-title"></h3>
+          <span id="modal-stars" class="modal-stars"></span>
+        </div>
+        <p id="modal-description"></p>
+        <div id="modal-meta" class="modal-meta"></div>
+        <div class="modal-actions">
+          <a id="modal-repo-link" class="btn ghost" href="#" target="_blank" rel="noopener">Ver en GitHub</a>
+          <a id="modal-demo-link" class="btn primary hidden" href="#" target="_blank" rel="noopener">Ver demo</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="libs/splide.min.js"></script>
+  <script src="libs/typed.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js" integrity="sha384-Wk18m0t4P6BbzGoyF8p21sx0dTbkGlpos+0iQhT8GMAylcTy1ldtWwUJNOlWkbnE" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js" integrity="sha384-Yto9dpqzHriN4/wMin3rzEb1Onp4xAB/MGuEtsyvMRQ/VRlqdJco8x7zXcfa6J7U" crossorigin="anonymous"></script>
+  <script src="js/main.js" type="module"></script>
+</body>
+</html>
