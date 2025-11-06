@@ -136,16 +136,33 @@ function initContactForm() {
 
   const emailjsInstance = window.emailjs;
   const missingCreds = [EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, EMAILJS_PUBLIC_KEY].some(value => !value || value.startsWith('your_'));
-  const canUseEmailJS = Boolean(emailjsInstance) && !missingCreds;
 
-  if (canUseEmailJS) {
-    try {
-      emailjsInstance.init({ publicKey: EMAILJS_PUBLIC_KEY });
-    } catch (error) {
-      console.error('EmailJS init failed:', error);
-    }
-  } else {
-    console.warn('EmailJS no disponible o credenciales incompletas. Se usa modo demo.');
+  if (!emailjsInstance) {
+    console.error('EmailJS SDK no encontrado. Asegúrate de cargar @emailjs/browser antes del script principal.');
+    updateContactStatus('> error: EmailJS no inicializado ⚠️');
+    contactForm.addEventListener('submit', e => {
+      e.preventDefault();
+      updateContactStatus('> error: EmailJS no inicializado ⚠️');
+    });
+    return;
+  }
+
+  if (missingCreds) {
+    console.error('Credenciales de EmailJS incompletas. Revisa SERVICE_ID, TEMPLATE_ID y PUBLIC_KEY.');
+    updateContactStatus('> error: credenciales EmailJS incompletas ⚠️');
+    contactForm.addEventListener('submit', e => {
+      e.preventDefault();
+      updateContactStatus('> error: credenciales EmailJS incompletas ⚠️');
+    });
+    return;
+  }
+
+  try {
+    emailjsInstance.init({ publicKey: EMAILJS_PUBLIC_KEY });
+  } catch (error) {
+    console.error('EmailJS init failed:', error);
+    updateContactStatus('> error: EmailJS init falló ⚠️');
+    return;
   }
 
   contactForm.addEventListener('submit', async event => {
@@ -155,11 +172,6 @@ function initContactForm() {
 
     updateContactStatus('> sending message...');
     setSubmitting(true);
-
-    if (!canUseEmailJS) {
-      await simulateDemoResponse();
-      return;
-    }
 
     try {
       await emailjsInstance.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, params);
@@ -183,16 +195,6 @@ function initContactForm() {
     }
   }
 
-  function simulateDemoResponse() {
-    return new Promise(resolve => {
-      setTimeout(() => {
-        updateContactStatus('> message sent ✅ (demo)');
-        contactForm.reset();
-        setSubmitting(false);
-        resolve();
-      }, 1600);
-    });
-  }
 }
 
 function updateContactStatus(text) {
