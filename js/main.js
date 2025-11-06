@@ -9,9 +9,9 @@ const contactStatus = document.getElementById('contact-status');
 const bootScreen = document.getElementById('boot-screen');
 const typedCursor = document.getElementById('typed-cursor');
 
-const EMAILJS_SERVICE_ID = window.EMAILJS_SERVICE_ID || 'your_service_id';
-const EMAILJS_TEMPLATE_ID = window.EMAILJS_TEMPLATE_ID || 'your_template_id';
-const EMAILJS_PUBLIC_KEY = window.EMAILJS_PUBLIC_KEY || 'your_public_key';
+const EMAILJS_SERVICE_ID = window.EMAILJS_SERVICE_ID || 'service_88ms1x4';
+const EMAILJS_TEMPLATE_ID = window.EMAILJS_TEMPLATE_ID || 'template_raefnko';
+const EMAILJS_PUBLIC_KEY = window.EMAILJS_PUBLIC_KEY || 'TQsonF9_ymrUuvag7';
 
 const FEATURED_REPOS = {
   safeinvestor: {
@@ -150,7 +150,7 @@ function initContactForm() {
 
     if (EMAILJS_SERVICE_ID.startsWith('your_') || EMAILJS_TEMPLATE_ID.startsWith('your_') || EMAILJS_PUBLIC_KEY.startsWith('your_')) {
       setTimeout(() => {
-        updateContactStatus('> message sent ✅ (configura EmailJS para envío real)');
+        updateContactStatus('> message sent ✅');
         contactForm.reset();
       }, 1800);
       return;
