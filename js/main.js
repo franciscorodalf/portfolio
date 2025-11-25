@@ -65,6 +65,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initMatrixEffect();
   initTVTurnOff();
   initBlockCursor();
+  initStatsCounter();
 });
 
 function initBootSequence() {
@@ -278,10 +279,11 @@ async function hydrateProjects() {
     projectsState.full = repos
       .filter(repo => !repo.fork && repo.description)
       .map(mapRepo)
-      .sort((a, b) => (b.weight - a.weight) || (b.stars - a.stars))
-      .slice(0, 9);
+      .sort((a, b) => (b.weight - a.weight) || (b.stars - a.stars));
+    // Removed slice limit to show all projects as requested
 
     renderProjectCards();
+    updateSyncStatus();
   } catch (error) {
     console.error(error);
     repoContainer.textContent = 'No se pudieron cargar los proyectos 😢';
@@ -509,4 +511,47 @@ function initBlockCursor() {
     input.parentElement.classList.add('input-block-cursor');
     input.style.caretColor = 'var(--accent)';
   });
+}
+
+function initStatsCounter() {
+  const stats = document.querySelectorAll('.stat-value');
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const target = entry.target;
+        const value = parseInt(target.textContent.replace(/\D/g, '')); // Extract number
+        const suffix = target.textContent.replace(/\d/g, ''); // Extract suffix like "º"
+
+        animateValue(target, 0, value, 2000, suffix);
+        observer.unobserve(target);
+      }
+    });
+  }, { threshold: 0.5 });
+
+  stats.forEach(stat => observer.observe(stat));
+}
+
+function animateValue(obj, start, end, duration, suffix = '') {
+  let startTimestamp = null;
+  const step = (timestamp) => {
+    if (!startTimestamp) startTimestamp = timestamp;
+    const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+    obj.textContent = Math.floor(progress * (end - start) + start) + suffix;
+    if (progress < 1) {
+      window.requestAnimationFrame(step);
+    }
+  };
+  window.requestAnimationFrame(step);
+}
+
+function updateSyncStatus() {
+  const sectionTitle = document.querySelector('#projects h2');
+  if (sectionTitle && !sectionTitle.querySelector('.live-indicator')) {
+    const indicator = document.createElement('span');
+    indicator.className = 'live-indicator';
+    indicator.innerHTML = '<span class="blink-dot">●</span> LIVE';
+    indicator.title = 'Sincronizado con GitHub en tiempo real';
+    sectionTitle.appendChild(indicator);
+  }
 }

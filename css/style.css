@@ -20,6 +20,7 @@
 }
 
 @import 'retro-effects.css';
+@import 'enhancements.css';
 
 body.theme-light {
   --bg: #eef2ff;
