@@ -18,6 +18,7 @@
 </head>
 
 <body class="theme-dark">
+  <div class="scanlines-overlay"></div>
   <div class="boot-screen" id="boot-screen">
     <div class="boot-log">
       <p>&gt; initializing...</p>
@@ -28,7 +29,7 @@
   <header class="top-bar">
     <div class="brand">
       <span class="brand-logo">F</span>
-      <span class="brand-name">fran.dev</span>
+      <span class="brand-name glitch-hover" data-text="fran.dev">fran.dev</span>
     </div>
     <nav class="top-nav" aria-label="Principal">
       <a href="#hero">Inicio</a>
@@ -81,7 +82,7 @@
     </section>
 
     <section id="goals" class="panel" data-aos="fade-up">
-      <h2>&gt; objetivos_actuales()</h2>
+      <h2 class="glitch-hover" data-text="&gt; objetivos_actuales()">&gt; objetivos_actuales()</h2>
       <p class="section-lead">Metas que guían mi aprendizaje y próximos proyectos.</p>
       <ul class="goals-list">
         <li>Terminar el ciclo de Desarrollo de Aplicaciones Multiplataforma con resultados sobresalientes.</li>
@@ -95,7 +96,7 @@
     </section>
 
     <section id="about" class="panel" data-aos="fade-up">
-      <h2>&gt; sobre_mi()</h2>
+      <h2 class="glitch-hover" data-text="&gt; sobre_mi()">&gt; sobre_mi()</h2>
       <div class="about-grid">
         <div class="about-photo">
           <div class="photo-frame">
@@ -155,7 +156,7 @@
     </section>
 
     <section id="skills" class="panel" data-aos="fade-up">
-      <h2>&gt; tech_stack()</h2>
+      <h2 class="glitch-hover" data-text="&gt; tech_stack()">&gt; tech_stack()</h2>
       <p class="section-lead">Lenguajes, frameworks y herramientas que uso a diario.</p>
       <div class="stack-categories">
         <div class="stack-group" data-aos="fade-right">
@@ -254,7 +255,7 @@
     </section>
 
     <section id="projects" class="panel" data-aos="fade-up">
-      <h2>&gt; proyectos_destacados()</h2>
+      <h2 class="glitch-hover" data-text="&gt; proyectos_destacados()">&gt; proyectos_destacados()</h2>
       <p class="section-lead">Integración directa desde GitHub con metadatos, filtros y modales.</p>
       <div class="projects-controls" role="toolbar" aria-label="Filtros de proyectos">
         <button class="filter-btn active" data-filter="all" type="button">Todos</button>
@@ -266,7 +267,7 @@
     </section>
 
     <section id="ideas" class="panel" data-aos="fade-up">
-      <h2>&gt; proyectos_en_mente()</h2>
+      <h2 class="glitch-hover" data-text="&gt; proyectos_en_mente()">&gt; proyectos_en_mente()</h2>
       <div class="ideas-accordion">
         <article class="idea-card">
           <button class="idea-toggle" type="button" aria-expanded="false">
@@ -320,7 +321,7 @@
     </section>
 
     <section id="contact" class="panel" data-aos="fade-up">
-      <h2>&gt; contacto()</h2>
+      <h2 class="glitch-hover" data-text="&gt; contacto()">&gt; contacto()</h2>
       <p class="section-lead">¿Tienes una idea? Pingéame y la prototipamos.</p>
       <div class="contact-layout">
         <form id="contact-form" class="contact-form">
@@ -389,7 +390,7 @@
     </div>
   </div>
 
-   <script src="libs/splide.min.js"></script>
+  <script src="libs/splide.min.js"></script>
   <script src="libs/typed.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
 
@@ -399,4 +400,5 @@
   <!-- tu script -->
   <script src="js/main.js"></script>
 </body>
+
 </html>
