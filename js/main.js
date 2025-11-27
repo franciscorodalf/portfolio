@@ -277,7 +277,7 @@ async function hydrateProjects() {
 
     const repos = await response.json();
     projectsState.full = repos
-      .filter(repo => !repo.fork && repo.description)
+      .filter(repo => true)
       .map(mapRepo)
       .sort((a, b) => (b.weight - a.weight) || (b.stars - a.stars));
     // Removed slice limit to show all projects as requested
