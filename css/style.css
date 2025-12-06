@@ -499,6 +499,18 @@ body.theme-light .theme-toggle .icon-sun {
   color: var(--text);
 }
 
+/* Hero Visual (3D) */
+#canvas-container {
+  width: 100%;
+  height: 400px;
+  max-width: 500px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  perspective: 1000px;
+}
+
 .btn.primary {
   background: linear-gradient(135deg, var(--accent), var(--accent-strong));
   color: #041006;
@@ -1255,6 +1267,10 @@ textarea:focus {
   background: rgba(255, 221, 0, 0.12);
   color: #ffdd00;
   border-color: rgba(255, 221, 0, 0.35);
+  display: inline-flex;
+  /* Ensure flex behavior */
+  align-items: center;
+  justify-content: center;
 }
 
 .social-link.buymeacoffee:hover {
