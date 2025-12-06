@@ -57,21 +57,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // Click Interaction
-    container.addEventListener('click', () => {
-        // Burst effect
-        spinSpeed = 0.08;
-        sphere.scale.set(1.2, 1.2, 1.2);
-        material.color.setHex(0xffffff); // Flash white
 
-        setTimeout(() => {
-            material.color.setHex(0x3cff8f); // Restore green
-            sphere.scale.set(1, 1, 1);
-        }, 150);
-
-        setTimeout(() => {
-            spinSpeed = 0.003; // Restore speed
-        }, 800);
-    });
 
     // Styles handling for Theme Toggle (optional: listen to mutations on body)
     const updateColors = () => {

@@ -507,7 +507,6 @@ body.theme-light .theme-toggle .icon-sun {
   display: flex;
   align-items: center;
   justify-content: center;
-  cursor: pointer;
   perspective: 1000px;
 }
 
