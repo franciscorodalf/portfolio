@@ -15,6 +15,33 @@ let petals = [];
 let motionPaused = localStorage.getItem('motion-preference') === 'paused';
 const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
+let gardenVisible = false;
+let waveVisible = false;
+
+if ('IntersectionObserver' in window) {
+  const observerOptions = {
+    root: null,
+    rootMargin: '0px',
+    threshold: 0.05
+  };
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.target.id === 'garden-ascii') {
+        gardenVisible = entry.isIntersecting;
+      } else if (entry.target.id === 'wave-ascii') {
+        waveVisible = entry.isIntersecting;
+      }
+    });
+  }, observerOptions);
+
+  if (gardenAscii) observer.observe(gardenAscii);
+  if (waveAscii) observer.observe(waveAscii);
+} else {
+  gardenVisible = true;
+  waveVisible = true;
+}
+
 function glyph(value) {
   const palette = '  ..::--==++**##';
   return palette[Math.max(0, Math.min(palette.length - 1, Math.floor(value * palette.length)))];
@@ -231,19 +258,65 @@ function initNavigation() {
 
 function initMessageForm() {
   if (!messageForm) return;
-  messageForm.addEventListener('submit', event => {
+
+  const formNote = messageForm.querySelector('.form-note');
+  const submitButton = messageForm.querySelector('button[type="submit"]');
+
+  if (window.emailjs) {
+    window.emailjs.init('TQsonF9_ymrUuvag7');
+  }
+
+  messageForm.addEventListener('submit', async event => {
     event.preventDefault();
+
+    if (!window.emailjs) {
+      if (formNote) {
+        formNote.textContent = 'Error: El modulo de correo no esta disponible.';
+        formNote.style.color = '#b34d45';
+      }
+      return;
+    }
+
     const data = new FormData(messageForm);
     const name = data.get('name') || '';
     const email = data.get('email') || '';
     const message = data.get('message') || '';
-    const body = [
-      `Nombre: ${name}`,
-      `Correo: ${email}`,
-      '',
-      String(message)
-    ].join('\n');
-    window.location.href = `mailto:francuban1278@gmail.com?subject=${encodeURIComponent('Mensaje desde portfolio')}&body=${encodeURIComponent(body)}`;
+
+    const params = {
+      from_name: name,
+      from_email: email,
+      message: message
+    };
+
+    try {
+      if (submitButton) {
+        submitButton.disabled = true;
+        submitButton.textContent = 'Enviando...';
+      }
+      if (formNote) {
+        formNote.textContent = 'Enviando mensaje...';
+        formNote.style.color = 'var(--muted)';
+      }
+
+      await window.emailjs.send('service_zwlnbki', 'template_raefnko', params);
+
+      if (formNote) {
+        formNote.textContent = '¡Mensaje enviado con exito! Me pondre en contacto pronto.';
+        formNote.style.color = 'var(--moss)';
+      }
+      messageForm.reset();
+    } catch (err) {
+      console.error('EmailJS Error:', err);
+      if (formNote) {
+        formNote.textContent = 'Error al enviar. Por favor, intentalo de nuevo.';
+        formNote.style.color = '#b34d45';
+      }
+    } finally {
+      if (submitButton) {
+        submitButton.disabled = false;
+        submitButton.textContent = 'Enviar mensaje';
+      }
+    }
   });
 }
 
@@ -289,12 +362,55 @@ function initControls() {
 function tick() {
   if (!reduceMotion && !motionPaused) {
     frame += 1;
-    if (frame % 8 === 0) renderGarden();
-    if (frame % 5 === 0) renderWave();
+    if (frame % 8 === 0 && gardenVisible) renderGarden();
+    if (frame % 5 === 0 && waveVisible) renderWave();
     drawPetals();
   }
 
   requestAnimationFrame(tick);
+}
+
+function initProjectModal() {
+  const modal = document.querySelector('#hermnet-modal');
+  const trigger = document.querySelector('#hermnet-trigger');
+  const closeButton = document.querySelector('#close-modal');
+  const backdrop = modal?.querySelector('.modal-backdrop');
+  const contactBtn = document.querySelector('#modal-contact-btn');
+  let previousActiveElement = null;
+
+  if (!modal || !trigger) return;
+
+  function openModal(event) {
+    if (event) event.preventDefault();
+    previousActiveElement = document.activeElement;
+    modal.classList.add('active');
+    modal.setAttribute('aria-hidden', 'false');
+    if (closeButton) closeButton.focus();
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeModal() {
+    modal.classList.remove('active');
+    modal.setAttribute('aria-hidden', 'true');
+    if (previousActiveElement) previousActiveElement.focus();
+    document.body.style.overflow = '';
+  }
+
+  trigger.addEventListener('click', openModal);
+  if (closeButton) closeButton.addEventListener('click', closeModal);
+  if (backdrop) backdrop.addEventListener('click', closeModal);
+
+  if (contactBtn) {
+    contactBtn.addEventListener('click', () => {
+      closeModal();
+    });
+  }
+
+  document.addEventListener('keydown', event => {
+    if (event.key === 'Escape' && modal.classList.contains('active')) {
+      closeModal();
+    }
+  });
 }
 
 window.addEventListener('scroll', updateRiver, { passive: true });
@@ -313,5 +429,6 @@ renderWave();
 initNavigation();
 initMessageForm();
 initControls();
+initProjectModal();
 updateRiver();
 tick();

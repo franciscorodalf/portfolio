@@ -2,390 +2,296 @@
 <html lang="es">
 
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Fran | Portfolio</title>
-  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Francisco Yariel Rodriguez Alfonso</title>
+  <meta name="description" content="Desarrollador multiplataforma en formacion desde Tenerife.">
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Space+Mono:wght@400;700&display=swap"
-    rel="stylesheet">
-  <link rel="stylesheet" href="libs/splide.min.css" />
-  <link rel="stylesheet" href="libs/animate.min.css" />
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css"
-    integrity="sha384-5vQj0/fkgCGa9WVcICDmS2u3VU8SzyF9VZEOWe6fVt2EshEWzMVO5iymM7jNwOkH" crossorigin="anonymous">
-  <link rel="stylesheet" href="css/style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,650&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
 </head>
 
-<body class="theme-dark">
-  <div class="scanlines-overlay"></div>
-  <div class="boot-screen" id="boot-screen">
-    <div class="boot-log">
-      <p>&gt; initializing...</p>
-      <p>&gt; loading assets...</p>
-      <p>&gt; welcome, Fran.</p>
-    </div>
-  </div>
-  <header class="top-bar">
-    <div class="brand">
-      <span class="brand-logo">F</span>
-      <span class="brand-name glitch-hover" data-text="fran.dev">fran.dev</span>
-    </div>
-    <nav class="top-nav" aria-label="Principal">
-      <a href="#hero">Inicio</a>
-      <a href="#about">Sobre mí</a>
-      <a href="#skills">Stack</a>
-      <a href="#projects">Proyectos</a>
-      <a href="#ideas">Ideas</a>
-      <a href="#goals">Objetivos</a>
-      <a href="#contact">Contacto</a>
+<body>
+  <canvas id="petals" aria-hidden="true"></canvas>
+
+  <header class="site-header">
+    <a class="identity" href="#inicio" aria-label="Inicio">
+      <span>Francisco Yariel</span>
+    </a>
+    <nav aria-label="Principal">
+      <a href="#perfil">Perfil</a>
+      <a href="#obra">Obra</a>
+      <a href="#stack">Stack</a>
+      <a href="#contacto">Contacto</a>
     </nav>
-    <button id="theme-toggle" class="theme-toggle" type="button" aria-label="Cambiar tema">
-      <span class="icon-sun">☀</span>
-      <span class="icon-moon">☾</span>
-    </button>
+    <div class="header-actions">
+      <div class="header-social" aria-label="Contacto rapido">
+        <a href="mailto:francuban1278@gmail.com" aria-label="Enviar correo">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6.8A2.8 2.8 0 0 1 5.8 4h12.4A2.8 2.8 0 0 1 21 6.8v10.4a2.8 2.8 0 0 1-2.8 2.8H5.8A2.8 2.8 0 0 1 3 17.2V6.8Zm2.2.1 6.3 5.1a.8.8 0 0 0 1 0l6.3-5.1"/></svg>
+        </a>
+        <a href="https://github.com/franciscorodalf" target="_blank" rel="noopener" aria-label="GitHub">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.6a9.7 9.7 0 0 0-3.1 18.9c.5.1.7-.2.7-.5v-1.8c-2.8.6-3.4-1.2-3.4-1.2-.5-1.1-1.1-1.4-1.1-1.4-.9-.6.1-.6.1-.6 1 .1 1.6 1.1 1.6 1.1.9 1.5 2.4 1.1 2.9.8.1-.7.4-1.1.7-1.3-2.3-.3-4.7-1.1-4.7-5A3.9 3.9 0 0 1 6.7 9c-.1-.3-.4-1.3.1-2.7 0 0 .9-.3 2.8 1a9.6 9.6 0 0 1 5 0c1.9-1.3 2.8-1 2.8-1 .5 1.4.2 2.4.1 2.7a3.9 3.9 0 0 1 1 2.7c0 3.9-2.4 4.7-4.7 5 .4.3.8 1 .8 2V21c0 .3.2.6.7.5A9.7 9.7 0 0 0 12 2.6Z"/></svg>
+        </a>
+        <a href="https://www.linkedin.com/in/francisco-yariel-rodriguez-alfonso-1569b1371" target="_blank" rel="noopener" aria-label="LinkedIn">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5.1 8.7h3.4v10.7H5.1V8.7Zm1.7-5.1a2 2 0 1 1 0 4 2 2 0 0 1 0-4Zm4.1 5.1h3.3v1.5h.1c.5-.9 1.6-1.8 3.2-1.8 3.5 0 4.1 2.3 4.1 5.2v5.8h-3.4v-5.2c0-1.3 0-2.9-1.8-2.9s-2.1 1.4-2.1 2.8v5.3h-3.4V8.7Z"/></svg>
+        </a>
+        <a href="https://buymeacoffee.com/franciscorodalf" target="_blank" rel="noopener" aria-label="Buy Me a Coffee">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 7h12.2v6.2A5.8 5.8 0 0 1 11.4 19H10a5 5 0 0 1-5-5V7Zm12.2 2.2h1.2a2.4 2.4 0 0 1 0 4.8h-1.2M7 4h8M9 2.5h4"/></svg>
+        </a>
+      </div>
+      <div class="site-controls" aria-label="Controles visuales">
+        <button class="control-button" id="theme-toggle" type="button" aria-pressed="false">Noche</button>
+        <button class="control-button" id="motion-toggle" type="button" aria-pressed="false">Pausar</button>
+      </div>
+    </div>
   </header>
 
-  <main class="main-shell">
-    <section id="hero" class="panel hero" data-aos="fade-up" data-aos-delay="200">
-      <div class="hero-intro">
-        <p class="hero-tag">#desarrollador_multiplataforma</p>
-        <h1 class="hero-title"><span id="typed-text"></span><span class="cursor" id="typed-cursor"></span></h1>
-        <div class="hero-console">
-          <p><span class="prompt">status:</span> online</p>
-          <p><span class="prompt">role:</span> Estudiante de 2º DAM</p>
-          <p><span class="prompt">location:</span> Santa Úrsula · Tenerife</p>
-          <p><span class="prompt">focus:</span> mobile dev &amp; creative coding</p>
-        </div>
-        <ul class="hero-bio">
-          <li>🎓 Estudiante de 2º de Desarrollo de Aplicaciones Multiplataforma</li>
-          <li>💻 Apasionado por la programación, la tecnología y los retos</li>
-          <li>🌍 Desde Tenerife, España</li>
-        </ul>
-        <div class="hero-actions">
-          <a class="btn primary"
-            href="https://github.com/franciscorodalf/franciscorodalf/raw/main/CV%20Francisco%20Yariel.pdf"
-            target="_blank" rel="noopener">Ver CV</a>
-          <a class="btn ghost" href="#contact">Contactar</a>
-        </div>
-        <div class="status">
-          <span class="dot"></span> Disponible
-        </div>
+  <main>
+    <section class="hero" id="inicio">
+      <div class="hero-copy">
+        <p class="eyebrow">Tenerife · Desarrollo Multiplataforma</p>
+        <h1>Desarrollo apps web y multiplataforma con interfaces cuidadas.</h1>
       </div>
-      <div class="hero-visual" data-aos="zoom-in" data-aos-delay="400">
-        <div id="canvas-container"></div>
+      <figure class="quiet-scene" aria-label="Cerezo en flor dibujado con caracteres ASCII">
+        <pre id="sakura-ascii"></pre>
+        <figcaption>春 · pequenas piezas que caen en su sitio</figcaption>
+      </figure>
+      <div class="hero-details">
+        <p>Soy Francisco Yariel. Construyo aplicaciones y prototipos donde la parte técnica no compite con la experiencia: la sostiene.</p>
+        <div class="actions">
+          <a class="button primary" href="#obra">Ver proyectos</a>
+          <a class="button" href="https://github.com/franciscorodalf/franciscorodalf/raw/main/CV%20Francisco%20Yariel.pdf" target="_blank" rel="noopener">Curriculum</a>
+        </div>
       </div>
     </section>
 
-    <section id="goals" class="panel" data-aos="fade-up">
-      <h2 class="glitch-hover" data-text="&gt; objetivos_actuales()">&gt; objetivos_actuales()</h2>
-      <p class="section-lead">Metas que guían mi aprendizaje y próximos proyectos.</p>
-      <ul class="goals-list">
-        <li>Terminar el ciclo de Desarrollo de Aplicaciones Multiplataforma con resultados sobresalientes.</li>
-        <li>Consolidar conocimientos en Java, Flutter y bases de datos SQL.</li>
-        <li>Publicar al menos un proyecto completo en GitHub cada trimestre.</li>
-        <li>Mejorar la estructura y documentación de todos mis repositorios.</li>
-        <li>Construir un portfolio interactivo que muestre mis proyectos con filtros y demos.</li>
-        <li>Afianzar Python para automatización y scripts de soporte.</li>
-        <li>Seguir aprendiendo y experimentando con nuevas tecnologías.</li>
-      </ul>
-    </section>
-
-    <section id="about" class="panel" data-aos="fade-up">
-      <h2 class="glitch-hover" data-text="&gt; sobre_mi()">&gt; sobre_mi()</h2>
-      <div class="about-grid">
-        <div class="about-photo">
-          <div class="photo-frame">
-            <img src="assets/image.png" alt="Retrato de Francisco Yariel" />
-          </div>
-        </div>
-        <div class="about-copy">
-          <p>
-            Soy Francisco Yariel, estudiante de 2º de Desarrollo de Aplicaciones Multiplataforma con base en
-            telecomunicaciones.
-            Me apasiona construir soluciones sólidas donde diseño, hardware y software se encuentran.
-          </p>
-          <ul class="about-highlights">
-            <li>Prácticas Erasmus en Bowwe (Polonia, 2025) diseñando y automatizando funnels web.</li>
-            <li>Experiencia en soporte técnico, redes y despliegues multiplataforma.</li>
-            <li>En constante evolución con Java, Flutter y bases de datos SQL.</li>
-          </ul>
-          <div class="about-stats">
-            <div class="stat-card">
-              <span class="stat-value">2º</span>
-              <span class="stat-label">DAM en curso</span>
+    <section class="river" aria-label="Recorrido de perfil, proyectos, stack y contacto">
+      <div class="river-sticky">
+        <div class="river-track">
+          <article class="river-panel profile-panel" id="perfil">
+            <div class="section-heading">
+              <h2>Perfil</h2>
             </div>
-            <div class="stat-card">
-              <span class="stat-value">12</span>
-              <span class="stat-label">proyectos en GitHub</span>
+            <div class="profile-text">
+              <p>Estudiante de 2o de Desarrollo de Aplicaciones Multiplataforma con base en telecomunicaciones, redes y soporte tecnico.</p>
+              <p>Me interesa el punto donde una app deja de ser una lista de funciones y empieza a sentirse facil de usar.</p>
+              <p>En 2025 hice practicas Erasmus en Bowwe, en Polonia, trabajando con funnels web, automatizaciones y soporte full-stack.</p>
             </div>
-            <div class="stat-card">
-              <span class="stat-value">4</span>
-              <span class="stat-label">áreas técnicas</span>
+            <pre class="soft-ascii" id="garden-ascii" aria-hidden="true"></pre>
+          </article>
+
+          <article class="river-panel work-panel" id="obra">
+            <div class="section-heading">
+              <h2>Obra</h2>
             </div>
-          </div>
-        </div>
-      </div>
-      <div class="timeline">
-        <div class="timeline-item">
-          <span class="timeline-dot"></span>
-          <div class="timeline-content">
-            <h3>2022 · Fundamentos técnicos</h3>
-            <p>Formación en telecomunicaciones, hardware y redes como base para el desarrollo.</p>
-          </div>
-        </div>
-        <div class="timeline-item">
-          <span class="timeline-dot"></span>
-          <div class="timeline-content">
-            <h3>2023 · Desarrollo multiplataforma</h3>
-            <p>Primeros proyectos con Java y Flutter, combinando mobile y backend.</p>
-          </div>
-        </div>
-        <div class="timeline-item">
-          <span class="timeline-dot"></span>
-          <div class="timeline-content">
-            <h3>2025 · Erasmus en Bowwe</h3>
-            <p>Prácticas en Polonia mejorando funnels, automatizaciones y soporte full-stack.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section id="skills" class="panel" data-aos="fade-up">
-      <h2 class="glitch-hover" data-text="&gt; tech_stack()">&gt; tech_stack()</h2>
-      <p class="section-lead">Lenguajes, frameworks y herramientas que uso a diario.</p>
-      <div class="stack-categories">
-        <div class="stack-group" data-aos="fade-right">
-          <h3>Lenguajes</h3>
-          <div class="stack-icons">
-            <button class="stack-item" data-tooltip="Java: backend, Android, OOP profunda">
-              <img src="assets/icons/java.svg" alt="Java">
-              <span>Java</span>
-            </button>
-            <button class="stack-item" data-tooltip="Dart: apps Flutter de alto rendimiento.">
-              <span class="stack-emoji">🌀</span>
-              <span>Dart</span>
-            </button>
-            <button class="stack-item" data-tooltip="Python: automatización y scripting creativo">
-              <img src="assets/icons/python.svg" alt="Python">
-              <span>Python</span>
-            </button>
-            <button class="stack-item" data-tooltip="JavaScript: interactividad web moderna">
-              <img src="assets/icons/javascript.svg" alt="JavaScript">
-              <span>JavaScript</span>
-            </button>
-            <button class="stack-item" data-tooltip="PHP: backends rápidos y APIs REST">
-              <img src="assets/icons/php.svg" alt="PHP">
-              <span>PHP</span>
-            </button>
-          </div>
-        </div>
-        <div class="stack-group" data-aos="fade-right" data-aos-delay="100">
-          <h3>Frameworks</h3>
-          <div class="stack-icons">
-            <button class="stack-item" data-tooltip="Flutter: apps móviles nativas multiplataforma">
-              <img src="assets/icons/flutter.svg" alt="Flutter">
-              <span>Flutter</span>
-            </button>
-            <button class="stack-item" data-tooltip="Unity: experiencias 2D/3D interactivas">
-              <img src="assets/icons/unity.svg" alt="Unity">
-              <span>Unity</span>
-            </button>
-            <button class="stack-item" data-tooltip="HTMX: frontends reactivos minimalistas">
-              <img src="assets/icons/htmx.svg" alt="HTMX">
-              <span>HTMX</span>
-            </button>
-          </div>
-        </div>
-        <div class="stack-group" data-aos="fade-right" data-aos-delay="150">
-          <h3>Herramientas</h3>
-          <div class="stack-icons">
-            <button class="stack-item" data-tooltip="Git: control de versiones y colaboración">
-              <img src="assets/icons/git.svg" alt="Git">
-              <span>Git</span>
-            </button>
-            <button class="stack-item" data-tooltip="CSS: diseño responsive con flair retro">
-              <img src="assets/icons/css.svg" alt="CSS">
-              <span>CSS</span>
-            </button>
-            <button class="stack-item" data-tooltip="HTML: bases sólidas para la web">
-              <img src="assets/icons/htmx.svg" alt="HTML">
-              <span>HTML</span>
-            </button>
-            <button class="stack-item" data-tooltip="SQL y MySQL para modelar y consultar datos.">
-              <img src="assets/icons/mysql.svg" alt="SQL · MySQL">
-              <span>SQL · MySQL</span>
-            </button>
-          </div>
-        </div>
-        <div class="stack-group" data-aos="fade-right" data-aos-delay="200">
-          <h3>Otros</h3>
-          <div class="stack-icons">
-            <button class="stack-item" data-tooltip="Diseño de interfaces, accesibilidad y motion design.">
-              <span class="stack-emoji">🎨</span>
-              <span>Design systems</span>
-            </button>
-            <button class="stack-item" data-tooltip="APIs REST, automatización, integraciones cloud.">
-              <span class="stack-emoji">☁️</span>
-              <span>APIs &amp; Cloud</span>
-            </button>
-            <button class="stack-item" data-tooltip="Metodologías ágiles y documentación técnica.">
-              <span class="stack-emoji">📂</span>
-              <span>Productividad</span>
-            </button>
-            <button class="stack-item" data-tooltip="Android Studio, VS Code, Odoo, Linux y Windows.">
-              <span class="stack-emoji">🧰</span>
-              <span>Tooling</span>
-            </button>
-            <button class="stack-item" data-tooltip="Xcode: IDE para iOS, iPadOS y macOS.">
-              <span class="stack-emoji">🛠️</span>
-              <span>Xcode</span>
-            </button>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section id="projects" class="panel" data-aos="fade-up">
-      <h2 class="glitch-hover" data-text="&gt; proyectos_destacados()">&gt; proyectos_destacados()</h2>
-      <p class="section-lead">Integración directa desde GitHub con metadatos, filtros y modales.</p>
-      <div class="projects-controls" role="toolbar" aria-label="Filtros de proyectos">
-        <button class="filter-btn active" data-filter="all" type="button">Todos</button>
-        <button class="filter-btn" data-filter="apps" type="button">Apps</button>
-        <button class="filter-btn" data-filter="games" type="button">Juegos</button>
-        <button class="filter-btn" data-filter="tools" type="button">Utilidades</button>
-      </div>
-      <div id="repo-container" class="projects-grid" data-state="loading">Cargando proyectos...</div>
-    </section>
-
-    <section id="ideas" class="panel" data-aos="fade-up">
-      <h2 class="glitch-hover" data-text="&gt; proyectos_en_mente()">&gt; proyectos_en_mente()</h2>
-      <div class="ideas-accordion">
-        <article class="idea-card">
-          <button class="idea-toggle" type="button" aria-expanded="false">
-            <span class="idea-icon">🧘‍♂️</span>
-            <span class="idea-title">App de autocontrol digital</span>
-            <span class="idea-caret">▸</span>
-          </button>
-          <div class="idea-content">
-            <p>Aplicación que bloquea apps elegidas para evitar distracciones y se desbloquean haciendo flexiones frente
-              a la cámara gracias a visión por computadora.</p>
-            <p class="idea-goal">Objetivo: unir programación, IA y bienestar físico.</p>
-          </div>
-        </article>
-        <article class="idea-card">
-          <button class="idea-toggle" type="button" aria-expanded="false">
-            <span class="idea-icon">♠️</span>
-            <span class="idea-title">Tres en raya con cartas</span>
-            <span class="idea-caret">▸</span>
-          </button>
-          <div class="idea-content">
-            <p>Versión avanzada del clásico tres en raya mezclando cartas con habilidades únicas y un sistema
-              competitivo.</p>
-            <p class="idea-goal">Objetivo: crear una experiencia estratégica, divertida y rejugable.</p>
-          </div>
-        </article>
-        <article class="idea-card">
-          <button class="idea-toggle" type="button" aria-expanded="false">
-            <span class="idea-icon">🌑</span>
-            <span class="idea-title">Juego de sombras</span>
-            <span class="idea-caret">▸</span>
-          </button>
-          <div class="idea-content">
-            <p>Videojuego móvil donde eres una sombra que solo puede moverse dentro de zonas oscuras con puzles de luz y
-              plataformas.</p>
-            <p class="idea-goal">Objetivo: combinar diseño artístico con mecánicas originales.</p>
-          </div>
-        </article>
-
-      </div>
-    </section>
-
-    <section id="contact" class="panel" data-aos="fade-up">
-      <h2 class="glitch-hover" data-text="&gt; contacto()">&gt; contacto()</h2>
-      <p class="section-lead">¿Tienes una idea? Pingéame y la prototipamos.</p>
-      <div class="contact-layout">
-        <form id="contact-form" class="contact-form">
-          <label>
-            <span class="label">Nombre</span>
-            <input type="text" name="name" required placeholder="Tu nombre">
-          </label>
-          <label>
-            <span class="label">Correo</span>
-            <input type="email" name="email" required placeholder="nombre@dominio.dev">
-          </label>
-          <label>
-            <span class="label">Mensaje</span>
-            <textarea name="message" rows="4" required placeholder="> Hola Fran, hablemos de..."></textarea>
-          </label>
-          <button class="btn primary" type="submit">
-            <span class="btn-text">Enviar mensaje</span>
-          </button>
-          <div class="tooltip-console" role="status" aria-live="polite">
-            <span id="contact-status">&gt; waiting input...</span>
-          </div>
-        </form>
-        <div class="contact-info">
-          <div class="contact-links">
-            <a class="social-link linkedin"
-              href="https://www.linkedin.com/in/francisco-yariel-rodriguez-alfonso-1569b1371" target="_blank"
-              rel="noopener">LinkedIn</a>
-            <a class="social-link github" href="https://github.com/franciscorodalf" target="_blank"
-              rel="noopener">GitHub</a>
-            <a class="social-link cv"
-              href="https://github.com/franciscorodalf/franciscorodalf/raw/main/CV%20Francisco%20Yariel.pdf"
-              target="_blank" rel="noopener">Ver CV</a>
-            <a class="social-link buymeacoffee" href="https://buymeacoffee.com/franciscorodalf" target="_blank"
-              rel="noopener">Buy Me a Coffee</a>
-          </div>
-          <div class="map-card">
-            <span class="map-icon">🌍</span>
-            <div>
-              <p class="map-title">Santa Úrsula · Tenerife</p>
-              <p class="map-sub">francuban1278@gmail.com · franciscoyarielrodriguezalfons@gmail.com</p>
+            <div class="work-list" id="project-list" aria-live="polite">
+              <a class="work-item featured" href="#hermnet-modal" id="hermnet-trigger">
+                <span>Proyecto estrella</span>
+                <h3>Hermnet</h3>
+                <p>Mi proyecto principal: una pieza para mostrar con mas detalle, contexto tecnico y una presentacion propia dentro del portfolio.</p>
+                <strong>Ver detalles tecnicos</strong>
+              </a>
+              <a class="work-item" href="https://github.com/franciscorodalf/Really" target="_blank" rel="noopener">
+                <span>TypeScript</span>
+                <h3>Really</h3>
+                <p>App minimalista para detener compras impulsivas mediante periodos de espera y fomentar ahorro consciente.</p>
+                <strong>Ver proyecto</strong>
+              </a>
+              <a class="work-item" href="https://github.com/franciscorodalf/Tienda-IA" target="_blank" rel="noopener">
+                <span>TypeScript</span>
+                <h3>Tienda-IA</h3>
+                <p>Proyecto web reciente orientado a explorar interfaces de tienda y flujos asistidos por IA.</p>
+                <strong>Ver proyecto</strong>
+              </a>
+              <a class="work-item" href="https://github.com/franciscorodalf/SafeInvestor" target="_blank" rel="noopener">
+                <span>Java</span>
+                <h3>SafeInvestor</h3>
+                <p>Gestion de ingresos, gastos y metas de ahorro con una interfaz practica.</p>
+                <strong>Ver proyecto</strong>
+              </a>
+              <a class="work-item" href="https://github.com/franciscorodalf/PowerMine" target="_blank" rel="noopener">
+                <span>Java · Juego</span>
+                <h3>PowerMine</h3>
+                <p>Una reinterpretacion del Buscaminas con trampas, habilidades y ritmo propio.</p>
+                <strong>Ver proyecto</strong>
+              </a>
+              <a class="work-item" href="https://github.com/franciscorodalf/Pick-A-Ball" target="_blank" rel="noopener">
+                <span>C#</span>
+                <h3>Pick-A-Ball</h3>
+                <p>Proyecto de juego que aporta variedad al portfolio y muestra trabajo fuera del stack Java/web.</p>
+                <strong>Ver proyecto</strong>
+              </a>
             </div>
-          </div>
+          </article>
+
+          <article class="river-panel stack-panel" id="stack">
+            <div class="section-heading">
+              <h2>Stack</h2>
+            </div>
+            <div class="stack-board">
+              <article class="stack-card">
+                <img src="assets/icons/java.svg" alt="">
+                <div>
+                  <h3>Java</h3>
+                  <p>Apps de escritorio, juegos y logica de negocio en SafeInvestor, PowerMine, Sabelotodo y Ahorcado.</p>
+                </div>
+              </article>
+              <article class="stack-card">
+                <img src="assets/icons/css.svg" alt="">
+                <div>
+                  <h3>HTML / CSS</h3>
+                  <p>Maquetacion responsive, interfaces estaticas y cuidado visual del portfolio y AlgoritmoTiendas.</p>
+                </div>
+              </article>
+              <article class="stack-card">
+                <img src="assets/icons/javascript.svg" alt="">
+                <div>
+                  <h3>TypeScript / JavaScript</h3>
+                  <p>Interfaces web, consumo de APIs y proyectos recientes como Really y Tienda-IA.</p>
+                </div>
+              </article>
+              <article class="stack-card">
+                <img src="assets/icons/flutter.svg" alt="">
+                <div>
+                  <h3>Flutter / Mobile</h3>
+                  <p>Base multiplataforma para prototipos moviles y aplicaciones con una experiencia cuidada.</p>
+                </div>
+              </article>
+              <article class="stack-card">
+                <img src="assets/icons/php.svg" alt="">
+                <div>
+                  <h3>PHP</h3>
+                  <p>Backends sencillos, integraciones web y logica de servidor para proyectos de clase o practica.</p>
+                </div>
+              </article>
+              <article class="stack-card">
+                <img src="assets/icons/python.svg" alt="">
+                <div>
+                  <h3>Python</h3>
+                  <p>Automatizacion, scripts de apoyo y exploracion rapida de ideas tecnicas.</p>
+                </div>
+              </article>
+              <article class="stack-card">
+                <img src="assets/icons/mysql.svg" alt="">
+                <div>
+                  <h3>SQL / MySQL</h3>
+                  <p>Modelado y consulta de datos para aplicaciones con persistencia real.</p>
+                </div>
+              </article>
+              <article class="stack-card">
+                <img src="assets/icons/json.svg" alt="">
+                <div>
+                  <h3>APIs / JSON</h3>
+                  <p>Consumo y organizacion de datos para alimentar interfaces y conectar servicios.</p>
+                </div>
+              </article>
+              <article class="stack-card">
+                <img src="assets/icons/git.svg" alt="">
+                <div>
+                  <h3>Git / GitHub</h3>
+                  <p>Repositorios documentados, control de versiones y publicacion de proyectos.</p>
+                </div>
+              </article>
+              <article class="stack-card">
+                <img src="assets/icons/unity.svg" alt="">
+                <div>
+                  <h3>C# / Unity</h3>
+                  <p>Prototipos interactivos y trabajo fuera del stack Java/web, visible en Pick-A-Ball.</p>
+                </div>
+              </article>
+            </div>
+            <pre class="wave-ascii" id="wave-ascii" aria-hidden="true"></pre>
+          </article>
+
+          <article class="river-panel contact-panel" id="contacto">
+            <div class="section-heading">
+              <h2>Contacto</h2>
+            </div>
+            <div class="contact-card">
+              <form class="message-form" id="message-form">
+                <label>
+                  <span>Nombre</span>
+                  <input type="text" name="name" autocomplete="name" required>
+                </label>
+                <label>
+                  <span>Correo</span>
+                  <input type="email" name="email" autocomplete="email" required>
+                </label>
+                <label>
+                  <span>Mensaje</span>
+                  <textarea name="message" rows="5" required></textarea>
+                </label>
+                <button class="button primary" type="submit">Enviar mensaje</button>
+                <p class="form-note">Se enviara tu mensaje directamente de forma segura.</p>
+              </form>
+              <div class="contact-icons" aria-label="Perfiles y contacto">
+                <a class="icon-link mail" href="mailto:francuban1278@gmail.com" aria-label="Gmail">
+                  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6.8A2.8 2.8 0 0 1 5.8 4h12.4A2.8 2.8 0 0 1 21 6.8v10.4a2.8 2.8 0 0 1-2.8 2.8H5.8A2.8 2.8 0 0 1 3 17.2V6.8Zm2.2.1 6.3 5.1a.8.8 0 0 0 1 0l6.3-5.1"/></svg>
+                  <span>Gmail</span>
+                </a>
+                <a class="icon-link github" href="https://github.com/franciscorodalf" target="_blank" rel="noopener" aria-label="GitHub">
+                  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.6a9.7 9.7 0 0 0-3.1 18.9c.5.1.7-.2.7-.5v-1.8c-2.8.6-3.4-1.2-3.4-1.2-.5-1.1-1.1-1.4-1.1-1.4-.9-.6.1-.6.1-.6 1 .1 1.6 1.1 1.6 1.1.9 1.5 2.4 1.1 2.9.8.1-.7.4-1.1.7-1.3-2.3-.3-4.7-1.1-4.7-5A3.9 3.9 0 0 1 6.7 9c-.1-.3-.4-1.3.1-2.7 0 0 .9-.3 2.8 1a9.6 9.6 0 0 1 5 0c1.9-1.3 2.8-1 2.8-1 .5 1.4.2 2.4.1 2.7a3.9 3.9 0 0 1 1 2.7c0 3.9-2.4 4.7-4.7 5 .4.3.8 1 .8 2V21c0 .3.2.6.7.5A9.7 9.7 0 0 0 12 2.6Z"/></svg>
+                  <span>GitHub</span>
+                </a>
+                <a class="icon-link linkedin" href="https://www.linkedin.com/in/francisco-yariel-rodriguez-alfonso-1569b1371" target="_blank" rel="noopener" aria-label="LinkedIn">
+                  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5.1 8.7h3.4v10.7H5.1V8.7Zm1.7-5.1a2 2 0 1 1 0 4 2 2 0 0 1 0-4Zm4.1 5.1h3.3v1.5h.1c.5-.9 1.6-1.8 3.2-1.8 3.5 0 4.1 2.3 4.1 5.2v5.8h-3.4v-5.2c0-1.3 0-2.9-1.8-2.9s-2.1 1.4-2.1 2.8v5.3h-3.4V8.7Z"/></svg>
+                  <span>LinkedIn</span>
+                </a>
+                <a class="icon-link coffee" href="https://buymeacoffee.com/franciscorodalf" target="_blank" rel="noopener" aria-label="Buy Me a Coffee">
+                  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 7h12.2v6.2A5.8 5.8 0 0 1 11.4 19H10a5 5 0 0 1-5-5V7Zm12.2 2.2h1.2a2.4 2.4 0 0 1 0 4.8h-1.2M7 4h8M9 2.5h4"/></svg>
+                  <span>Coffee</span>
+                </a>
+              </div>
+            </div>
+          </article>
         </div>
       </div>
     </section>
   </main>
 
-  <footer class="panel footer">
-    <p>© 2025 Francisco Yariel Rodríguez Alfonso · Hecho con <span class="green">LOVE</span> y un toque retro.</p>
-  </footer>
-
-  <div id="project-modal" class="modal hidden" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+  <!-- Modal de Hermnet (Proyecto Estrella) -->
+  <div id="hermnet-modal" class="project-modal" aria-hidden="true" role="dialog" aria-labelledby="modal-title">
     <div class="modal-backdrop"></div>
     <div class="modal-window">
-      <button class="modal-close" type="button" aria-label="Cerrar modal">×</button>
+      <button class="modal-close" id="close-modal" type="button" aria-label="Cerrar modal">×</button>
       <div class="modal-body">
         <div class="modal-header">
-          <h3 id="modal-title"></h3>
-          <span id="modal-stars" class="modal-stars"></span>
+          <span class="eyebrow">Proyecto estrella</span>
+          <h3 id="modal-title">Hermnet</h3>
         </div>
-        <p id="modal-description"></p>
-        <div id="modal-meta" class="modal-meta"></div>
+        <div class="modal-desc">
+          <p>Hermnet es una infraestructura de red privada y segura diseñada para interconectar múltiples nodos locales de forma cifrada mediante túneles WireGuard, optimizando la latencia y la resiliencia.</p>
+        </div>
+        <figure class="modal-visual" aria-label="Diagrama de red en arte ASCII">
+          <pre class="hermnet-ascii">
+   [ Cliente Movil ]         [ Cliente Web ]
+          │                         │
+          │ (WireGuard)             │ (HTTPS)
+          ▼                         ▼
+   ┌───────────────────────────────────────────┐
+   │            Puerta de Enlace               │
+   │               (Firewall)                  │
+   └────────────────────┬──────────────────────┘
+                        │
+                        ├──────────────────────┐
+                        ▼                      ▼
+             ┌────────────────────┐  ┌────────────────────┐
+             │ Servidor de Base   │  │ Servidor de        │
+             │   de Datos (SQL)   │  │ Monitorizacion     │
+             └────────────────────┘  └────────────────────┘
+          </pre>
+          <figcaption>Diagrama de flujo y arquitectura de red de Hermnet</figcaption>
+        </figure>
         <div class="modal-actions">
-          <a id="modal-repo-link" class="btn ghost" href="#" target="_blank" rel="noopener">Ver en GitHub</a>
-          <a id="modal-demo-link" class="btn primary hidden" href="#" target="_blank" rel="noopener">Ver demo</a>
+          <a class="button primary" href="#contacto" id="modal-contact-btn">Solicitar detalles de despliegue</a>
         </div>
       </div>
     </div>
   </div>
 
-  <script src="libs/splide.min.js"></script>
-  <script src="libs/typed.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
-
-  <!-- EmailJS sin integrity -->
-  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
-
-  <!-- Three.js -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-  <script src="js/hero-3d.js"></script>
-
-  <!-- tu script -->
-  <script src="js/main.js"></script>
+  <script src="script.js"></script>
 </body>
 
 </html>
