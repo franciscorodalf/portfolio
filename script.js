@@ -235,51 +235,99 @@ function renderGarden() {
     }
   }
 
-  // 4. Suelo a la derecha
+  // Costa sinuosa ondulada
+  const getShoreX = (y) => {
+    const baseOffset = width * 0.71;
+    return Math.floor(baseOffset + Math.sin((y - horizon) * 0.45) * 3.5 + Math.cos((y - horizon) * 0.18) * 1.5);
+  };
+
+  // 4. Suelo a la derecha y Estanque a la izquierda combinados con transición natural y estocástica
   for (let y = horizon; y < height; y++) {
+    const shoreX = getShoreX(y);
     for (let x = 0; x < width; x++) {
-      if (x >= width * 0.75) {
-        if (y === horizon) {
-          buffer[y][x] = { char: '=', class: 'stone' };
-          continue;
+      if (y === horizon) {
+        buffer[y][x] = { char: '=', class: 'stone' };
+        continue;
+      }
+
+      const distToShore = x - shoreX;
+
+      if (distToShore < -4) {
+        // 4.1. Estanque profundo con reflejo deformado
+        const ySrc = horizon - 1 - (y - horizon);
+        let cellReflected = null;
+        if (ySrc >= 0) {
+          const dx = Math.round(Math.sin(y * 0.6 + t * 6) * 1.8 + Math.cos(x * 0.25 - t * 4) * 0.8);
+          const xSrc = Math.max(0, Math.min(width - 1, x + dx));
+          cellReflected = buffer[ySrc][xSrc];
         }
+
+        if (cellReflected && cellReflected.char !== ' ' && cellReflected.class !== 'sky') {
+          let reflectedChar = cellReflected.char;
+          if (reflectedChar === '=' || reflectedChar === '#' || reflectedChar === '|') {
+            reflectedChar = '~';
+          }
+          buffer[y][x] = { char: reflectedChar, class: 'water-deep' };
+        } else {
+          const isWave = Math.sin(x * 0.4 - y * 0.2 + t * 3) > 0.8;
+          buffer[y][x] = isWave 
+            ? { char: '~', class: 'water' } 
+            : { char: '=', class: 'water-light' };
+        }
+      } 
+      else if (distToShore >= -4 && distToShore <= 4) {
+        // 4.2. ZONA DE TRANSICIÓN: Gradiente estocástico y orgánico (costa húmeda de 8 caracteres de ancho)
+        const factor = (distToShore + 4) / 8; // Interpolación 0 a 1 (0: agua profunda, 1: tierra seca)
+        
+        // Ruido determinista basado en posición espacial y tiempo ralentizado para ondulación del oleaje húmedo
+        const noise = ((x * 37 + y * 57 + Math.floor(t * 0.6) * 13) % 100) / 100;
+        
+        if (noise > factor) {
+          // Elemento acuoso / piedra mojada (predomina a la izquierda)
+          const subSeed = (x * 7 + y * 13) % 3;
+          if (factor < 0.35) {
+            buffer[y][x] = subSeed === 0 
+              ? { char: '~', class: 'water' } 
+              : { char: '=', class: 'water-light' };
+          } else if (factor < 0.65) {
+            buffer[y][x] = subSeed === 0 
+              ? { char: ';', class: 'water-deep' } 
+              : { char: ',', class: 'stone' };
+          } else {
+            buffer[y][x] = subSeed === 0 
+              ? { char: ';', class: 'water-light' } 
+              : { char: '.', class: 'stone' };
+          }
+        } else {
+          // Elemento terrestre / vegetal / camino (predomina a la derecha)
+          const subSeed = (x * 7 + y * 13) % 3;
+          if (factor < 0.35) {
+            buffer[y][x] = subSeed === 0 
+              ? { char: '.', class: 'stone' } 
+              : { char: '\'', class: 'grass' };
+          } else if (factor < 0.7) {
+            buffer[y][x] = subSeed === 0 
+              ? { char: ':', class: 'stone' } 
+              : { char: '"', class: 'grass' };
+          } else {
+            // Conexión con el camino de la derecha
+            const distToPath = Math.abs(x - width * 0.86);
+            if (distToPath < (y - horizon) * 0.6 + 2.5) {
+              buffer[y][x] = { char: ['.', ':', 'o'][(x + y) % 3], class: 'stone' };
+            } else {
+              buffer[y][x] = { char: ['"', '\'', '.'][(x + y) % 3], class: 'grass' };
+            }
+          }
+        }
+      } 
+      else {
+        // 4.3. Suelo seco de la derecha (césped y camino de piedra)
         const distToPath = Math.abs(x - width * 0.86);
         if (distToPath < (y - horizon) * 0.6 + 2.5) {
           buffer[y][x] = { char: ['.', ':', 'o'][(x + y) % 3], class: 'stone' };
         } else {
           buffer[y][x] = { char: ['"', '\'', '.'][(x + y) % 3], class: 'grass' };
         }
-      }
-    }
-  }
-
-  // 5. Estanque con reflejo deformado
-  for (let y = horizon; y < height; y++) {
-    for (let x = 0; x < width * 0.75; x++) {
-      if (y === horizon) {
-        buffer[y][x] = { char: '=', class: 'stone' };
-        continue;
-      }
-
-      const ySrc = horizon - 1 - (y - horizon);
-      let cellReflected = null;
-      if (ySrc >= 0) {
-        const dx = Math.round(Math.sin(y * 0.6 + t * 6) * 1.8 + Math.cos(x * 0.25 - t * 4) * 0.8);
-        const xSrc = Math.max(0, Math.min(width - 1, x + dx));
-        cellReflected = buffer[ySrc][xSrc];
-      }
-
-      if (cellReflected && cellReflected.char !== ' ' && cellReflected.class !== 'sky') {
-        let reflectedChar = cellReflected.char;
-        if (reflectedChar === '=' || reflectedChar === '#' || reflectedChar === '|') {
-          reflectedChar = '~';
-        }
-        buffer[y][x] = { char: reflectedChar, class: 'water-deep' };
-      } else {
-        const isWave = Math.sin(x * 0.4 - y * 0.2 + t * 3) > 0.8;
-        buffer[y][x] = isWave 
-          ? { char: '~', class: 'water' } 
-          : { char: '=', class: 'water-light' };
       }
     }
   }
@@ -304,7 +352,8 @@ function renderGarden() {
 
       if (ry >= horizon) {
         if (rx >= 0 && rx < width) {
-          if (rx < width * 0.75) {
+          const shoreX = getShoreX(ry);
+          if (rx < shoreX - 1) {
             if (Math.random() < 0.18) {
               ripples.push({
                 x: rx,
@@ -355,7 +404,8 @@ function renderGarden() {
 
   // Pintar ripples en el estanque
   for (let y = horizon + 1; y < height; y++) {
-    for (let x = 0; x < width * 0.75; x++) {
+    const shoreX = getShoreX(y);
+    for (let x = 0; x < shoreX - 2; x++) {
       ripples.forEach(rp => {
         const dist = Math.hypot(x - rp.x, y - rp.y);
         if (Math.abs(dist - rp.r) < 0.8) {
@@ -383,178 +433,100 @@ function renderGarden() {
 
 function renderWave() {
   if (!waveAscii) return;
-  const width = window.innerWidth < 760 ? 90 : 150;
-  const height = window.innerWidth < 760 ? 30 : 45;
-  const t = frame * 0.045;
+  const width = window.innerWidth < 760 ? 84 : 136;
+  const height = window.innerWidth < 760 ? 28 : 38;
+  const t = frame * 0.04;
   const lines = [];
 
-  const buffer = Array.from({ length: height }, () => Array.from({ length: width }, () => ({ char: ' ', class: '' })));
+  // Z-Buffer inicializado a 0 y buffers de caracteres y clases
+  const size = width * height;
+  const zBuffer = new Float32Array(size);
+  const charBuffer = new Array(size).fill(' ');
+  const classBuffer = new Array(size).fill('sky');
 
-  const fov = 75;
-  const centerX = width / 2;
-  const centerY = height / 2;
+  // Rotaciones
+  const A = t * 0.9;
+  const B = t * 0.35;
 
-  // 1. Balanceo de cámara ultra suave y lento para evitar vibración caótica del lienzo
-  const cameraRoll = Math.sin(t * 0.2) * 0.4;
-  const cameraPitch = Math.cos(t * 0.1) * 0.2;
-  const currentCenterX = centerX + cameraRoll;
-  const currentCenterY = centerY + cameraPitch;
+  const cosA = Math.cos(A), sinA = Math.sin(A);
+  const cosB = Math.cos(B), sinB = Math.sin(B);
 
-  const zMax = 44;
-  const zMin = 11;
-  const zStep = window.innerWidth < 760 ? 0.95 : 0.65;
-  const xStep = window.innerWidth < 760 ? 0.85 : 0.55;
+  const R1 = 2.0; // Radio mayor
+  const R2 = 1.0; // Radio menor
+  const K2 = 5.0; // Distancia del objeto a la cámara
 
-  // Definición de coordenadas del faro
-  const lightX = -18;
-  const lightZ = 38;
-  const yCliffBase = 3.5;
-  const lightY = yCliffBase + 9;
+  // Escala K1 para centrar y dimensionar el Toroide en pantalla
+  const K1 = height * K2 * 3 / (8 * (R1 + R2));
+  const aspectCorrection = 1.9; // Corrección para fuentes de terminal más altas que anchas
 
-  // Ángulo de giro de luz ralentizado majestuosamente (t * 0.12 en lugar de t * 0.8)
-  const lightAngle3d = (t * 0.12) % (Math.PI * 2);
+  const cx = width / 2;
+  const cy = height / 2;
 
-  // Proyección 2D de la linterna del faro en pantalla para el haz del cielo
-  const lightScreenX = Math.floor(currentCenterX + (lightX * 1.62 * fov) / lightZ);
-  const lightScreenY = Math.floor(currentCenterY - (lightY * fov) / lightZ + (lightZ * 0.74) - 9);
+  // Renderizado paramétrico
+  for (let theta = 0; theta < 2 * Math.PI; theta += 0.07) {
+    const costheta = Math.cos(theta), sintheta = Math.sin(theta);
 
-  // 2. Renderizar escena 3D (atrás hacia adelante - algoritmo del pintor)
-  for (let z = zMax; z >= zMin; z -= zStep) {
-    const xMax = 38;
-    for (let x = -xMax; x <= xMax; x += xStep) {
-      // 2.1. Comprobar si estamos en la zona del acantilado y el faro
-      const isNearFaroX = x >= -23 && x <= -13;
-      const isNearFaroZ = z >= 36 && z <= 42;
+    for (let phi = 0; phi < 2 * Math.PI; phi += 0.02) {
+      const cosphi = Math.cos(phi), sinphi = Math.sin(phi);
 
-      if (isNearFaroX && isNearFaroZ) {
-        const yCliff = yCliffBase + Math.sin(x * 0.3) * 0.8;
-        const isTower = Math.abs(x - lightX) < 1.8 && Math.abs(z - lightZ) < 1.8;
-        
-        if (isTower) {
-          for (let fy = 0; fy < 10; fy++) {
-            const y3d = yCliff + fy * 0.9;
-            const projX = Math.floor(currentCenterX + (x * 1.62 * fov) / z);
-            const projY = Math.floor(currentCenterY - (y3d * fov) / z + (z * 0.74) - 9);
-            
-            if (projX >= 0 && projX < width && projY >= 0 && projY < height) {
-              let char = '|';
-              let className = 'stone';
-              
-              if (fy === 8 || fy === 9) {
-                char = 'O';
-                className = 'flower';
-              } else if (fy === 0 || fy === 7) {
-                char = '=';
-                className = 'gate-dark';
-              } else {
-                char = (px => (px % 2 === 0 ? '#' : 'H'))(Math.round(x + fy));
-                className = 'gate';
-              }
-              buffer[projY][projX] = { char: char, class: className };
+      // Coordenada del círculo rotante
+      const circleX = R1 + R2 * costheta;
+      const circleY = R2 * sintheta;
+
+      // Rotaciones 3D
+      const x3d = circleX * (cosphi * cosB + sinphi * sinA * sinB) - circleY * cosA * sinB;
+      const y3d = circleX * (cosphi * sinB - sinphi * sinA * cosB) + circleY * cosA * cosB;
+      const z3d = K2 + cosA * circleX * sinphi + circleY * sinA;
+      const ooz = 1 / z3d;
+
+      // Proyección en pantalla
+      const xp = Math.floor(cx + K1 * ooz * x3d * aspectCorrection);
+      const yp = Math.floor(cy - K1 * ooz * y3d);
+
+      if (xp >= 0 && xp < width && yp >= 0 && yp < height) {
+        const idx = yp * width + xp;
+
+        // Vector de iluminación por producto escalar normalizado
+        const L_intensity = cosphi * costheta * sinB - cosA * costheta * sinphi - sinA * sintheta + cosB * (cosA * sintheta - costheta * sinA * sinphi);
+
+        if (ooz > zBuffer[idx]) {
+          zBuffer[idx] = ooz;
+
+          // Si el producto escalar es mayor que 0, calculamos el brillo
+          if (L_intensity > 0) {
+            const chars = ".,-~:;=!*#$@";
+            const charIdx = Math.floor(L_intensity * 8);
+            const char = chars[Math.min(chars.length - 1, Math.max(0, charIdx))];
+
+            let className = 'water-deep';
+            if (L_intensity > 0.95) {
+              className = 'crest';
+            } else if (L_intensity > 0.6) {
+              className = 'water-light';
+            } else if (L_intensity > 0.25) {
+              className = 'water';
             }
-          }
-        } else {
-          const projX = Math.floor(currentCenterX + (x * 1.62 * fov) / z);
-          const projY = Math.floor(currentCenterY - (yCliff * fov) / z + (z * 0.74) - 9);
-          if (projX >= 0 && projX < width && projY >= 0 && projY < height) {
-            buffer[projY][projX] = { char: ['[', ']', '#', '*'][(Math.round(x + z)) % 4], class: 'stone' };
-          }
-        }
-        continue;
-      }
 
-      // 2.2. Simulación de olas normales (Gerstner suavizado y ralentizado drásticamente)
-      const y1 = Math.sin(x * 0.18 + t * 0.6) * Math.cos(z * 0.14 - t * 0.4) * 1.4;
-      const y2 = Math.sin(x * 0.08 - t * 0.3) * 0.7;
-      const y3 = Math.cos((x * 0.06 + z * 0.1) + t * 0.2) * 0.8;
-      let y = (y1 + y2 + y3) * 0.85;
-
-      if (y > 0) {
-        y = Math.pow(y, 1.18);
-      }
-
-      const projX = Math.floor(currentCenterX + (x * 1.62 * fov) / z);
-      const projY = Math.floor(currentCenterY - (y * fov) / z + (z * 0.74) - 9);
-
-      if (projX >= 0 && projX < width && projY >= 0 && projY < height) {
-        // 2.3. Comprobar iluminación del haz de luz en 3D
-        const dx3d = x - lightX;
-        const dz3d = z - lightZ;
-        const angle3d = Math.atan2(dz3d, dx3d);
-        const diff3d = Math.abs((angle3d - lightAngle3d + Math.PI * 3) % (Math.PI * 2) - Math.PI);
-        const isIlluminated = diff3d < 0.22 && dx3d > 0;
-
-        let char = ' ';
-        let className = 'water';
-
-        if (isIlluminated) {
-          if (y > 1.0) {
-            char = '@';
-            className = 'crest';
-          } else if (y > 0.2) {
-            char = '%';
-            className = 'crest';
+            charBuffer[idx] = char;
+            classBuffer[idx] = className;
           } else {
-            char = '#';
-            className = 'water-light';
-          }
-        } else {
-          if (y > 1.2) {
-            char = '~';
-            className = 'crest';
-          } else if (y > 0.3) {
-            char = '+';
-            className = 'water-light';
-          } else if (y > -0.5) {
-            char = '=';
-            className = 'water';
-          } else {
-            char = '.';
-            className = 'water-deep';
-          }
-        }
-
-        buffer[projY][projX] = { char: char, class: className };
-      }
-    }
-  }
-
-  // 3. Dibujar haz de luz en el aire (2D)
-  for (let y = 0; y < height; y++) {
-    for (let x = 0; x < width; x++) {
-      if (buffer[y][x].char === ' ') {
-        const dx = x - lightScreenX;
-        const dy = y - lightScreenY;
-        const dist = Math.hypot(dx, dy);
-
-        if (dist > 2 && dist < width * 0.65) {
-          const angle = Math.atan2(dy, dx);
-          const diff = Math.abs((angle - lightAngle3d + Math.PI * 3) % (Math.PI * 2) - Math.PI);
-          if (diff < 0.16 && dx > 0) {
-            const chars = ['.', ':', '-', '~'];
-            const densityIdx = Math.floor((1 - (diff / 0.16)) * chars.length);
-            const char = chars[Math.max(0, Math.min(chars.length - 1, densityIdx))];
-            buffer[y][x] = { char: char, class: 'sky' };
+            // Sombra del toroide
+            charBuffer[idx] = '.';
+            classBuffer[idx] = 'water-deep';
           }
         }
       }
     }
   }
 
-  // 4. Dibujar la orilla de arena abajo
-  for (let x = 0; x < width; x++) {
-    const shoreY = height - 1 - Math.round(2.5 + Math.sin(x * 0.08 + t * 0.2) * 1.2);
-    for (let y = shoreY; y < height; y++) {
-      buffer[y][x] = { char: ['.', ':', '-'][(x + y) % 3], class: 'sand' };
-    }
-  }
-
-  // 5. Renderizar a HTML
+  // Generar string de salida
   for (let y = 0; y < height; y++) {
     let line = '';
     for (let x = 0; x < width; x++) {
-      const cell = buffer[y][x];
-      line += paint(cell.char, cell.class);
+      const idx = y * width + x;
+      const char = charBuffer[idx];
+      const className = classBuffer[idx];
+      line += paint(char, className);
     }
     lines.push(line);
   }
