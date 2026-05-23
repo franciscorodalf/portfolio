@@ -1191,5 +1191,11 @@ figcaption {
 
 .modal-actions {
   display: flex;
+  flex-wrap: wrap;
+  gap: 0.85rem;
   justify-content: flex-start;
+}
+
+.modal-actions .button {
+  white-space: nowrap;
 }
