@@ -456,7 +456,7 @@ figcaption {
 
 .soft-ascii {
   color: var(--moss);
-  font-size: clamp(0.34rem, 0.68vw, 0.62rem);
+  font-size: clamp(0.28rem, 0.52vw, 0.48rem);
 }
 
 .soft-ascii .sky {
@@ -496,7 +496,7 @@ figcaption {
 }
 
 .wave-ascii {
-  font-size: clamp(0.34rem, 0.66vw, 0.62rem);
+  font-size: clamp(0.28rem, 0.48vw, 0.45rem);
   overflow: hidden;
 }
 
@@ -600,7 +600,7 @@ figcaption {
 
 .work-links {
   display: flex;
-  gap: 0.65rem;
+  gap: 1.25rem;
   margin-top: auto;
   padding-top: 1.2rem;
 }
@@ -613,18 +613,18 @@ figcaption {
   box-shadow: 0 4px 12px rgba(78, 59, 38, 0.04);
   color: var(--ink);
   display: inline-flex;
-  font-size: 0.76rem;
+  font-size: 0.8rem;
   font-weight: 500;
   justify-content: center;
-  min-height: 2rem;
-  padding: 0 0.95rem;
-  transition: background 180ms ease, border-color 180ms ease, box-shadow 180ms ease, transform 180ms ease;
+  min-height: 2.3rem;
+  padding: 0 1.25rem;
+  transition: background 220ms ease, border-color 220ms ease, box-shadow 220ms ease, transform 220ms ease;
 }
 
 .work-link:hover {
   border-color: var(--ink);
-  box-shadow: 0 8px 16px rgba(78, 59, 38, 0.08);
-  transform: translateY(-1.5px);
+  box-shadow: 0 10px 24px rgba(78, 59, 38, 0.12);
+  transform: translateY(-2.5px) scale(1.03);
 }
 
 .work-link.demo {

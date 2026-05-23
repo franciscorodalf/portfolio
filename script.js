@@ -12,6 +12,9 @@ const motionToggle = document.querySelector('#motion-toggle');
 
 let frame = 0;
 let petals = [];
+let rainParticles = [];
+let ripples = [];
+let splashes = [];
 let motionPaused = localStorage.getItem('motion-preference') === 'paused';
 const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
@@ -107,55 +110,270 @@ function renderSakura() {
 
 function renderGarden() {
   if (!gardenAscii) return;
-  const width = window.innerWidth < 760 ? 84 : 122;
-  const height = window.innerWidth < 760 ? 30 : 42;
-  const t = frame * 0.025;
+  const width = window.innerWidth < 760 ? 84 : 140;
+  const height = window.innerWidth < 760 ? 32 : 44;
+  const t = frame * 0.045;
   const lines = [];
 
-  for (let y = 0; y < height; y += 1) {
+  const maxRain = window.innerWidth < 760 ? 32 : 72;
+  if (rainParticles.length !== maxRain) {
+    rainParticles = [];
+    for (let i = 0; i < maxRain; i++) {
+      rainParticles.push({
+        x: Math.random() * width,
+        y: Math.random() * height,
+        speed: 1.4 + Math.random() * 1.6,
+        wind: -0.3 - Math.random() * 0.5
+      });
+    }
+  }
+
+  const horizon = Math.floor(height * 0.72);
+  const buffer = Array.from({ length: height }, () => Array.from({ length: width }, () => ({ char: ' ', class: 'sky' })));
+
+  // 1. Pintar Cielo, Estrellas y Nubes
+  const isDark = document.documentElement.dataset.theme === 'dark';
+  for (let y = 0; y < horizon; y++) {
+    for (let x = 0; x < width; x++) {
+      buffer[y][x] = { char: ' ', class: 'sky' };
+      if (isDark) {
+        const starSeed = (x * 17 + y * 23) % 199;
+        if (starSeed === 0) {
+          buffer[y][x] = { char: '.', class: 'sky' };
+        } else if (starSeed === 99 && Math.sin(t + x) > 0.8) {
+          buffer[y][x] = { char: '*', class: 'sky' };
+        }
+      }
+
+      const targetX = Math.floor(width * 0.76);
+      const targetY = Math.floor(height * 0.16);
+      const distToLight = Math.hypot(x - targetX, y - targetY);
+      if (distToLight < 2.5) {
+        buffer[y][x] = { char: isDark ? 'o' : 'O', class: isDark ? 'sky' : 'flower' };
+      } else if (distToLight < 4.8 && isDark) {
+        if ((x + y) % 2 === 0) buffer[y][x] = { char: '.', class: 'cloud' };
+      }
+
+      const cloudY1 = Math.floor(height * 0.12);
+      const cloudY2 = Math.floor(height * 0.22);
+      const cloudA = Math.abs(y - (cloudY1 + Math.sin((x + t * 4) * 0.08))) < 0.8
+        && ((x + Math.floor(t * 8)) % width) < width * 0.28;
+      const cloudB = Math.abs(y - (cloudY2 + Math.sin((x - t * 3) * 0.07))) < 0.8
+        && ((x + width - Math.floor(t * 6)) % width) > width * 0.6
+        && ((x + width - Math.floor(t * 6)) % width) < width * 0.88;
+
+      if (cloudA || cloudB) {
+        buffer[y][x] = { char: '~', class: 'cloud' };
+      }
+    }
+  }
+
+  // 2. Montañas al fondo
+  for (let y = 0; y < horizon; y++) {
+    for (let x = 0; x < width; x++) {
+      const mHeight = horizon - Math.round(7 + Math.sin((x - width * 0.5) * 0.05) * 6 + Math.cos(x * 0.03) * 3);
+      if (x > width * 0.34 && y >= mHeight) {
+        const chars = ['.', ':', '"', '`'];
+        buffer[y][x] = { char: chars[(x + y) % chars.length], class: 'grass' };
+      }
+    }
+  }
+
+  // 3. Pintar Pagoda
+  const PAGODA = [
+    "               ||               ",
+    "               *                ",
+    "              (O)               ",
+    "               |                ",
+    "              _|_               ",
+    "             (   )              ",
+    "             |___|              ",
+    "            /_____\             ",
+    "            |  o  |             ",
+    "         .-'======='-.          ",
+    "         |  [] []  |          ",
+    "       .-'========='-.          ",
+    "       |   _   _   |          ",
+    "     .-'==========='-.          ",
+    "     |   []  [] []   |          ",
+    "   .-'============='-.          ",
+    "   |    _  _  _  _   |          ",
+    " .-'==============='-.          ",
+    " |   []  []  [] []   |          ",
+    ".-'================='-.         ",
+    "|   _  _  _  _  _  _  |         ",
+    "|  [I]  [I]  [I]  [I]  |         ",
+    "=======================         "
+  ];
+
+  const pagodaX = Math.floor(width * 0.22);
+  const pagodaYStart = horizon - PAGODA.length;
+  for (let py = 0; py < PAGODA.length; py++) {
+    const row = PAGODA[py];
+    const y = pagodaYStart + py;
+    if (y < 0 || y >= horizon) continue;
+    for (let px = 0; px < row.length; px++) {
+      const char = row[px];
+      if (char === ' ') continue;
+      const x = pagodaX - 16 + px;
+      if (x < 0 || x >= width) continue;
+
+      let className = 'roof';
+      if (char === '|' || char === '_' || char === '(' || char === ')' || char === '/' || char === '\\') {
+        className = 'gate';
+      }
+      if (char === '[' || char === ']' || char === 'I') {
+        className = 'gate-light';
+      }
+      if (char === '*' || char === 'O' || char === 'o') {
+        className = 'flower';
+      }
+      if (char === '=') {
+        className = 'roof';
+      }
+      buffer[y][x] = { char: char, class: className };
+    }
+  }
+
+  // 4. Suelo a la derecha
+  for (let y = horizon; y < height; y++) {
+    for (let x = 0; x < width; x++) {
+      if (x >= width * 0.75) {
+        if (y === horizon) {
+          buffer[y][x] = { char: '=', class: 'stone' };
+          continue;
+        }
+        const distToPath = Math.abs(x - width * 0.86);
+        if (distToPath < (y - horizon) * 0.6 + 2.5) {
+          buffer[y][x] = { char: ['.', ':', 'o'][(x + y) % 3], class: 'stone' };
+        } else {
+          buffer[y][x] = { char: ['"', '\'', '.'][(x + y) % 3], class: 'grass' };
+        }
+      }
+    }
+  }
+
+  // 5. Estanque con reflejo deformado
+  for (let y = horizon; y < height; y++) {
+    for (let x = 0; x < width * 0.75; x++) {
+      if (y === horizon) {
+        buffer[y][x] = { char: '=', class: 'stone' };
+        continue;
+      }
+
+      const ySrc = horizon - 1 - (y - horizon);
+      let cellReflected = null;
+      if (ySrc >= 0) {
+        const dx = Math.round(Math.sin(y * 0.6 + t * 6) * 1.8 + Math.cos(x * 0.25 - t * 4) * 0.8);
+        const xSrc = Math.max(0, Math.min(width - 1, x + dx));
+        cellReflected = buffer[ySrc][xSrc];
+      }
+
+      if (cellReflected && cellReflected.char !== ' ' && cellReflected.class !== 'sky') {
+        let reflectedChar = cellReflected.char;
+        if (reflectedChar === '=' || reflectedChar === '#' || reflectedChar === '|') {
+          reflectedChar = '~';
+        }
+        buffer[y][x] = { char: reflectedChar, class: 'water-deep' };
+      } else {
+        const isWave = Math.sin(x * 0.4 - y * 0.2 + t * 3) > 0.8;
+        buffer[y][x] = isWave 
+          ? { char: '~', class: 'water' } 
+          : { char: '=', class: 'water-light' };
+      }
+    }
+  }
+
+  // 6. Actualizar y procesar lluvia, salpicaduras y ripples
+  splashes.forEach(s => s.age += 1);
+  splashes = splashes.filter(s => s.age < 3);
+
+  ripples.forEach(rp => {
+    rp.r += 0.7;
+    rp.age += 1;
+  });
+  ripples = ripples.filter(rp => rp.age < 12);
+
+  if (!reduceMotion && !motionPaused) {
+    rainParticles.forEach(p => {
+      p.y += p.speed;
+      p.x += p.wind;
+
+      const rx = Math.floor(p.x);
+      const ry = Math.floor(p.y);
+
+      if (ry >= horizon) {
+        if (rx >= 0 && rx < width) {
+          if (rx < width * 0.75) {
+            if (Math.random() < 0.18) {
+              ripples.push({
+                x: rx,
+                y: horizon + Math.floor(Math.random() * (height - horizon - 1)) + 1,
+                r: 0.5,
+                age: 0
+              });
+            }
+          } else {
+            if (Math.random() < 0.25) {
+              splashes.push({ x: rx, y: horizon - 1, age: 0 });
+            }
+          }
+        }
+        p.y = 0;
+        p.x = Math.random() * width;
+      } else if (ry >= 0 && rx >= 0 && rx < width) {
+        const cell = buffer[ry][rx];
+        if (cell && cell.char !== ' ' && cell.class !== 'sky' && cell.class !== 'cloud') {
+          splashes.push({ x: rx, y: ry - 1, age: 0 });
+          p.y = 0;
+          p.x = Math.random() * width;
+        }
+      }
+    });
+  }
+
+  // Pintar lluvia en el buffer
+  rainParticles.forEach(p => {
+    const rx = Math.floor(p.x);
+    const ry = Math.floor(p.y);
+    if (rx >= 0 && rx < width && ry >= 0 && ry < height) {
+      const cell = buffer[ry][rx];
+      if (cell && (cell.char === ' ' || cell.class === 'sky' || cell.class === 'cloud')) {
+        buffer[ry][rx] = { char: '/', class: 'sky' };
+      }
+    }
+  });
+
+  // Pintar salpicaduras en el buffer
+  splashes.forEach(s => {
+    if (s.x >= 0 && s.x < width && s.y >= 0 && s.y < height) {
+      const chars = ['.', 'v', '*'];
+      const char = chars[Math.min(s.age, chars.length - 1)];
+      buffer[s.y][s.x] = { char: char, class: 'sky' };
+    }
+  });
+
+  // Pintar ripples en el estanque
+  for (let y = horizon + 1; y < height; y++) {
+    for (let x = 0; x < width * 0.75; x++) {
+      ripples.forEach(rp => {
+        const dist = Math.hypot(x - rp.x, y - rp.y);
+        if (Math.abs(dist - rp.r) < 0.8) {
+          const intensity = 1 - (rp.age / 12);
+          if (intensity > 0.15) {
+            buffer[y][x] = { char: '°', class: 'crest' };
+          }
+        }
+      });
+    }
+  }
+
+  // Generar string final
+  for (let y = 0; y < height; y++) {
     let line = '';
-    for (let x = 0; x < width; x += 1) {
-      const center = width * 0.5;
-      const horizon = height * 0.58 + Math.sin(x * 0.09) * 0.9;
-      const cloudA = Math.abs(y - (height * 0.14 + Math.sin((x + t * 12) * 0.08))) < 0.8
-        && ((x + Math.floor(t * 22)) % width) > width * 0.06
-        && ((x + Math.floor(t * 22)) % width) < width * 0.31;
-      const cloudB = Math.abs(y - (height * 0.22 + Math.sin((x - t * 9) * 0.08))) < 0.7
-        && ((x + width - Math.floor(t * 16)) % width) > width * 0.62
-        && ((x + width - Math.floor(t * 16)) % width) < width * 0.91;
-      const moon = Math.hypot(x - width * 0.84, y - height * 0.13) < 2.2;
-
-      const roofY = Math.round(height * 0.34);
-      const beamY = roofY + 2;
-      const lintelY = roofY + 4;
-      const leftPost = center - 13;
-      const rightPost = center + 13;
-      const gateRoof = y === roofY && x > center - 23 && x < center + 23;
-      const roofLip = y === roofY + 1 && x > center - 20 && x < center + 20;
-      const beam = y === beamY && x > center - 18 && x < center + 18;
-      const lintel = y === lintelY && x > center - 15 && x < center + 15;
-      const gateLeft = Math.abs(x - leftPost) < 0.8 && y > beamY && y < height * 0.76;
-      const gateRight = Math.abs(x - rightPost) < 0.8 && y > beamY && y < height * 0.76;
-      const baseLeft = y === Math.round(height * 0.76) && x > leftPost - 4 && x < leftPost + 4;
-      const baseRight = y === Math.round(height * 0.76) && x > rightPost - 4 && x < rightPost + 4;
-
-      const path = y > horizon && Math.abs(x - center) < (y - horizon) * 1.25 + 2;
-      const grass = y > horizon && !path && (x + y + Math.floor(t * 3)) % 5 < 2;
-      const flower = y > horizon + 1 && !path && Math.sin(x * 0.7 + y * 1.4 + t * 2) > 0.93;
-
-      if (cloudA || cloudB) line += paint('~', 'cloud');
-      else if (moon) line += paint('o', 'sky');
-      else if (gateRoof) line += paint('=', 'roof');
-      else if (roofLip) line += paint('-', 'gate-dark');
-      else if (beam) line += paint('=', 'gate');
-      else if (lintel) line += paint('-', 'gate-light');
-      else if (gateLeft || gateRight) line += paint(y % 2 ? '|' : 'I', 'gate');
-      else if (baseLeft || baseRight) line += paint('_', 'gate-dark');
-      else if (path) line += paint(['.', ':', ',', ';'][(x + y) % 4], 'stone');
-      else if (flower) line += paint('*', 'flower');
-      else if (grass) line += paint(['"', '\'', '.'][(x + y) % 3], 'grass');
-      else if (Math.abs(y - horizon) < 0.6) line += paint('_', 'grass');
-      else line += ' ';
+    for (let x = 0; x < width; x++) {
+      const cell = buffer[y][x];
+      line += paint(cell.char, cell.class);
     }
     lines.push(line);
   }
@@ -165,28 +383,178 @@ function renderGarden() {
 
 function renderWave() {
   if (!waveAscii) return;
-  const width = window.innerWidth < 760 ? 92 : 132;
-  const height = window.innerWidth < 760 ? 28 : 42;
-  const t = frame * 0.026;
+  const width = window.innerWidth < 760 ? 90 : 150;
+  const height = window.innerWidth < 760 ? 30 : 45;
+  const t = frame * 0.04;
   const lines = [];
 
-  for (let y = 0; y < height; y += 1) {
-    let line = '';
-    for (let x = 0; x < width; x += 1) {
-      const swell = height * 0.28 + Math.sin(x * 0.12 + t) * 5.5 + Math.cos(x * 0.055 - t) * 6.8;
-      const foam = Math.abs(y - swell);
-      const deep = y > swell;
-      const shore = y > height * 0.73 + Math.sin(x * 0.08) * 1.4;
-      if (foam < 0.55) line += paint('~', 'crest');
-      else if (shore) line += paint(['.', ':', '-'][(x + y) % 3], 'sand');
-      else if (deep) {
-        const depth = (y - swell) / (height * 0.5);
-        const char = glyph(depth);
-        const className = depth > 0.62 ? 'water-deep' : depth > 0.32 ? 'water' : 'water-light';
-        line += paint(char, className);
-      } else {
-        line += ' ';
+  const buffer = Array.from({ length: height }, () => Array.from({ length: width }, () => ({ char: ' ', class: '' })));
+
+  const fov = 75;
+  const centerX = width / 2;
+  const centerY = height / 2;
+
+  // 1. Balanceo de cámara para simular cubierta de barco
+  const cameraRoll = Math.sin(t * 1.5) * 3;
+  const cameraPitch = Math.cos(t * 1.0) * 1.8;
+  const currentCenterX = centerX + cameraRoll;
+  const currentCenterY = centerY + cameraPitch;
+
+  const zMax = 44;
+  const zMin = 11;
+  const zStep = window.innerWidth < 760 ? 0.95 : 0.65;
+  const xStep = window.innerWidth < 760 ? 0.85 : 0.55;
+
+  // Definición de coordenadas del faro
+  const lightX = -18;
+  const lightZ = 38;
+  const yCliffBase = 3.5;
+  const lightY = yCliffBase + 9;
+
+  // Ángulo del haz de luz
+  const lightAngle3d = (t * 0.8) % (Math.PI * 2);
+
+  // Proyección 2D de la linterna del faro en pantalla para el haz del cielo
+  const lightScreenX = Math.floor(currentCenterX + (lightX * 1.62 * fov) / lightZ);
+  const lightScreenY = Math.floor(currentCenterY - (lightY * fov) / lightZ + (lightZ * 0.74) - 9);
+
+  // 2. Renderizar escena 3D (atrás hacia adelante - algoritmo del pintor)
+  for (let z = zMax; z >= zMin; z -= zStep) {
+    const xMax = 38;
+    for (let x = -xMax; x <= xMax; x += xStep) {
+      // 2.1. Comprobar si estamos en la zona del acantilado y el faro
+      const isNearFaroX = x >= -23 && x <= -13;
+      const isNearFaroZ = z >= 36 && z <= 42;
+
+      if (isNearFaroX && isNearFaroZ) {
+        const yCliff = yCliffBase + Math.sin(x * 0.3) * 0.8;
+        const isTower = Math.abs(x - lightX) < 1.8 && Math.abs(z - lightZ) < 1.8;
+        
+        if (isTower) {
+          for (let fy = 0; fy < 10; fy++) {
+            const y3d = yCliff + fy * 0.9;
+            const projX = Math.floor(currentCenterX + (x * 1.62 * fov) / z);
+            const projY = Math.floor(currentCenterY - (y3d * fov) / z + (z * 0.74) - 9);
+            
+            if (projX >= 0 && projX < width && projY >= 0 && projY < height) {
+              let char = '|';
+              let className = 'stone';
+              
+              if (fy === 8 || fy === 9) {
+                char = 'O';
+                className = 'flower';
+              } else if (fy === 0 || fy === 7) {
+                char = '=';
+                className = 'gate-dark';
+              } else {
+                char = (px => (px % 2 === 0 ? '#' : 'H'))(Math.round(x + fy));
+                className = 'gate';
+              }
+              buffer[projY][projX] = { char: char, class: className };
+            }
+          }
+        } else {
+          const projX = Math.floor(currentCenterX + (x * 1.62 * fov) / z);
+          const projY = Math.floor(currentCenterY - (yCliff * fov) / z + (z * 0.74) - 9);
+          if (projX >= 0 && projX < width && projY >= 0 && projY < height) {
+            buffer[projY][projX] = { char: ['[', ']', '#', '*'][(Math.round(x + z)) % 4], class: 'stone' };
+          }
+        }
+        continue;
       }
+
+      // 2.2. Simulación de olas normales (Ondas de Gerstner modificadas)
+      const y1 = Math.sin(x * 0.18 + t * 3.2) * Math.cos(z * 0.14 - t * 2.2) * 1.9;
+      const y2 = Math.sin(x * 0.08 - t * 1.5) * 0.9;
+      const y3 = Math.cos((x * 0.06 + z * 0.1) + t * 1.1) * 1.2;
+      let y = y1 + y2 + y3;
+
+      if (y > 0) {
+        y = Math.pow(y, 1.22);
+      }
+
+      const projX = Math.floor(currentCenterX + (x * 1.62 * fov) / z);
+      const projY = Math.floor(currentCenterY - (y * fov) / z + (z * 0.74) - 9);
+
+      if (projX >= 0 && projX < width && projY >= 0 && projY < height) {
+        // 2.3. Comprobar iluminación del haz de luz en 3D
+        const dx3d = x - lightX;
+        const dz3d = z - lightZ;
+        const angle3d = Math.atan2(dz3d, dx3d);
+        const diff3d = Math.abs((angle3d - lightAngle3d + Math.PI * 3) % (Math.PI * 2) - Math.PI);
+        const isIlluminated = diff3d < 0.22 && dx3d > 0;
+
+        let char = ' ';
+        let className = 'water';
+
+        if (isIlluminated) {
+          if (y > 1.2) {
+            char = '@';
+            className = 'crest';
+          } else if (y > 0.3) {
+            char = '%';
+            className = 'crest';
+          } else {
+            char = '#';
+            className = 'water-light';
+          }
+        } else {
+          if (y > 1.35) {
+            char = '~';
+            className = 'crest';
+          } else if (y > 0.4) {
+            char = '+';
+            className = 'water-light';
+          } else if (y > -0.6) {
+            char = '=';
+            className = 'water';
+          } else {
+            char = '.';
+            className = 'water-deep';
+          }
+        }
+
+        buffer[projY][projX] = { char: char, class: className };
+      }
+    }
+  }
+
+  // 3. Dibujar haz de luz en el aire (2D)
+  for (let y = 0; y < height; y++) {
+    for (let x = 0; x < width; x++) {
+      if (buffer[y][x].char === ' ') {
+        const dx = x - lightScreenX;
+        const dy = y - lightScreenY;
+        const dist = Math.hypot(dx, dy);
+
+        if (dist > 2 && dist < width * 0.65) {
+          const angle = Math.atan2(dy, dx);
+          const diff = Math.abs((angle - lightAngle3d + Math.PI * 3) % (Math.PI * 2) - Math.PI);
+          if (diff < 0.16 && dx > 0) {
+            const chars = ['.', ':', '-', '~'];
+            const densityIdx = Math.floor((1 - (diff / 0.16)) * chars.length);
+            const char = chars[Math.max(0, Math.min(chars.length - 1, densityIdx))];
+            buffer[y][x] = { char: char, class: 'sky' };
+          }
+        }
+      }
+    }
+  }
+
+  // 4. Dibujar la orilla de arena abajo
+  for (let x = 0; x < width; x++) {
+    const shoreY = height - 1 - Math.round(2.5 + Math.sin(x * 0.08 + t * 0.2) * 1.2);
+    for (let y = shoreY; y < height; y++) {
+      buffer[y][x] = { char: ['.', ':', '-'][(x + y) % 3], class: 'sand' };
+    }
+  }
+
+  // 5. Renderizar a HTML
+  for (let y = 0; y < height; y++) {
+    let line = '';
+    for (let x = 0; x < width; x++) {
+      const cell = buffer[y][x];
+      line += paint(cell.char, cell.class);
     }
     lines.push(line);
   }
