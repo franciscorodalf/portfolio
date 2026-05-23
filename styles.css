@@ -598,6 +598,54 @@ figcaption {
   transform: translateX(4px);
 }
 
+.work-links {
+  display: flex;
+  gap: 0.65rem;
+  margin-top: auto;
+  padding-top: 1.2rem;
+}
+
+.work-link {
+  align-items: center;
+  background: var(--paper-card);
+  border: 1px solid var(--line-strong);
+  border-radius: 999px;
+  box-shadow: 0 4px 12px rgba(78, 59, 38, 0.04);
+  color: var(--ink);
+  display: inline-flex;
+  font-size: 0.76rem;
+  font-weight: 500;
+  justify-content: center;
+  min-height: 2rem;
+  padding: 0 0.95rem;
+  transition: background 180ms ease, border-color 180ms ease, box-shadow 180ms ease, transform 180ms ease;
+}
+
+.work-link:hover {
+  border-color: var(--ink);
+  box-shadow: 0 8px 16px rgba(78, 59, 38, 0.08);
+  transform: translateY(-1.5px);
+}
+
+.work-link.demo {
+  background: var(--ink);
+  border-color: var(--ink);
+  color: var(--paper);
+}
+
+.work-link.demo:hover {
+  background: var(--paper-card);
+  color: var(--ink);
+}
+
+[data-theme="dark"] .work-link {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+[data-theme="dark"] .work-link:hover {
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.25);
+}
+
 .stack-panel {
   align-items: start;
   grid-template-columns: minmax(10rem, 0.28fr) minmax(0, 1fr);

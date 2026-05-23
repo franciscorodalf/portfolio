@@ -93,36 +93,47 @@
                 <p>Mi proyecto principal: una pieza para mostrar con mas detalle, contexto tecnico y una presentacion propia dentro del portfolio.</p>
                 <strong>Ver detalles tecnicos</strong>
               </a>
-              <a class="work-item" href="https://github.com/franciscorodalf/Really" target="_blank" rel="noopener">
+              <article class="work-item">
                 <span>TypeScript</span>
                 <h3>Really</h3>
                 <p>App minimalista para detener compras impulsivas mediante periodos de espera y fomentar ahorro consciente.</p>
-                <strong>Ver proyecto</strong>
-              </a>
-              <a class="work-item" href="https://github.com/franciscorodalf/Tienda-IA" target="_blank" rel="noopener">
+                <div class="work-links">
+                  <a class="work-link" href="https://github.com/franciscorodalf/Really" target="_blank" rel="noopener">Codigo</a>
+                </div>
+              </article>
+              <article class="work-item">
                 <span>TypeScript</span>
                 <h3>Tienda-IA</h3>
                 <p>Proyecto web reciente orientado a explorar interfaces de tienda y flujos asistidos por IA.</p>
-                <strong>Ver proyecto</strong>
-              </a>
-              <a class="work-item" href="https://github.com/franciscorodalf/SafeInvestor" target="_blank" rel="noopener">
+                <div class="work-links">
+                  <a class="work-link" href="https://github.com/franciscorodalf/Tienda-IA" target="_blank" rel="noopener">Codigo</a>
+                  <a class="work-link demo" href="https://tiendawithia.vercel.app" target="_blank" rel="noopener">Web</a>
+                </div>
+              </article>
+              <article class="work-item">
                 <span>Java</span>
                 <h3>SafeInvestor</h3>
                 <p>Gestion de ingresos, gastos y metas de ahorro con una interfaz practica.</p>
-                <strong>Ver proyecto</strong>
-              </a>
-              <a class="work-item" href="https://github.com/franciscorodalf/PowerMine" target="_blank" rel="noopener">
+                <div class="work-links">
+                  <a class="work-link" href="https://github.com/franciscorodalf/SafeInvestor" target="_blank" rel="noopener">Codigo</a>
+                </div>
+              </article>
+              <article class="work-item">
                 <span>Java · Juego</span>
                 <h3>PowerMine</h3>
                 <p>Una reinterpretacion del Buscaminas con trampas, habilidades y ritmo propio.</p>
-                <strong>Ver proyecto</strong>
-              </a>
-              <a class="work-item" href="https://github.com/franciscorodalf/Pick-A-Ball" target="_blank" rel="noopener">
+                <div class="work-links">
+                  <a class="work-link" href="https://github.com/franciscorodalf/PowerMine" target="_blank" rel="noopener">Codigo</a>
+                </div>
+              </article>
+              <article class="work-item">
                 <span>C#</span>
                 <h3>Pick-A-Ball</h3>
                 <p>Proyecto de juego que aporta variedad al portfolio y muestra trabajo fuera del stack Java/web.</p>
-                <strong>Ver proyecto</strong>
-              </a>
+                <div class="work-links">
+                  <a class="work-link" href="https://github.com/franciscorodalf/Pick-A-Ball" target="_blank" rel="noopener">Codigo</a>
+                </div>
+              </article>
             </div>
           </article>
 
@@ -262,30 +273,35 @@
           <h3 id="modal-title">Hermnet</h3>
         </div>
         <div class="modal-desc">
-          <p>Hermnet es una infraestructura de red privada y segura diseñada para interconectar múltiples nodos locales de forma cifrada mediante túneles WireGuard, optimizando la latencia y la resiliencia.</p>
+          <p>Hermnet es una aplicacion de mensajeria instantanea descentralizada con servidor ciego y cifrado de extremo a extremo (E2EE) desarrollada como proyecto final de DAM. El servidor transporta los mensajes, pero no puede leerlos. Tu identidad no depende de correos ni telefonos; cada nodo genera localmente sus claves RSA y se comunica de forma totalmente privada.</p>
+          <ul class="modal-highlights">
+            <li><strong>Cifrado Hibrido E2EE:</strong> AES-256-GCM para el mensaje y RSA-OAEP-SHA256 para encapsular la clave.</li>
+            <li><strong>Servidor Zero-Knowledge:</strong> Spring Boot solo maneja payloads cifrados opacos en un buzon temporal.</li>
+            <li><strong>Identidad Soberana:</strong> El ID de usuario (HNET-...) se deriva de la clave publica del dispositivo.</li>
+            <li><strong>Base Local Cifrada:</strong> Historial y contactos protegidos en SQLite local con cifrado en reposo.</li>
+            <li><strong>Modulo Odoo 17:</strong> Gestion empresarial integrada para administrar nodos y dispositivos.</li>
+            <li><strong>Tor-Ready en Android:</strong> Enrutamiento nativo por hidden services de Tor para anonimato de red.</li>
+          </ul>
         </div>
         <figure class="modal-visual" aria-label="Diagrama de red en arte ASCII">
           <pre class="hermnet-ascii">
-   [ Cliente Movil ]         [ Cliente Web ]
-          │                         │
-          │ (WireGuard)             │ (HTTPS)
-          ▼                         ▼
-   ┌───────────────────────────────────────────┐
-   │            Puerta de Enlace               │
-   │               (Firewall)                  │
-   └────────────────────┬──────────────────────┘
-                        │
-                        ├──────────────────────┐
-                        ▼                      ▼
-             ┌────────────────────┐  ┌────────────────────┐
-             │ Servidor de Base   │  │ Servidor de        │
-             │   de Datos (SQL)   │  │ Monitorizacion     │
-             └────────────────────┘  └────────────────────┘
+ [ Emisor: HNET-A ]            [ Servidor Ciego ]            [ Receptor: HNET-B ]
+        │                               │                             │
+        │  1. Cifra msg (AES-256)       │                             │
+        │  2. Cifra clave (RSA-2048)    │                             │
+        ├──────────────────────────────▶│                             │
+        │      (Payload opaco)          │  3. Guarda en buzon         │
+        │                               ├────────────────────────────▶│
+        │                               │     (Descarga payload)      │  4. Descifra clave (RSA)
+        │                               │                             │  5. Descifra msg (AES)
+        ▼                               ▼                             ▼
           </pre>
-          <figcaption>Diagrama de flujo y arquitectura de red de Hermnet</figcaption>
+          <figcaption>Diagrama de flujo criptografico y mensajeria Zero-Knowledge de Hermnet</figcaption>
         </figure>
         <div class="modal-actions">
-          <a class="button primary" href="#contacto" id="modal-contact-btn">Solicitar detalles de despliegue</a>
+          <a class="button primary" href="https://hermnet.github.io/Hermnet-Web/" target="_blank" rel="noopener">Visitar Web Oficial</a>
+          <a class="button" href="https://github.com/Hermnet/Hermnet" target="_blank" rel="noopener">Ver Codigo en GitHub</a>
+          <a class="button secondary" href="#contacto" id="modal-contact-btn">Solicitar despliegue</a>
         </div>
       </div>
     </div>
