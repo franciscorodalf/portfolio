@@ -495,6 +495,22 @@ figcaption {
   color: #d9919e;
 }
 
+.soft-ascii .water {
+  color: #5eaebc;
+}
+
+.soft-ascii .water-light {
+  color: #92cbd6;
+}
+
+.soft-ascii .water-deep {
+  color: #27525f;
+}
+
+.soft-ascii .crest {
+  color: #e5f6f8;
+}
+
 .wave-ascii {
   font-size: clamp(0.28rem, 0.48vw, 0.45rem);
   overflow: hidden;

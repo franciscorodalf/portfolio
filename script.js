@@ -385,7 +385,7 @@ function renderWave() {
   if (!waveAscii) return;
   const width = window.innerWidth < 760 ? 90 : 150;
   const height = window.innerWidth < 760 ? 30 : 45;
-  const t = frame * 0.04;
+  const t = frame * 0.045;
   const lines = [];
 
   const buffer = Array.from({ length: height }, () => Array.from({ length: width }, () => ({ char: ' ', class: '' })));
@@ -394,9 +394,9 @@ function renderWave() {
   const centerX = width / 2;
   const centerY = height / 2;
 
-  // 1. Balanceo de cámara para simular cubierta de barco
-  const cameraRoll = Math.sin(t * 1.5) * 3;
-  const cameraPitch = Math.cos(t * 1.0) * 1.8;
+  // 1. Balanceo de cámara ultra suave y lento para evitar vibración caótica del lienzo
+  const cameraRoll = Math.sin(t * 0.2) * 0.4;
+  const cameraPitch = Math.cos(t * 0.1) * 0.2;
   const currentCenterX = centerX + cameraRoll;
   const currentCenterY = centerY + cameraPitch;
 
@@ -411,8 +411,8 @@ function renderWave() {
   const yCliffBase = 3.5;
   const lightY = yCliffBase + 9;
 
-  // Ángulo del haz de luz
-  const lightAngle3d = (t * 0.8) % (Math.PI * 2);
+  // Ángulo de giro de luz ralentizado majestuosamente (t * 0.12 en lugar de t * 0.8)
+  const lightAngle3d = (t * 0.12) % (Math.PI * 2);
 
   // Proyección 2D de la linterna del faro en pantalla para el haz del cielo
   const lightScreenX = Math.floor(currentCenterX + (lightX * 1.62 * fov) / lightZ);
@@ -463,14 +463,14 @@ function renderWave() {
         continue;
       }
 
-      // 2.2. Simulación de olas normales (Ondas de Gerstner modificadas)
-      const y1 = Math.sin(x * 0.18 + t * 3.2) * Math.cos(z * 0.14 - t * 2.2) * 1.9;
-      const y2 = Math.sin(x * 0.08 - t * 1.5) * 0.9;
-      const y3 = Math.cos((x * 0.06 + z * 0.1) + t * 1.1) * 1.2;
-      let y = y1 + y2 + y3;
+      // 2.2. Simulación de olas normales (Gerstner suavizado y ralentizado drásticamente)
+      const y1 = Math.sin(x * 0.18 + t * 0.6) * Math.cos(z * 0.14 - t * 0.4) * 1.4;
+      const y2 = Math.sin(x * 0.08 - t * 0.3) * 0.7;
+      const y3 = Math.cos((x * 0.06 + z * 0.1) + t * 0.2) * 0.8;
+      let y = (y1 + y2 + y3) * 0.85;
 
       if (y > 0) {
-        y = Math.pow(y, 1.22);
+        y = Math.pow(y, 1.18);
       }
 
       const projX = Math.floor(currentCenterX + (x * 1.62 * fov) / z);
@@ -488,10 +488,10 @@ function renderWave() {
         let className = 'water';
 
         if (isIlluminated) {
-          if (y > 1.2) {
+          if (y > 1.0) {
             char = '@';
             className = 'crest';
-          } else if (y > 0.3) {
+          } else if (y > 0.2) {
             char = '%';
             className = 'crest';
           } else {
@@ -499,13 +499,13 @@ function renderWave() {
             className = 'water-light';
           }
         } else {
-          if (y > 1.35) {
+          if (y > 1.2) {
             char = '~';
             className = 'crest';
-          } else if (y > 0.4) {
+          } else if (y > 0.3) {
             char = '+';
             className = 'water-light';
-          } else if (y > -0.6) {
+          } else if (y > -0.5) {
             char = '=';
             className = 'water';
           } else {
