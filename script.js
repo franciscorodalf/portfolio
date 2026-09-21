@@ -214,7 +214,7 @@
         }
         return;
       }
-      window.location.href = 'mailto:francuban1278@gmail.com?subject=' +
+      window.location.href = 'mailto:franciscoyarielrodriguezalfons@gmail.com?subject=' +
         encodeURIComponent('Portfolio — ' + name) + '&body=' +
         encodeURIComponent(msg + '\n\n' + name + ' · ' + email);
       if (note) {

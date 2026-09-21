@@ -93,5 +93,5 @@ Abre `http://localhost:8000`. No hay dependencias que instalar ni paso de compil
 
 * **Desarrollador:** Francisco Yariel Rodríguez Alfonso
 * **Ubicación:** Santa Úrsula, Tenerife, España
-* **Email:** [francuban1278@gmail.com](mailto:francuban1278@gmail.com)
+* **Email:** [franciscoyarielrodriguezalfons@gmail.com](mailto:franciscoyarielrodriguezalfons@gmail.com)
 * **LinkedIn:** [linkedin.com/in/francisco-yariel-rodriguez-alfonso-1569b1371](https://www.linkedin.com/in/francisco-yariel-rodriguez-alfonso-1569b1371)
