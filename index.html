@@ -17,344 +17,344 @@
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-<div id="root" style="--bg:#F1EDE4; --bg2:#E8E2D6; --card:#FBF9F4; --tx:#171614; --mu:#55514A; --ac:#8C2F24; --line:rgba(23,22,20,0.15); --line2:rgba(23,22,20,0.4); --disp:'Instrument Serif',Georgia,serif; --sans:'Archivo',system-ui,sans-serif; --mono:'Geist Mono',ui-monospace,monospace; background:var(--bg); color:var(--tx); font-family:var(--sans); min-height:100vh; position:relative; overflow-x:hidden; -webkit-font-smoothing:antialiased;">
+<div id="root">
 
-  <div data-veil="" style="position:fixed; inset:0; z-index:200; background:var(--bg); display:flex; flex-direction:column; align-items:center; justify-content:center; gap:0.9rem; padding:clamp(1.2rem,4vw,2.6rem); transition:opacity 0.7s ease, visibility 0.7s ease;">
-    <div style="font-family:var(--mono); font-weight:300; font-size:clamp(1.5rem,6.6vw,4.8rem); line-height:1; letter-spacing:-0.03em; text-align:center; animation:paRise 0.8s cubic-bezier(.2,.8,.2,1) both;">Francisco Yariel</div>
-    <div style="width:min(80vw,34rem); height:1px; background:var(--line); position:relative;">
-      <div data-veil-bar="" style="position:absolute; inset:0 100% 0 0; background:var(--ac); transition:right 0.1s linear;"></div>
+  <div class="veil" data-veil="">
+    <div class="veil__name">Francisco Yariel</div>
+    <div class="veil__track">
+      <div class="veil__bar" data-veil-bar=""></div>
     </div>
-    <div style="width:min(80vw,34rem); display:flex; align-items:baseline; justify-content:space-between; gap:1rem; font-family:var(--mono); font-size:0.7rem; letter-spacing:0.14em; text-transform:uppercase; color:var(--mu);">
+    <div class="veil__meta">
       <span data-en="Multiplatform &amp; mobile developer">Desarrollador multiplataforma y móvil</span>
-      <span data-veil-pct="" style="color:var(--tx);">000</span>
+      <span class="veil__pct" data-veil-pct="">000</span>
     </div>
   </div>
 
-  <header style="position:fixed; top:0; left:0; right:0; z-index:90; display:flex; align-items:center; justify-content:space-between; gap:1rem; padding:0.8rem clamp(1rem,4vw,2.4rem); background:rgba(241,237,228,0.88); backdrop-filter:blur(12px); -webkit-backdrop-filter:blur(12px); border-bottom:1px solid var(--line);">
-    <div data-progress="" style="position:absolute; left:0; bottom:-1px; height:1px; width:0%; background:var(--ac); transition:width 0.12s linear;"></div>
-    <a href="#top" style="font-family:var(--disp); font-size:1.15rem; letter-spacing:-0.01em;">Francisco Yariel</a>
-    <nav style="display: flex; align-items: center; gap: 0.1rem; flex-direction: row; justify-content: flex-start">
-      <a class="dh1" href="#stack" style="font-family:var(--mono); font-size:0.72rem; letter-spacing:0.1em; text-transform:uppercase; color:var(--mu); padding:0.5rem 0.65rem;">Stack</a>
-      <a class="dh1" href="#proyectos" style="font-family:var(--mono); font-size:0.72rem; letter-spacing:0.1em; text-transform:uppercase; color:var(--mu); padding:0.5rem 0.65rem;" data-en="Work">Proyectos</a>
-      <a class="dh1" href="#trayectoria" style="font-family:var(--mono); font-size:0.72rem; letter-spacing:0.1em; text-transform:uppercase; color:var(--mu); padding:0.5rem 0.65rem;" data-en="Path">Trayectoria</a>
+  <header class="site-header">
+    <div class="progress" data-progress=""></div>
+    <a class="brand" href="#top">Francisco Yariel</a>
+    <nav class="nav">
+      <a class="nav__link" href="#stack">Stack</a>
+      <a class="nav__link" href="#proyectos" data-en="Work">Proyectos</a>
+      <a class="nav__link" href="#trayectoria" data-en="Path">Trayectoria</a>
     </nav>
-    <div style="display:flex; align-items:center; gap:0.5rem;">
-      <div style="display:flex; align-items:center; gap:0.4rem; margin-right:0.5rem;">
-        <a class="dh2" href="https://github.com/franciscorodalf" target="_blank" rel="noopener" aria-label="GitHub" title="GitHub" style="display:inline-flex; align-items:center; justify-content:center; width:2.2rem; height:2.2rem; border:1px solid var(--line2); background:var(--card); color:var(--tx); transition:color 0.2s ease, background 0.2s ease, border-color 0.2s ease, transform 0.2s ease;">
+    <div class="header__actions">
+      <div class="header__social">
+        <a class="icon-btn" href="https://github.com/franciscorodalf" target="_blank" rel="noopener" aria-label="GitHub" title="GitHub">
           <svg viewBox="0 0 24 24" width="17" height="17" fill="currentColor" aria-hidden="true"><path d="M12 .5C5.73.5.9 5.33.9 11.6c0 4.9 3.18 9.06 7.59 10.53.56.1.76-.24.76-.53v-2.06c-3.09.67-3.74-1.32-3.74-1.32-.5-1.29-1.23-1.63-1.23-1.63-1.01-.69.08-.67.08-.67 1.11.08 1.7 1.15 1.7 1.15.99 1.7 2.6 1.21 3.23.92.1-.72.39-1.21.7-1.49-2.47-.28-5.06-1.24-5.06-5.5 0-1.22.43-2.21 1.14-2.99-.11-.28-.5-1.42.11-2.95 0 0 .94-.3 3.07 1.14a10.6 10.6 0 0 1 5.6 0c2.12-1.44 3.06-1.14 3.06-1.14.61 1.53.23 2.67.11 2.95.71.78 1.14 1.77 1.14 2.99 0 4.27-2.6 5.21-5.08 5.49.4.35.76 1.03.76 2.08v3.08c0 .3.2.64.77.53 4.4-1.47 7.58-5.63 7.58-10.53C23.1 5.33 18.27.5 12 .5z"></path></svg>
         </a>
-        <a class="dh2" href="https://www.linkedin.com/in/francisco-yariel-rodriguez-alfonso-1569b1371" target="_blank" rel="noopener" aria-label="LinkedIn" title="LinkedIn" style="display:inline-flex; align-items:center; justify-content:center; width:2.2rem; height:2.2rem; border:1px solid var(--line2); background:var(--card); color:var(--tx); transition:color 0.2s ease, background 0.2s ease, border-color 0.2s ease, transform 0.2s ease;">
+        <a class="icon-btn" href="https://www.linkedin.com/in/francisco-yariel-rodriguez-alfonso-1569b1371" target="_blank" rel="noopener" aria-label="LinkedIn" title="LinkedIn">
           <svg viewBox="0 0 24 24" width="17" height="17" fill="currentColor" aria-hidden="true"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9h4v12H3zM9.5 9h3.83v1.64h.05c.53-1 1.84-2.06 3.78-2.06 4.05 0 4.8 2.66 4.8 6.12V21h-4v-5.43c0-1.3-.02-2.96-1.8-2.96-1.8 0-2.08 1.41-2.08 2.87V21h-4z"></path></svg>
         </a>
-        <a class="dh2" href="mailto:franciscoyarielrodriguezalfons@gmail.com" aria-label="Email" title="Email" style="display:inline-flex; align-items:center; justify-content:center; width:2.2rem; height:2.2rem; border:1px solid var(--line2); background:var(--card); color:var(--tx); transition:color 0.2s ease, background 0.2s ease, border-color 0.2s ease, transform 0.2s ease;">
+        <a class="icon-btn" href="mailto:franciscoyarielrodriguezalfons@gmail.com" aria-label="Email" title="Email">
           <svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="2.5" y="4.5" width="19" height="15"></rect><path d="M2.5 6 12 13 21.5 6"></path></svg>
         </a>
       </div>
-      <button class="dh3" type="button" data-lang="" aria-label="Cambiar idioma" style="display:inline-flex; align-items:center; gap:0.3rem; cursor:pointer; font-family:var(--mono); font-size:0.7rem; font-weight:600; letter-spacing:0.08em; background:var(--card); border:1px solid var(--line2); color:var(--tx); padding:0.32rem 0.36rem; min-height:2.2rem; transition:background 0.2s ease, border-color 0.2s ease, transform 0.2s ease;"><span data-lang-es="" style="display:inline-block; padding:0.24rem 0.5rem; background:var(--tx); color:var(--bg);">ES</span><span data-lang-en="" style="display:inline-block; padding:0.24rem 0.5rem; color:var(--mu);">EN</span></button>
-      <a class="dh4" href="#contacto" style="display:inline-flex; align-items:center; min-height:2rem; padding:0 0.9rem; background:var(--tx); color:var(--bg); font-family:var(--mono); font-size:0.7rem; letter-spacing:0.08em; text-transform:uppercase; transition:background 0.2s ease;" data-en="Contact">Contacto</a>
+      <button class="lang-btn" type="button" data-lang="" aria-label="Cambiar idioma"><span class="lang-pill is-on" data-lang-es="">ES</span><span class="lang-pill" data-lang-en="">EN</span></button>
+      <a class="btn-mini" href="#contacto" data-en="Contact">Contacto</a>
     </div>
   </header>
 
-  <canvas id="field" style="position:fixed; inset:0; width:100%; height:100%; z-index:0; pointer-events:none; -webkit-mask-image:radial-gradient(135% 110% at 68% 34%, #000 42%, transparent 96%); mask-image:radial-gradient(135% 110% at 68% 34%, #000 42%, transparent 96%);"></canvas>
+  <canvas id="field"></canvas>
 
-  <section id="top" style="position:relative; z-index:1; overflow:hidden;">
-    <div style="position:relative; max-width:1500px; margin:0 auto; padding:clamp(7rem,14vh,10rem) clamp(1rem,4vw,2.4rem) clamp(2rem,5vw,3.5rem); container-type:inline-size;">
-      <div aria-hidden="false" style="position:absolute; top:clamp(4rem,9vw,7rem); right:clamp(1.5rem,5vw,4rem); width:min(36%,28rem); aspect-ratio:3/4; z-index:0; pointer-events:none; animation:paReveal 1.4s 0.45s cubic-bezier(.2,.8,.2,1) both;">
-        <img src="./assets/francisco.jpg" alt="Retrato de Francisco Yariel Rodríguez Alfonso" style="width:100%; height:100%; object-fit:cover; object-position:50% 18%; filter:contrast(1.04); opacity:0.88; mix-blend-mode:multiply; -webkit-mask-image:radial-gradient(84% 84% at 50% 42%, #000 56%, rgba(0,0,0,0.78) 78%, transparent 100%), linear-gradient(to right, transparent 0%, #000 14%, #000 86%, transparent 100%), linear-gradient(to bottom, transparent 0%, #000 10%, #000 84%, transparent 100%); mask-image:radial-gradient(84% 84% at 50% 42%, #000 56%, rgba(0,0,0,0.78) 78%, transparent 100%), linear-gradient(to right, transparent 0%, #000 14%, #000 86%, transparent 100%), linear-gradient(to bottom, transparent 0%, #000 10%, #000 84%, transparent 100%); -webkit-mask-composite:source-in; mask-composite:intersect;">
+  <section class="hero" id="top">
+    <div class="hero__inner">
+      <div class="hero__portrait" aria-hidden="false">
+        <img class="hero__portrait-img" src="./assets/francisco.jpg" width="1100" height="1467" decoding="async" alt="Retrato de Francisco Yariel Rodríguez Alfonso">
       </div>
-      <p style="position:relative; z-index:1; display:flex; align-items:center; gap:0.8rem; margin:0 0 clamp(1.4rem,3vw,2.4rem); font-family:var(--mono); font-size:0.72rem; letter-spacing:0.14em; text-transform:uppercase; color:var(--ac); animation:paReveal 0.8s 0.05s cubic-bezier(.2,.8,.2,1) both;">
-        <span style="width:2.4rem; height:1px; background:var(--ac);"></span>
+      <p class="hero__eyebrow">
+        <span class="hero__dash"></span>
         <span data-en="Tenerife, Spain — open to internships and a first role">Tenerife, España — disponible para prácticas y primer empleo</span>
       </p>
-      <h1 style="position:relative; z-index:1; margin:0 0 clamp(1.6rem,3vw,2.6rem); font-family:var(--disp); font-weight:400; font-size:clamp(2.6rem,9.2cqw,8rem); line-height:1.02; letter-spacing:-0.025em; max-width:20ch;">
-        <span style="display:block; overflow:hidden; padding:0.02em 0.1em 0.18em; margin:-0.02em -0.1em -0.18em;"><span style="display:block; animation:paRise 0.9s 0.1s cubic-bezier(.2,.8,.2,1) both;" data-en="I build desktop, web">Desarrollo aplicaciones</span></span>
-        <span style="display:block; overflow:hidden; padding:0.02em 0.1em 0.18em; margin:-0.02em -0.1em -0.18em;"><span style="display:block; animation:paRise 0.9s 0.2s cubic-bezier(.2,.8,.2,1) both;" data-en="and mobile applications">de escritorio, web y móvil</span></span>
-        <span style="display:block; overflow:hidden; padding:0.02em 0.14em 0.18em; margin:-0.02em -0.14em -0.18em;"><span style="display:block; font-style:italic; color:var(--ac); animation:paRise 0.9s 0.3s cubic-bezier(.2,.8,.2,1) both;" data-en="that hold up in production.">que aguantan en producción.</span></span>
+      <h1 class="hero__title">
+        <span class="hero__mask"><span class="hero__line" data-en="I build desktop, web">Desarrollo aplicaciones</span></span>
+        <span class="hero__mask"><span class="hero__line hero__line--2" data-en="and mobile applications">de escritorio, web y móvil</span></span>
+        <span class="hero__mask hero__mask--wide"><span class="hero__line hero__line--3" data-en="that hold up in production.">que aguantan en producción.</span></span>
       </h1>
-      <div style="position:relative; z-index:1; display:grid; grid-template-columns:repeat(auto-fit,minmax(min(100%,20rem),1fr)); gap:clamp(1.2rem,3vw,2.5rem); align-items:end; animation:paReveal 0.9s 0.35s cubic-bezier(.2,.8,.2,1) both;">
-        <p style="margin:0; font-size:clamp(1rem,1.2vw,1.12rem); line-height:1.65; max-width:36rem;" data-en="Francisco Yariel Rodríguez Alfonso. Java, Spring Boot, TypeScript and SQL, with a foundation in networks and systems support. Second year of DAM in Tenerife, Erasmus at Bowwe (Poland).">Francisco Yariel Rodríguez Alfonso. Java, Spring Boot, TypeScript y SQL, con base en redes y soporte de sistemas. 2º de DAM en Tenerife y Erasmus en Bowwe (Polonia).</p>
-        <div style="display:flex; flex-wrap:wrap; gap:0.6rem;">
-          <a class="dh5" href="#proyectos" style="display:inline-flex; align-items:center; gap:0.6rem; min-height:3rem; padding:0 1.3rem; background:var(--tx); color:var(--bg); font-family:var(--mono); font-size:0.78rem; letter-spacing:0.06em; text-transform:uppercase; transition:transform 0.2s ease, background 0.2s ease;" data-en="See 6 projects">Ver 6 proyectos <span aria-hidden="true">↓</span></a>
-          <a class="dh6" href="https://github.com/franciscorodalf/franciscorodalf/raw/main/CV%20Francisco%20Yariel.pdf" target="_blank" rel="noopener" style="display:inline-flex; align-items:center; gap:0.6rem; min-height:3rem; padding:0 1.5rem; background:var(--ac); color:var(--bg); font-family:var(--mono); font-size:0.78rem; font-weight:600; letter-spacing:0.06em; text-transform:uppercase; box-shadow:0 2px 0 0 var(--tx); transition:transform 0.2s ease, box-shadow 0.2s ease;" data-en="Download CV">Descargar CV <span aria-hidden="true">↗</span></a>
+      <div class="hero__lead">
+        <p class="hero__lead-text" data-en="Francisco Yariel Rodríguez Alfonso. Java, Spring Boot, TypeScript and SQL, with a foundation in networks and systems support. Second year of DAM in Tenerife, Erasmus at Bowwe (Poland).">Francisco Yariel Rodríguez Alfonso. Java, Spring Boot, TypeScript y SQL, con base en redes y soporte de sistemas. 2º de DAM en Tenerife y Erasmus en Bowwe (Polonia).</p>
+        <div class="btn-row">
+          <a class="btn" href="#proyectos" data-en="See 6 projects">Ver 6 proyectos <span aria-hidden="true">↓</span></a>
+          <a class="btn btn--accent" href="https://github.com/franciscorodalf/franciscorodalf/raw/main/CV%20Francisco%20Yariel.pdf" target="_blank" rel="noopener" data-en="Download CV">Descargar CV <span aria-hidden="true">↗</span></a>
         </div>
       </div>
     </div>
 
-    <div style="position:relative; max-width:1500px; margin:0 auto; padding:0 clamp(1rem,4vw,2.4rem);">
-      <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(min(100%,13rem),1fr)); border-top:1px solid var(--line2); border-bottom:1px solid var(--line);">
-        <div style="padding:1.1rem 1.3rem 1.1rem 0; border-right:1px solid var(--line);">
-          <p style="margin:0 0 0.4rem; font-family:var(--mono); font-size:0.64rem; letter-spacing:0.16em; text-transform:uppercase; color:var(--mu);" data-en="Role">Rol</p>
-          <p style="margin:0; font-family:var(--disp); font-size:1.28rem; line-height:1.25;" data-en="Multiplatform developer">Desarrollador multiplataforma</p>
+    <div class="wrap">
+      <div class="facts">
+        <div class="fact fact--first">
+          <p class="fact__label" data-en="Role">Rol</p>
+          <p class="fact__value" data-en="Multiplatform developer">Desarrollador multiplataforma</p>
         </div>
-        <div style="padding:1.1rem 1.3rem; border-right:1px solid var(--line);">
-          <p style="margin:0 0 0.4rem; font-family:var(--mono); font-size:0.64rem; letter-spacing:0.16em; text-transform:uppercase; color:var(--mu);">Base</p>
-          <p style="margin:0; font-family:var(--disp); font-size:1.28rem; line-height:1.25;">Santa Úrsula, Tenerife</p>
+        <div class="fact">
+          <p class="fact__label">Base</p>
+          <p class="fact__value">Santa Úrsula, Tenerife</p>
         </div>
-        <div style="padding:1.1rem 1.3rem; border-right:1px solid var(--line);">
-          <p style="margin:0 0 0.4rem; font-family:var(--mono); font-size:0.64rem; letter-spacing:0.16em; text-transform:uppercase; color:var(--mu);" data-en="Core stack">Stack principal</p>
-          <p style="margin:0; font-family:var(--disp); font-size:1.28rem; line-height:1.25;">Java · Spring Boot · TypeScript · SQL</p>
+        <div class="fact">
+          <p class="fact__label" data-en="Core stack">Stack principal</p>
+          <p class="fact__value">Java · Spring Boot · TypeScript · SQL</p>
         </div>
-        <div style="padding:1.1rem 0 1.1rem 1.3rem;">
-          <p style="margin:0 0 0.4rem; font-family:var(--mono); font-size:0.64rem; letter-spacing:0.16em; text-transform:uppercase; color:var(--mu);" data-en="Experience">Experiencia</p>
-          <p style="margin:0; font-family:var(--disp); font-size:1.28rem; line-height:1.25;" data-en="Erasmus 2025 — Bowwe, Poland">Erasmus 2025 — Bowwe, Polonia</p>
+        <div class="fact fact--last">
+          <p class="fact__label" data-en="Experience">Experiencia</p>
+          <p class="fact__value" data-en="Erasmus 2025 — Bowwe, Poland">Erasmus 2025 — Bowwe, Polonia</p>
         </div>
       </div>
     </div>
   </section>
 
-  <section id="stack" style="position:relative; z-index:1; max-width:1500px; margin:0 auto; padding:clamp(3.5rem,8vw,6rem) clamp(1rem,4vw,2.4rem);">
-    <div style="display:flex; flex-wrap:wrap; align-items:baseline; justify-content:space-between; gap:1.2rem; margin-bottom:clamp(1.5rem,3vw,2.2rem);">
-      <div style="display:flex; align-items:baseline; gap:1.1rem;">
-        <span style="font-family:var(--mono); font-size:0.72rem; letter-spacing:0.14em; color:var(--ac);">01</span>
-        <h2 style="margin:0; font-family:var(--disp); font-size:clamp(2.2rem,5vw,4.2rem); font-weight:400; letter-spacing:-0.02em; line-height:1;" data-en="Technologies">Tecnologías</h2>
+  <section class="stack" id="stack">
+    <div class="sec-head">
+      <div class="sec-head__title">
+        <span class="sec-num">01</span>
+        <h2 class="sec-h2" data-en="Technologies">Tecnologías</h2>
       </div>
-      <p style="margin:0; max-width:30rem; color:var(--mu); font-size:0.94rem; line-height:1.6;" data-en="What I use and what I've shipped with it. Nothing here without a repository behind it.">Lo que uso y lo que he construido con ello. Nada de esta lista sin un repositorio detrás.</p>
+      <p class="sec-intro" data-en="What I use and what I've shipped with it. Nothing here without a repository behind it.">Lo que uso y lo que he construido con ello. Nada de esta lista sin un repositorio detrás.</p>
     </div>
-    <div style="border-top:1px solid var(--line2);">
-      <div class="dh7" data-tech="" data-reveal="" style="display:grid; grid-template-columns:2.6rem minmax(0,1fr) minmax(0,2.2fr) auto; gap:0.6rem 1.4rem; align-items:center; padding:1rem 0; border-bottom:1px solid var(--line); transition:background 0.25s ease;">
-        <img src="assets/icons/java.svg" alt="" style="width:1.6rem; height:1.6rem;">
-        <h3 style="margin:0; font-family:var(--disp); font-size:1.42rem; font-weight:400;">Java</h3>
-        <p style="margin:0; color:var(--mu); font-size:0.9rem; line-height:1.55;" data-en="Desktop apps, games and business logic: SafeInvestor, PowerMine, Sabelotodo, Ahorcado. Spring Boot on the Hermnet server.">Apps de escritorio, juegos y lógica de negocio: SafeInvestor, PowerMine, Sabelotodo y Ahorcado. Spring Boot en el servidor de Hermnet.</p>
-        <span style="font-family:var(--mono); font-size:0.62rem; letter-spacing:0.14em; text-transform:uppercase; color:var(--ac);" data-en="Core">Núcleo</span>
+    <div class="ruled">
+      <div class="tech-row" data-tech="" data-reveal="">
+        <img class="tech-icon" src="assets/icons/java.svg" loading="lazy" decoding="async" alt="">
+        <h3 class="tech-name">Java</h3>
+        <p class="text-sm" data-en="Desktop apps, games and business logic: SafeInvestor, PowerMine, Sabelotodo, Ahorcado. Spring Boot on the Hermnet server.">Apps de escritorio, juegos y lógica de negocio: SafeInvestor, PowerMine, Sabelotodo y Ahorcado. Spring Boot en el servidor de Hermnet.</p>
+        <span class="tag tag--accent" data-en="Core">Núcleo</span>
       </div>
-      <div class="dh7" data-tech="" data-reveal="" style="display:grid; grid-template-columns:2.6rem minmax(0,1fr) minmax(0,2.2fr) auto; gap:0.6rem 1.4rem; align-items:center; padding:1rem 0; border-bottom:1px solid var(--line); transition:background 0.25s ease;">
-        <img src="assets/icons/javascript.svg" alt="" style="width:1.6rem; height:1.6rem;">
-        <h3 style="margin:0; font-family:var(--disp); font-size:1.42rem; font-weight:400;">TypeScript / JavaScript</h3>
-        <p style="margin:0; color:var(--mu); font-size:0.9rem; line-height:1.55;" data-en="Web interfaces, API consumption and the most recent products: Really and Tienda-IA.">Interfaces web, consumo de APIs y los proyectos más recientes: Really y Tienda-IA.</p>
-        <span style="font-family:var(--mono); font-size:0.62rem; letter-spacing:0.14em; text-transform:uppercase; color:var(--ac);" data-en="Core">Núcleo</span>
+      <div class="tech-row" data-tech="" data-reveal="">
+        <img class="tech-icon" src="assets/icons/javascript.svg" loading="lazy" decoding="async" alt="">
+        <h3 class="tech-name">TypeScript / JavaScript</h3>
+        <p class="text-sm" data-en="Web interfaces, API consumption and the most recent products: Really and Tienda-IA.">Interfaces web, consumo de APIs y los proyectos más recientes: Really y Tienda-IA.</p>
+        <span class="tag tag--accent" data-en="Core">Núcleo</span>
       </div>
-      <div class="dh7" data-tech="" data-reveal="" style="display:grid; grid-template-columns:2.6rem minmax(0,1fr) minmax(0,2.2fr) auto; gap:0.6rem 1.4rem; align-items:center; padding:1rem 0; border-bottom:1px solid var(--line); transition:background 0.25s ease;">
-        <img src="assets/icons/mysql.svg" alt="" style="width:1.6rem; height:1.6rem;">
-        <h3 style="margin:0; font-family:var(--disp); font-size:1.42rem; font-weight:400;">SQL · MySQL · PostgreSQL</h3>
-        <p style="margin:0; color:var(--mu); font-size:0.9rem; line-height:1.55;" data-en="Data modelling and querying for applications with real persistence, plus encrypted local SQLite.">Modelado y consulta de datos para aplicaciones con persistencia real, además de SQLite local cifrado.</p>
-        <span style="font-family:var(--mono); font-size:0.62rem; letter-spacing:0.14em; text-transform:uppercase; color:var(--ac);" data-en="Core">Núcleo</span>
+      <div class="tech-row" data-tech="" data-reveal="">
+        <img class="tech-icon" src="assets/icons/mysql.svg" loading="lazy" decoding="async" alt="">
+        <h3 class="tech-name">SQL · MySQL · PostgreSQL</h3>
+        <p class="text-sm" data-en="Data modelling and querying for applications with real persistence, plus encrypted local SQLite.">Modelado y consulta de datos para aplicaciones con persistencia real, además de SQLite local cifrado.</p>
+        <span class="tag tag--accent" data-en="Core">Núcleo</span>
       </div>
-      <div class="dh7" data-tech="" data-reveal="" style="display:grid; grid-template-columns:2.6rem minmax(0,1fr) minmax(0,2.2fr) auto; gap:0.6rem 1.4rem; align-items:center; padding:1rem 0; border-bottom:1px solid var(--line); transition:background 0.25s ease;">
-        <img src="assets/icons/flutter.svg" alt="" style="width:1.6rem; height:1.6rem;">
-        <h3 style="margin:0; font-family:var(--disp); font-size:1.42rem; font-weight:400;">React Native · Expo · Flutter</h3>
-        <p style="margin:0; color:var(--mu); font-size:0.9rem; line-height:1.55;" data-en="Cross-platform base for mobile products: Hermnet and Really run on it.">Base multiplataforma para producto móvil: Hermnet y Really funcionan sobre ella.</p>
-        <span style="font-family:var(--mono); font-size:0.62rem; letter-spacing:0.14em; text-transform:uppercase; color:var(--mu);" data-en="Mobile">Móvil</span>
+      <div class="tech-row" data-tech="" data-reveal="">
+        <img class="tech-icon" src="assets/icons/flutter.svg" loading="lazy" decoding="async" alt="">
+        <h3 class="tech-name">React Native · Expo · Flutter</h3>
+        <p class="text-sm" data-en="Cross-platform base for mobile products: Hermnet and Really run on it.">Base multiplataforma para producto móvil: Hermnet y Really funcionan sobre ella.</p>
+        <span class="tag" data-en="Mobile">Móvil</span>
       </div>
-      <div class="dh7" data-tech="" data-reveal="" style="display:grid; grid-template-columns:2.6rem minmax(0,1fr) minmax(0,2.2fr) auto; gap:0.6rem 1.4rem; align-items:center; padding:1rem 0; border-bottom:1px solid var(--line); transition:background 0.25s ease;">
-        <img src="assets/icons/css.svg" alt="" style="width:1.6rem; height:1.6rem;">
-        <h3 style="margin:0; font-family:var(--disp); font-size:1.42rem; font-weight:400;">HTML / CSS</h3>
-        <p style="margin:0; color:var(--mu); font-size:0.9rem; line-height:1.55;" data-en="Responsive layout, accessibility and the visual craft of this portfolio and AlgoritmoTiendas.">Maquetación responsive, accesibilidad y el cuidado visual de este portfolio y AlgoritmoTiendas.</p>
-        <span style="font-family:var(--mono); font-size:0.62rem; letter-spacing:0.14em; text-transform:uppercase; color:var(--mu);" data-en="Interface">Interfaz</span>
+      <div class="tech-row" data-tech="" data-reveal="">
+        <img class="tech-icon" src="assets/icons/css.svg" loading="lazy" decoding="async" alt="">
+        <h3 class="tech-name">HTML / CSS</h3>
+        <p class="text-sm" data-en="Responsive layout, accessibility and the visual craft of this portfolio and AlgoritmoTiendas.">Maquetación responsive, accesibilidad y el cuidado visual de este portfolio y AlgoritmoTiendas.</p>
+        <span class="tag" data-en="Interface">Interfaz</span>
       </div>
-      <div class="dh7" data-tech="" data-reveal="" style="display:grid; grid-template-columns:2.6rem minmax(0,1fr) minmax(0,2.2fr) auto; gap:0.6rem 1.4rem; align-items:center; padding:1rem 0; border-bottom:1px solid var(--line); transition:background 0.25s ease;">
-        <img src="assets/icons/php.svg" alt="" style="width:1.6rem; height:1.6rem;">
-        <h3 style="margin:0; font-family:var(--disp); font-size:1.42rem; font-weight:400;">PHP</h3>
-        <p style="margin:0; color:var(--mu); font-size:0.9rem; line-height:1.55;" data-en="Simple backends, web integrations and server logic for coursework and practice projects.">Backends sencillos, integraciones web y lógica de servidor en proyectos de clase y práctica.</p>
-        <span style="font-family:var(--mono); font-size:0.62rem; letter-spacing:0.14em; text-transform:uppercase; color:var(--mu);">Backend</span>
+      <div class="tech-row" data-tech="" data-reveal="">
+        <img class="tech-icon" src="assets/icons/php.svg" loading="lazy" decoding="async" alt="">
+        <h3 class="tech-name">PHP</h3>
+        <p class="text-sm" data-en="Simple backends, web integrations and server logic for coursework and practice projects.">Backends sencillos, integraciones web y lógica de servidor en proyectos de clase y práctica.</p>
+        <span class="tag">Backend</span>
       </div>
-      <div class="dh7" data-tech="" data-reveal="" style="display:grid; grid-template-columns:2.6rem minmax(0,1fr) minmax(0,2.2fr) auto; gap:0.6rem 1.4rem; align-items:center; padding:1rem 0; border-bottom:1px solid var(--line); transition:background 0.25s ease;">
-        <img src="assets/icons/python.svg" alt="" style="width:1.6rem; height:1.6rem;">
-        <h3 style="margin:0; font-family:var(--disp); font-size:1.42rem; font-weight:400;">Python</h3>
-        <p style="margin:0; color:var(--mu); font-size:0.9rem; line-height:1.55;" data-en="Automation, support scripts and fast exploration of technical ideas.">Automatización, scripts de apoyo y exploración rápida de ideas técnicas.</p>
-        <span style="font-family:var(--mono); font-size:0.62rem; letter-spacing:0.14em; text-transform:uppercase; color:var(--mu);" data-en="Tooling">Herramienta</span>
+      <div class="tech-row" data-tech="" data-reveal="">
+        <img class="tech-icon" src="assets/icons/python.svg" loading="lazy" decoding="async" alt="">
+        <h3 class="tech-name">Python</h3>
+        <p class="text-sm" data-en="Automation, support scripts and fast exploration of technical ideas.">Automatización, scripts de apoyo y exploración rápida de ideas técnicas.</p>
+        <span class="tag" data-en="Tooling">Herramienta</span>
       </div>
-      <div class="dh7" data-tech="" data-reveal="" style="display:grid; grid-template-columns:2.6rem minmax(0,1fr) minmax(0,2.2fr) auto; gap:0.6rem 1.4rem; align-items:center; padding:1rem 0; border-bottom:1px solid var(--line); transition:background 0.25s ease;">
-        <img src="assets/icons/json.svg" alt="" style="width:1.6rem; height:1.6rem;">
-        <h3 style="margin:0; font-family:var(--disp); font-size:1.42rem; font-weight:400;">APIs / JSON</h3>
-        <p style="margin:0; color:var(--mu); font-size:0.9rem; line-height:1.55;" data-en="Consuming and structuring data to feed interfaces and connect services — including Odoo 17.">Consumo y organización de datos para alimentar interfaces y conectar servicios, incluido Odoo 17.</p>
-        <span style="font-family:var(--mono); font-size:0.62rem; letter-spacing:0.14em; text-transform:uppercase; color:var(--mu);" data-en="Integration">Integración</span>
+      <div class="tech-row" data-tech="" data-reveal="">
+        <img class="tech-icon" src="assets/icons/json.svg" loading="lazy" decoding="async" alt="">
+        <h3 class="tech-name">APIs / JSON</h3>
+        <p class="text-sm" data-en="Consuming and structuring data to feed interfaces and connect services — including Odoo 17.">Consumo y organización de datos para alimentar interfaces y conectar servicios, incluido Odoo 17.</p>
+        <span class="tag" data-en="Integration">Integración</span>
       </div>
-      <div class="dh7" data-tech="" data-reveal="" style="display:grid; grid-template-columns:2.6rem minmax(0,1fr) minmax(0,2.2fr) auto; gap:0.6rem 1.4rem; align-items:center; padding:1rem 0; border-bottom:1px solid var(--line); transition:background 0.25s ease;">
-        <img src="assets/icons/git.svg" alt="" style="width:1.6rem; height:1.6rem;">
-        <h3 style="margin:0; font-family:var(--disp); font-size:1.42rem; font-weight:400;">Git / GitHub</h3>
-        <p style="margin:0; color:var(--mu); font-size:0.9rem; line-height:1.55;" data-en="Documented repositories, version control and published, working project pages.">Repositorios documentados, control de versiones y publicación de proyectos que funcionan.</p>
-        <span style="font-family:var(--mono); font-size:0.62rem; letter-spacing:0.14em; text-transform:uppercase; color:var(--mu);" data-en="Process">Proceso</span>
+      <div class="tech-row" data-tech="" data-reveal="">
+        <img class="tech-icon" src="assets/icons/git.svg" loading="lazy" decoding="async" alt="">
+        <h3 class="tech-name">Git / GitHub</h3>
+        <p class="text-sm" data-en="Documented repositories, version control and published, working project pages.">Repositorios documentados, control de versiones y publicación de proyectos que funcionan.</p>
+        <span class="tag" data-en="Process">Proceso</span>
       </div>
-      <div class="dh7" data-tech="" data-reveal="" style="display:grid; grid-template-columns:2.6rem minmax(0,1fr) minmax(0,2.2fr) auto; gap:0.6rem 1.4rem; align-items:center; padding:1rem 0; border-bottom:1px solid var(--line); transition:background 0.25s ease;">
-        <img src="assets/icons/unity.svg" alt="" style="width:1.6rem; height:1.6rem;">
-        <h3 style="margin:0; font-family:var(--disp); font-size:1.42rem; font-weight:400;">C# / Unity</h3>
-        <p style="margin:0; color:var(--mu); font-size:0.9rem; line-height:1.55;" data-en="Interactive prototypes outside the Java/web stack, visible in Pick-A-Ball.">Prototipos interactivos fuera del stack Java/web, visibles en Pick-A-Ball.</p>
-        <span style="font-family:var(--mono); font-size:0.62rem; letter-spacing:0.14em; text-transform:uppercase; color:var(--mu);" data-en="Side">Aparte</span>
+      <div class="tech-row" data-tech="" data-reveal="">
+        <img class="tech-icon" src="assets/icons/unity.svg" loading="lazy" decoding="async" alt="">
+        <h3 class="tech-name">C# / Unity</h3>
+        <p class="text-sm" data-en="Interactive prototypes outside the Java/web stack, visible in Pick-A-Ball.">Prototipos interactivos fuera del stack Java/web, visibles en Pick-A-Ball.</p>
+        <span class="tag" data-en="Side">Aparte</span>
       </div>
     </div>
   </section>
 
-  <section id="proyectos" style="position:relative; z-index:1; max-width:1500px; margin:0 auto; padding:0 clamp(1rem,4vw,2.4rem) clamp(3.5rem,8vw,6rem);">
-    <div style="display:flex; flex-wrap:wrap; align-items:baseline; justify-content:space-between; gap:1.2rem; margin-bottom:clamp(1.2rem,2.5vw,2rem);">
-      <div style="display:flex; align-items:baseline; gap:1.1rem;">
-        <span style="font-family:var(--mono); font-size:0.72rem; letter-spacing:0.14em; color:var(--ac);">02</span>
-        <h2 style="margin:0; font-family:var(--disp); font-size:clamp(2.2rem,5vw,4.2rem); font-weight:400; letter-spacing:-0.02em; line-height:1;" data-en="Selected work">Proyectos</h2>
+  <section class="projects" id="proyectos">
+    <div class="sec-head sec-head--tight">
+      <div class="sec-head__title">
+        <span class="sec-num">02</span>
+        <h2 class="sec-h2" data-en="Selected work">Proyectos</h2>
       </div>
-      <p style="margin:0; font-family:var(--mono); font-size:0.7rem; letter-spacing:0.14em; text-transform:uppercase; color:var(--mu);" data-en="6 projects · 2024 — 2026">6 proyectos · 2024 — 2026</p>
+      <p class="sec-meta" data-en="6 projects · 2024 — 2026">6 proyectos · 2024 — 2026</p>
     </div>
 
-    <div data-reveal="" style="border-top:1px solid var(--line2); padding-top:clamp(1.4rem,3vw,2.2rem);">
-      <div data-parallax="" style="position:relative; overflow:hidden; background:var(--card); aspect-ratio:30/9; display:grid; place-items:center;">
-        <a class="dh8" href="https://github.com/Hermnet/Hermnet" target="_blank" rel="noopener" aria-label="Ver el repositorio de Hermnet en GitHub" data-parallax-inner="" style="position:absolute; inset:0; display:grid; place-items:center; will-change:transform; transition:opacity 0.3s ease;">
-          <img src="./assets/hermnet-logo.png" alt="Logotipo de Hermnet" style="width:min(30%,17rem); max-height:66%; height:auto; object-fit:contain; mix-blend-mode:multiply;">
+    <div class="showcase" data-reveal="">
+      <div class="showcase__frame" data-parallax="">
+        <a class="showcase__link" href="https://github.com/Hermnet/Hermnet" target="_blank" rel="noopener" aria-label="Ver el repositorio de Hermnet en GitHub" data-parallax-inner="">
+          <img class="showcase__img" src="./assets/hermnet-logo.png" width="1280" height="698" loading="lazy" decoding="async" alt="Logotipo de Hermnet">
         </a>
       </div>
     </div>
 
-    <article data-reveal="" style="border-bottom:1px solid var(--line); padding:clamp(1.6rem,3.5vw,2.6rem) 0; display:grid; grid-template-columns:repeat(auto-fit,minmax(min(100%,19rem),1fr)); gap:clamp(1.2rem,3vw,2.6rem);">
-      <div style="container-type:inline-size;">
-        <p style="margin:0 0 0.6rem; font-family:var(--mono); font-size:0.66rem; letter-spacing:0.16em; text-transform:uppercase; color:var(--ac);" data-en="01 · Flagship project">01 · Proyecto estrella</p>
-        <h3 style="margin:0 0 0.8rem; font-family:var(--disp); font-size:clamp(2.4rem,17cqw,4.6rem); font-weight:400; line-height:0.95; letter-spacing:-0.025em;">Hermnet</h3>
-        <p style="margin:0 0 1.2rem; font-style:italic; font-family:var(--disp); font-size:clamp(1.15rem,1.6vw,1.5rem); line-height:1.3; color:var(--ac);" data-en="The server carries the messages. The server cannot read them.">El servidor transporta los mensajes. El servidor no puede leerlos.</p>
-        <p style="margin:0; color:var(--mu); font-size:0.94rem; line-height:1.65;" data-en="Decentralised instant messaging with a blind, zero-knowledge server and end-to-end encryption, built as my final DAM project.">Mensajería instantánea descentralizada con servidor ciego zero-knowledge y cifrado de extremo a extremo, construida como proyecto final de DAM.</p>
+    <article class="flagship" data-reveal="">
+      <div class="cq">
+        <p class="flagship__eyebrow" data-en="01 · Flagship project">01 · Proyecto estrella</p>
+        <h3 class="flagship__title">Hermnet</h3>
+        <p class="flagship__claim" data-en="The server carries the messages. The server cannot read them.">El servidor transporta los mensajes. El servidor no puede leerlos.</p>
+        <p class="flagship__desc" data-en="Decentralised instant messaging with a blind, zero-knowledge server and end-to-end encryption, built as my final DAM project.">Mensajería instantánea descentralizada con servidor ciego zero-knowledge y cifrado de extremo a extremo, construida como proyecto final de DAM.</p>
       </div>
-      <div style="display:flex; flex-direction:column; gap:1rem;">
-        <ul style="margin:0; padding:0; list-style:none; display:grid; gap:0.7rem; border-top:1px solid var(--line);">
-          <li style="padding-top:0.7rem; border-bottom:1px solid var(--line); padding-bottom:0.7rem; font-size:0.9rem; line-height:1.55;"><strong style="font-weight:600;" data-en="Hybrid E2EE:">Cifrado híbrido E2EE:</strong> <span style="color:var(--mu);" data-en="AES-256-GCM for the message, RSA-OAEP-SHA256 to encapsulate the key.">AES-256-GCM para el mensaje y RSA-OAEP-SHA256 para encapsular la clave.</span></li>
-          <li style="border-bottom:1px solid var(--line); padding-bottom:0.7rem; font-size:0.9rem; line-height:1.55;"><strong style="font-weight:600;" data-en="Zero-knowledge server:">Servidor zero-knowledge:</strong> <span style="color:var(--mu);" data-en="Spring Boot only handles opaque encrypted payloads in a temporary mailbox.">Spring Boot solo maneja payloads cifrados opacos en un buzón temporal.</span></li>
-          <li style="border-bottom:1px solid var(--line); padding-bottom:0.7rem; font-size:0.9rem; line-height:1.55;"><strong style="font-weight:600;" data-en="Sovereign identity:">Identidad soberana:</strong> <span style="color:var(--mu);" data-en="the user ID (HNET-…) is derived from the device's own public key.">el ID de usuario (HNET-…) se deriva de la clave pública del propio dispositivo.</span></li>
+      <div class="flagship__aside">
+        <ul class="feats">
+          <li class="feat feat--first"><strong class="b" data-en="Hybrid E2EE:">Cifrado híbrido E2EE:</strong> <span class="mu" data-en="AES-256-GCM for the message, RSA-OAEP-SHA256 to encapsulate the key.">AES-256-GCM para el mensaje y RSA-OAEP-SHA256 para encapsular la clave.</span></li>
+          <li class="feat"><strong class="b" data-en="Zero-knowledge server:">Servidor zero-knowledge:</strong> <span class="mu" data-en="Spring Boot only handles opaque encrypted payloads in a temporary mailbox.">Spring Boot solo maneja payloads cifrados opacos en un buzón temporal.</span></li>
+          <li class="feat"><strong class="b" data-en="Sovereign identity:">Identidad soberana:</strong> <span class="mu" data-en="the user ID (HNET-…) is derived from the device's own public key.">el ID de usuario (HNET-…) se deriva de la clave pública del propio dispositivo.</span></li>
         </ul>
-        <p style="margin:0; font-family:var(--mono); font-size:0.68rem; letter-spacing:0.1em; text-transform:uppercase; color:var(--mu);">React Native · Expo · TypeScript · Spring Boot · PostgreSQL · Odoo 17 · SQLite</p>
-        <div style="display:flex; gap:0.6rem; flex-wrap:wrap;">
-          <a class="dh9" href="https://hermnet.github.io/Hermnet-Web/" target="_blank" rel="noopener" style="display:inline-flex; align-items:center; min-height:2.7rem; padding:0 1.1rem; background:var(--tx); color:var(--bg); font-family:var(--mono); font-size:0.72rem; letter-spacing:0.08em; text-transform:uppercase; transition:background 0.2s ease, transform 0.2s ease;" data-en="Official site ↗">Web oficial ↗</a>
-          <a class="dh10" href="https://github.com/Hermnet/Hermnet" target="_blank" rel="noopener" style="display:inline-flex; align-items:center; min-height:2.7rem; padding:0 1.1rem; border:1px solid var(--line2); font-family:var(--mono); font-size:0.72rem; letter-spacing:0.08em; text-transform:uppercase; transition:border-color 0.2s ease, transform 0.2s ease;" data-en="Code">Código</a>
+        <p class="flagship__stack">React Native · Expo · TypeScript · Spring Boot · PostgreSQL · Odoo 17 · SQLite</p>
+        <div class="btn-row">
+          <a class="btn-sm" href="https://hermnet.github.io/Hermnet-Web/" target="_blank" rel="noopener" data-en="Official site ↗">Web oficial ↗</a>
+          <a class="btn-ghost" href="https://github.com/Hermnet/Hermnet" target="_blank" rel="noopener" data-en="Code">Código</a>
         </div>
       </div>
     </article>
 
-    <div class="dh7" data-proj="" data-reveal="" style="display:grid; grid-template-columns:2.4rem minmax(0,1fr) minmax(0,1.6fr) auto auto; gap:0.5rem 1.4rem; align-items:baseline; padding:1.3rem 0; border-bottom:1px solid var(--line); transition:background 0.25s ease;">
-      <span style="font-family:var(--mono); font-size:0.7rem; color:var(--mu);">02</span>
-      <h3 style="margin:0; font-family:var(--disp); font-size:clamp(1.5rem,2.6vw,2.2rem); font-weight:400; line-height:1.05;">Tienda-IA</h3>
-      <p style="margin:0; color:var(--mu); font-size:0.9rem; line-height:1.55;" data-en="Web application exploring AI-assisted shopping flows and store interfaces. TypeScript · React · Vercel.">Aplicación web para explorar flujos de compra e interfaces de tienda asistidos por IA. TypeScript · React · Vercel.</p>
-      <span style="display:flex; gap:0.5rem; flex-wrap:wrap;"><a class="dh11" href="https://tiendawithia.vercel.app" target="_blank" rel="noopener" style="font-family:var(--mono); font-size:0.7rem; letter-spacing:0.08em; text-transform:uppercase; border-bottom:1px solid var(--line2); padding-bottom:0.15rem;">Demo ↗</a><a class="dh11" href="https://github.com/franciscorodalf/Tienda-IA" target="_blank" rel="noopener" style="font-family:var(--mono); font-size:0.7rem; letter-spacing:0.08em; text-transform:uppercase; color:var(--mu); border-bottom:1px solid var(--line); padding-bottom:0.15rem;" data-en="Code">Código</a></span>
+    <div class="proj-row" data-proj="" data-reveal="">
+      <span class="proj-num">02</span>
+      <h3 class="proj-name">Tienda-IA</h3>
+      <p class="text-sm" data-en="Web application exploring AI-assisted shopping flows and store interfaces. TypeScript · React · Vercel.">Aplicación web para explorar flujos de compra e interfaces de tienda asistidos por IA. TypeScript · React · Vercel.</p>
+      <span class="proj-links"><a class="link-u" href="https://tiendawithia.vercel.app" target="_blank" rel="noopener">Demo ↗</a><a class="link-u link-u--muted" href="https://github.com/franciscorodalf/Tienda-IA" target="_blank" rel="noopener" data-en="Code">Código</a></span>
     </div>
-    <div data-panel="" style="overflow:hidden; height:0;">
-      <div style="margin:0 0 1rem clamp(0rem,3.8rem,3.8rem); padding:clamp(1.2rem,2.5vw,1.8rem); background:var(--card); border:1px solid var(--line); display:grid; grid-template-columns:repeat(auto-fit,minmax(min(100%,15rem),1fr)); gap:clamp(1.6rem,3.5vw,3rem);">
-<div><p style="margin:0 0 0.35rem; font-family:var(--mono); font-size:0.62rem; letter-spacing:0.14em; text-transform:uppercase; color:var(--ac);" data-en="The problem">El problema</p><p style="margin:0; font-size:0.92rem; line-height:1.7; color:var(--mu);" data-en="Online stores show catalogues, not answers. Finding one specific product means filtering by hand until you hit it.">Las tiendas online enseñan catálogos, no respuestas. Buscar un producto concreto obliga a filtrar a mano hasta dar con él.</p></div>
-<div><p style="margin:0 0 0.35rem; font-family:var(--mono); font-size:0.62rem; letter-spacing:0.14em; text-transform:uppercase; color:var(--ac);" data-en="How I solved it">Cómo lo resolví</p><p style="margin:0; font-size:0.92rem; line-height:1.7; color:var(--mu);" data-en="A store interface in React and TypeScript where assisted search reads what the user asks for and narrows the catalogue down to what matters. Deployed on Vercel.">Interfaz de tienda en React y TypeScript donde la búsqueda asistida interpreta lo que pide el usuario y reduce el catálogo a lo relevante. Desplegada en Vercel.</p></div>
-<div><p style="margin:0 0 0.35rem; font-family:var(--mono); font-size:0.62rem; letter-spacing:0.14em; text-transform:uppercase; color:var(--ac);" data-en="What I learned">Lo que aprendí</p><p style="margin:0; font-size:0.92rem; line-height:1.7; color:var(--mu);" data-en="To keep the data layer and the conversational layer apart: the catalogue rules, the AI only sorts and explains.">A separar la capa de datos de la capa de conversación: el catálogo manda, la IA solo ordena y explica.</p></div>
+    <div class="panel" data-panel="">
+      <div class="panel__inner">
+<div><p class="panel__label" data-en="The problem">El problema</p><p class="panel__text" data-en="Online stores show catalogues, not answers. Finding one specific product means filtering by hand until you hit it.">Las tiendas online enseñan catálogos, no respuestas. Buscar un producto concreto obliga a filtrar a mano hasta dar con él.</p></div>
+<div><p class="panel__label" data-en="How I solved it">Cómo lo resolví</p><p class="panel__text" data-en="A store interface in React and TypeScript where assisted search reads what the user asks for and narrows the catalogue down to what matters. Deployed on Vercel.">Interfaz de tienda en React y TypeScript donde la búsqueda asistida interpreta lo que pide el usuario y reduce el catálogo a lo relevante. Desplegada en Vercel.</p></div>
+<div><p class="panel__label" data-en="What I learned">Lo que aprendí</p><p class="panel__text" data-en="To keep the data layer and the conversational layer apart: the catalogue rules, the AI only sorts and explains.">A separar la capa de datos de la capa de conversación: el catálogo manda, la IA solo ordena y explica.</p></div>
       </div>
     </div>
-    <div class="dh7" data-proj="" data-reveal="" style="display:grid; grid-template-columns:2.4rem minmax(0,1fr) minmax(0,1.6fr) auto auto; gap:0.5rem 1.4rem; align-items:baseline; padding:1.3rem 0; border-bottom:1px solid var(--line); transition:background 0.25s ease;">
-      <span style="font-family:var(--mono); font-size:0.7rem; color:var(--mu);">03</span>
-      <h3 style="margin:0; font-family:var(--disp); font-size:clamp(1.5rem,2.6vw,2.2rem); font-weight:400; line-height:1.05;">Really</h3>
-      <p style="margin:0; color:var(--mu); font-size:0.9rem; line-height:1.55;" data-en="Mobile app that stops impulse buying with a mandatory waiting timer and turns it into conscious saving. React Native · Expo · Firebase.">App móvil que frena las compras impulsivas con un temporizador de espera obligatoria y lo convierte en ahorro consciente. React Native · Expo · Firebase.</p>
-      <span><a class="dh11" href="https://github.com/franciscorodalf/Really" target="_blank" rel="noopener" style="font-family:var(--mono); font-size:0.7rem; letter-spacing:0.08em; text-transform:uppercase; border-bottom:1px solid var(--line2); padding-bottom:0.15rem;" data-en="Code">Código</a></span>
+    <div class="proj-row" data-proj="" data-reveal="">
+      <span class="proj-num">03</span>
+      <h3 class="proj-name">Really</h3>
+      <p class="text-sm" data-en="Mobile app that stops impulse buying with a mandatory waiting timer and turns it into conscious saving. React Native · Expo · Firebase.">App móvil que frena las compras impulsivas con un temporizador de espera obligatoria y lo convierte en ahorro consciente. React Native · Expo · Firebase.</p>
+      <span><a class="link-u" href="https://github.com/franciscorodalf/Really" target="_blank" rel="noopener" data-en="Code">Código</a></span>
     </div>
-    <div data-panel="" style="overflow:hidden; height:0;">
-      <div style="margin:0 0 1rem clamp(0rem,3.8rem,3.8rem); padding:clamp(1.2rem,2.5vw,1.8rem); background:var(--card); border:1px solid var(--line); display:grid; grid-template-columns:repeat(auto-fit,minmax(min(100%,15rem),1fr)); gap:clamp(1.6rem,3.5vw,3rem);">
-<div><p style="margin:0 0 0.35rem; font-family:var(--mono); font-size:0.62rem; letter-spacing:0.14em; text-transform:uppercase; color:var(--ac);" data-en="The problem">El problema</p><p style="margin:0; font-size:0.92rem; line-height:1.7; color:var(--mu);" data-en="Impulse buying is decided in seconds and regretted for months. Saving apps arrive late: they log the spend once it happened.">La compra impulsiva se decide en segundos y se lamenta durante meses. Las apps de ahorro llegan tarde: registran el gasto ya hecho.</p></div>
-<div><p style="margin:0 0 0.35rem; font-family:var(--mono); font-size:0.62rem; letter-spacing:0.14em; text-transform:uppercase; color:var(--ac);" data-en="How I solved it">Cómo lo resolví</p><p style="margin:0; font-size:0.92rem; line-height:1.7; color:var(--mu);" data-en="A mobile app in React Native and Expo that intercepts the moment before: you log the urge, a mandatory waiting timer starts, and if you no longer want it when time is up, the amount moves to a savings goal. Data on Firebase.">App móvil en React Native y Expo que intercepta el momento previo: se registra el deseo, arranca un temporizador de espera obligatoria y, si al vencer ya no interesa, el importe pasa a una meta de ahorro. Datos en Firebase.</p></div>
-<div><p style="margin:0 0 0.35rem; font-family:var(--mono); font-size:0.62rem; letter-spacing:0.14em; text-transform:uppercase; color:var(--ac);" data-en="What I learned">Lo que aprendí</p><p style="margin:0; font-size:0.92rem; line-height:1.7; color:var(--mu);" data-en="That product design can be a deliberate constraint: friction, placed well, is the feature.">Que el diseño de producto puede ser una restricción deliberada: la fricción, bien colocada, es la función.</p></div>
+    <div class="panel" data-panel="">
+      <div class="panel__inner">
+<div><p class="panel__label" data-en="The problem">El problema</p><p class="panel__text" data-en="Impulse buying is decided in seconds and regretted for months. Saving apps arrive late: they log the spend once it happened.">La compra impulsiva se decide en segundos y se lamenta durante meses. Las apps de ahorro llegan tarde: registran el gasto ya hecho.</p></div>
+<div><p class="panel__label" data-en="How I solved it">Cómo lo resolví</p><p class="panel__text" data-en="A mobile app in React Native and Expo that intercepts the moment before: you log the urge, a mandatory waiting timer starts, and if you no longer want it when time is up, the amount moves to a savings goal. Data on Firebase.">App móvil en React Native y Expo que intercepta el momento previo: se registra el deseo, arranca un temporizador de espera obligatoria y, si al vencer ya no interesa, el importe pasa a una meta de ahorro. Datos en Firebase.</p></div>
+<div><p class="panel__label" data-en="What I learned">Lo que aprendí</p><p class="panel__text" data-en="That product design can be a deliberate constraint: friction, placed well, is the feature.">Que el diseño de producto puede ser una restricción deliberada: la fricción, bien colocada, es la función.</p></div>
       </div>
     </div>
-    <div class="dh7" data-proj="" data-reveal="" style="display:grid; grid-template-columns:2.4rem minmax(0,1fr) minmax(0,1.6fr) auto auto; gap:0.5rem 1.4rem; align-items:baseline; padding:1.3rem 0; border-bottom:1px solid var(--line); transition:background 0.25s ease;">
-      <span style="font-family:var(--mono); font-size:0.7rem; color:var(--mu);">04</span>
-      <h3 style="margin:0; font-family:var(--disp); font-size:clamp(1.5rem,2.6vw,2.2rem); font-weight:400; line-height:1.05;">SafeInvestor</h3>
-      <p style="margin:0; color:var(--mu); font-size:0.9rem; line-height:1.55;" data-en="Personal finance manager for income, expenses and saving goals with a practical desktop interface. Java · SQL.">Gestor financiero de ingresos, gastos y metas de ahorro con una interfaz de escritorio práctica. Java · SQL.</p>
-      <span><a class="dh11" href="https://github.com/franciscorodalf/SafeInvestor" target="_blank" rel="noopener" style="font-family:var(--mono); font-size:0.7rem; letter-spacing:0.08em; text-transform:uppercase; border-bottom:1px solid var(--line2); padding-bottom:0.15rem;" data-en="Code">Código</a></span>
+    <div class="proj-row" data-proj="" data-reveal="">
+      <span class="proj-num">04</span>
+      <h3 class="proj-name">SafeInvestor</h3>
+      <p class="text-sm" data-en="Personal finance manager for income, expenses and saving goals with a practical desktop interface. Java · SQL.">Gestor financiero de ingresos, gastos y metas de ahorro con una interfaz de escritorio práctica. Java · SQL.</p>
+      <span><a class="link-u" href="https://github.com/franciscorodalf/SafeInvestor" target="_blank" rel="noopener" data-en="Code">Código</a></span>
     </div>
-    <div data-panel="" style="overflow:hidden; height:0;">
-      <div style="margin:0 0 1rem clamp(0rem,3.8rem,3.8rem); padding:clamp(1.2rem,2.5vw,1.8rem); background:var(--card); border:1px solid var(--line); display:grid; grid-template-columns:repeat(auto-fit,minmax(min(100%,15rem),1fr)); gap:clamp(1.6rem,3.5vw,3rem);">
-<div><p style="margin:0 0 0.35rem; font-family:var(--mono); font-size:0.62rem; letter-spacing:0.14em; text-transform:uppercase; color:var(--ac);" data-en="The problem">El problema</p><p style="margin:0; font-size:0.92rem; line-height:1.7; color:var(--mu);" data-en="Tracking income, expenses and savings goals in a spreadsheet works until you stop updating it.">Llevar ingresos, gastos y metas de ahorro en una hoja de cálculo funciona hasta que dejas de actualizarla.</p></div>
-<div><p style="margin:0 0 0.35rem; font-family:var(--mono); font-size:0.62rem; letter-spacing:0.14em; text-transform:uppercase; color:var(--ac);" data-en="How I solved it">Cómo lo resolví</p><p style="margin:0; font-size:0.92rem; line-height:1.7; color:var(--mu);" data-en="A Java desktop application with SQL persistence: transactions, categories and goals with their progress, built to be opened and used in under a minute.">Aplicación de escritorio en Java con persistencia en SQL: registro de movimientos, categorías y metas con su progreso, pensada para abrirse y usarse en menos de un minuto.</p></div>
-<div><p style="margin:0 0 0.35rem; font-family:var(--mono); font-size:0.62rem; letter-spacing:0.14em; text-transform:uppercase; color:var(--ac);" data-en="What I learned">Lo que aprendí</p><p style="margin:0; font-size:0.92rem; line-height:1.7; color:var(--mu);" data-en="To model the domain before the screen, and that a well-planned SQL schema saves half the interface code.">A modelar el dominio antes que la pantalla, y a que un esquema SQL bien planteado ahorra la mitad del código de la interfaz.</p></div>
+    <div class="panel" data-panel="">
+      <div class="panel__inner">
+<div><p class="panel__label" data-en="The problem">El problema</p><p class="panel__text" data-en="Tracking income, expenses and savings goals in a spreadsheet works until you stop updating it.">Llevar ingresos, gastos y metas de ahorro en una hoja de cálculo funciona hasta que dejas de actualizarla.</p></div>
+<div><p class="panel__label" data-en="How I solved it">Cómo lo resolví</p><p class="panel__text" data-en="A Java desktop application with SQL persistence: transactions, categories and goals with their progress, built to be opened and used in under a minute.">Aplicación de escritorio en Java con persistencia en SQL: registro de movimientos, categorías y metas con su progreso, pensada para abrirse y usarse en menos de un minuto.</p></div>
+<div><p class="panel__label" data-en="What I learned">Lo que aprendí</p><p class="panel__text" data-en="To model the domain before the screen, and that a well-planned SQL schema saves half the interface code.">A modelar el dominio antes que la pantalla, y a que un esquema SQL bien planteado ahorra la mitad del código de la interfaz.</p></div>
       </div>
     </div>
-    <div class="dh7" data-proj="" data-reveal="" style="display:grid; grid-template-columns:2.4rem minmax(0,1fr) minmax(0,1.6fr) auto auto; gap:0.5rem 1.4rem; align-items:baseline; padding:1.3rem 0; border-bottom:1px solid var(--line); transition:background 0.25s ease;">
-      <span style="font-family:var(--mono); font-size:0.7rem; color:var(--mu);">05</span>
-      <h3 style="margin:0; font-family:var(--disp); font-size:clamp(1.5rem,2.6vw,2.2rem); font-weight:400; line-height:1.05;">PowerMine</h3>
-      <p style="margin:0; color:var(--mu); font-size:0.9rem; line-height:1.55;" data-en="A reinterpretation of Minesweeper with traps, abilities and progression — rules rewritten, not copied. Java · GUI.">Reinterpretación del Buscaminas con trampas, habilidades y progresión: reglas reescritas, no copiadas. Java · GUI.</p>
-      <span><a class="dh11" href="https://github.com/franciscorodalf/PowerMine" target="_blank" rel="noopener" style="font-family:var(--mono); font-size:0.7rem; letter-spacing:0.08em; text-transform:uppercase; border-bottom:1px solid var(--line2); padding-bottom:0.15rem;" data-en="Code">Código</a></span>
+    <div class="proj-row" data-proj="" data-reveal="">
+      <span class="proj-num">05</span>
+      <h3 class="proj-name">PowerMine</h3>
+      <p class="text-sm" data-en="A reinterpretation of Minesweeper with traps, abilities and progression — rules rewritten, not copied. Java · GUI.">Reinterpretación del Buscaminas con trampas, habilidades y progresión: reglas reescritas, no copiadas. Java · GUI.</p>
+      <span><a class="link-u" href="https://github.com/franciscorodalf/PowerMine" target="_blank" rel="noopener" data-en="Code">Código</a></span>
     </div>
-    <div data-panel="" style="overflow:hidden; height:0;">
-      <div style="margin:0 0 1rem clamp(0rem,3.8rem,3.8rem); padding:clamp(1.2rem,2.5vw,1.8rem); background:var(--card); border:1px solid var(--line); display:grid; grid-template-columns:repeat(auto-fit,minmax(min(100%,15rem),1fr)); gap:clamp(1.6rem,3.5vw,3rem);">
-<div><p style="margin:0 0 0.35rem; font-family:var(--mono); font-size:0.62rem; letter-spacing:0.14em; text-transform:uppercase; color:var(--ac);" data-en="The problem">El problema</p><p style="margin:0; font-size:0.92rem; line-height:1.7; color:var(--mu);" data-en="Cloning Minesweeper teaches nothing. The challenge was keeping its tension and changing its rules.">Clonar el Buscaminas no enseña nada. El reto era conservar su tensión y cambiar sus reglas.</p></div>
-<div><p style="margin:0 0 0.35rem; font-family:var(--mono); font-size:0.62rem; letter-spacing:0.14em; text-transform:uppercase; color:var(--ac);" data-en="How I solved it">Cómo lo resolví</p><p style="margin:0; font-size:0.92rem; line-height:1.7; color:var(--mu);" data-en="A Java version with its own graphical interface adding traps, activatable abilities and progression between runs, on the same deduction board.">Versión en Java con interfaz gráfica propia donde entran trampas, habilidades activables y progresión entre partidas, sobre el mismo tablero de deducción.</p></div>
-<div><p style="margin:0 0 0.35rem; font-family:var(--mono); font-size:0.62rem; letter-spacing:0.14em; text-transform:uppercase; color:var(--ac);" data-en="What I learned">Lo que aprendí</p><p style="margin:0; font-size:0.92rem; line-height:1.7; color:var(--mu);" data-en="To separate game rules from presentation: the engine knows nothing about the interface, so new rules can be tested without touching the screen.">A separar reglas de juego y representación: el motor no sabe nada de la interfaz, así se pueden probar reglas nuevas sin tocar la pantalla.</p></div>
+    <div class="panel" data-panel="">
+      <div class="panel__inner">
+<div><p class="panel__label" data-en="The problem">El problema</p><p class="panel__text" data-en="Cloning Minesweeper teaches nothing. The challenge was keeping its tension and changing its rules.">Clonar el Buscaminas no enseña nada. El reto era conservar su tensión y cambiar sus reglas.</p></div>
+<div><p class="panel__label" data-en="How I solved it">Cómo lo resolví</p><p class="panel__text" data-en="A Java version with its own graphical interface adding traps, activatable abilities and progression between runs, on the same deduction board.">Versión en Java con interfaz gráfica propia donde entran trampas, habilidades activables y progresión entre partidas, sobre el mismo tablero de deducción.</p></div>
+<div><p class="panel__label" data-en="What I learned">Lo que aprendí</p><p class="panel__text" data-en="To separate game rules from presentation: the engine knows nothing about the interface, so new rules can be tested without touching the screen.">A separar reglas de juego y representación: el motor no sabe nada de la interfaz, así se pueden probar reglas nuevas sin tocar la pantalla.</p></div>
       </div>
     </div>
-    <div class="dh7" data-proj="" data-reveal="" style="display:grid; grid-template-columns:2.4rem minmax(0,1fr) minmax(0,1.6fr) auto auto; gap:0.5rem 1.4rem; align-items:baseline; padding:1.3rem 0; border-bottom:1px solid var(--line); transition:background 0.25s ease;">
-      <span style="font-family:var(--mono); font-size:0.7rem; color:var(--mu);">06</span>
-      <h3 style="margin:0; font-family:var(--disp); font-size:clamp(1.5rem,2.6vw,2.2rem); font-weight:400; line-height:1.05;">Pick-A-Ball</h3>
-      <p style="margin:0; color:var(--mu); font-size:0.9rem; line-height:1.55;" data-en="Game project that brings variety to the portfolio and shows work outside the Java/web stack. C# · Unity.">Proyecto de juego que aporta variedad al portfolio y muestra trabajo fuera del stack Java/web. C# · Unity.</p>
-      <span><a class="dh11" href="https://github.com/franciscorodalf/Pick-A-Ball" target="_blank" rel="noopener" style="font-family:var(--mono); font-size:0.7rem; letter-spacing:0.08em; text-transform:uppercase; border-bottom:1px solid var(--line2); padding-bottom:0.15rem;" data-en="Code">Código</a></span>
+    <div class="proj-row" data-proj="" data-reveal="">
+      <span class="proj-num">06</span>
+      <h3 class="proj-name">Pick-A-Ball</h3>
+      <p class="text-sm" data-en="Game project that brings variety to the portfolio and shows work outside the Java/web stack. C# · Unity.">Proyecto de juego que aporta variedad al portfolio y muestra trabajo fuera del stack Java/web. C# · Unity.</p>
+      <span><a class="link-u" href="https://github.com/franciscorodalf/Pick-A-Ball" target="_blank" rel="noopener" data-en="Code">Código</a></span>
     </div>
-    <div data-panel="" style="overflow:hidden; height:0;">
-      <div style="margin:0 0 1rem clamp(0rem,3.8rem,3.8rem); padding:clamp(1.2rem,2.5vw,1.8rem); background:var(--card); border:1px solid var(--line); display:grid; grid-template-columns:repeat(auto-fit,minmax(min(100%,15rem),1fr)); gap:clamp(1.6rem,3.5vw,3rem);">
-<div><p style="margin:0 0 0.35rem; font-family:var(--mono); font-size:0.62rem; letter-spacing:0.14em; text-transform:uppercase; color:var(--ac);" data-en="The problem">El problema</p><p style="margin:0; font-size:0.92rem; line-height:1.7; color:var(--mu);" data-en="All my work was Java and web. I wanted to see how much of it carries over to another language and another paradigm.">Todo mi trabajo estaba en Java y web. Quería comprobar cuánto de lo aprendido se traslada a otro lenguaje y otro paradigma.</p></div>
-<div><p style="margin:0 0 0.35rem; font-family:var(--mono); font-size:0.62rem; letter-spacing:0.14em; text-transform:uppercase; color:var(--ac);" data-en="How I solved it">Cómo lo resolví</p><p style="margin:0; font-size:0.92rem; line-height:1.7; color:var(--mu);" data-en="A game project in Unity with C#, working with physics, collisions and object lifecycles instead of layers and services.">Proyecto de juego en Unity con C#, trabajando con física, colisiones y ciclo de vida de objetos en lugar de capas y servicios.</p></div>
-<div><p style="margin:0 0 0.35rem; font-family:var(--mono); font-size:0.62rem; letter-spacing:0.14em; text-transform:uppercase; color:var(--ac);" data-en="What I learned">Lo que aprendí</p><p style="margin:0; font-size:0.92rem; line-height:1.7; color:var(--mu);" data-en="That the stack is incidental: what carries over is how you structure code and how you debug when something stops responding.">Que el stack es lo accesorio: lo que se traslada es la forma de estructurar el código y de depurar cuando algo no responde.</p></div>
-      </div>
-    </div>
-  </section>
-
-  <section id="trayectoria" style="position:relative; z-index:1; background:rgba(232,226,214,0.78); border-top:1px solid var(--line);">
-    <div style="max-width:1500px; margin:0 auto; padding:clamp(3.5rem,8vw,6rem) clamp(1rem,4vw,2.4rem);">
-      <div style="display:flex; align-items:baseline; gap:1.1rem; margin-bottom:clamp(1.5rem,3vw,2.2rem);">
-        <span style="font-family:var(--mono); font-size:0.72rem; letter-spacing:0.14em; color:var(--ac);">03</span>
-        <h2 style="margin:0; font-family:var(--disp); font-size:clamp(2.2rem,5vw,4.2rem); font-weight:400; letter-spacing:-0.02em; line-height:1;" data-en="Path">Trayectoria</h2>
-      </div>
-      <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(min(100%,18rem),1fr)); gap:clamp(1.2rem,3vw,2.4rem); border-top:1px solid var(--line2); padding-top:1.4rem;">
-        <article data-reveal="" style="display:flex; flex-direction:column; gap:0.6rem;">
-          <p style="margin:0; font-family:var(--mono); font-size:0.68rem; letter-spacing:0.14em; text-transform:uppercase; color:var(--ac);" data-en="Before DAM · Foundation">Antes de DAM · Base</p>
-          <h3 style="margin:0; font-family:var(--disp); font-size:1.6rem; font-weight:400;" data-en="Networks, telecoms and systems support">Redes, telecomunicaciones y soporte</h3>
-          <p style="margin:0; color:var(--mu); font-size:0.92rem; line-height:1.7;" data-en="Where I learned to debug end to end before writing software — infrastructure, hardware and users.">Donde aprendí a diagnosticar de punta a punta antes de escribir software: infraestructura, hardware y usuarios.</p>
-        </article>
-        <article data-reveal="" style="display:flex; flex-direction:column; gap:0.6rem;">
-          <p style="margin:0; font-family:var(--mono); font-size:0.68rem; letter-spacing:0.14em; text-transform:uppercase; color:var(--ac);" data-en="2024 — 2026 · Education">2024 — 2026 · Formación</p>
-          <h3 style="margin:0; font-family:var(--disp); font-size:1.6rem; font-weight:400;" data-en="2nd year DAM · Tenerife">2º de DAM · Tenerife</h3>
-          <p style="margin:0; color:var(--mu); font-size:0.92rem; line-height:1.7;" data-en="Multiplatform application development, focused on Java, SQL databases and adaptive interfaces. Hermnet is the final project.">Desarrollo de aplicaciones multiplataforma, con foco en Java, bases de datos SQL e interfaces adaptadas. Hermnet es el proyecto final.</p>
-        </article>
-        <article data-reveal="" style="display:flex; flex-direction:column; gap:0.6rem;">
-          <p style="margin:0; font-family:var(--mono); font-size:0.68rem; letter-spacing:0.14em; text-transform:uppercase; color:var(--ac);">2025 — Erasmus</p>
-          <h3 style="margin:0; font-family:var(--disp); font-size:1.6rem; font-weight:400;">Bowwe · Polonia</h3>
-          <p style="margin:0; color:var(--mu); font-size:0.92rem; line-height:1.7;" data-en="Designed and automated web conversion funnels, integration flows and full-stack technical support in an international team.">Diseñé y automaticé embudos de conversión web, flujos de integración y soporte técnico full-stack en un equipo internacional.</p>
-        </article>
+    <div class="panel" data-panel="">
+      <div class="panel__inner">
+<div><p class="panel__label" data-en="The problem">El problema</p><p class="panel__text" data-en="All my work was Java and web. I wanted to see how much of it carries over to another language and another paradigm.">Todo mi trabajo estaba en Java y web. Quería comprobar cuánto de lo aprendido se traslada a otro lenguaje y otro paradigma.</p></div>
+<div><p class="panel__label" data-en="How I solved it">Cómo lo resolví</p><p class="panel__text" data-en="A game project in Unity with C#, working with physics, collisions and object lifecycles instead of layers and services.">Proyecto de juego en Unity con C#, trabajando con física, colisiones y ciclo de vida de objetos en lugar de capas y servicios.</p></div>
+<div><p class="panel__label" data-en="What I learned">Lo que aprendí</p><p class="panel__text" data-en="That the stack is incidental: what carries over is how you structure code and how you debug when something stops responding.">Que el stack es lo accesorio: lo que se traslada es la forma de estructurar el código y de depurar cuando algo no responde.</p></div>
       </div>
     </div>
   </section>
 
-  <section id="contacto" style="position:relative; z-index:1; border-top:1px solid var(--line);">
-    <div style="max-width:1500px; margin:0 auto; padding:clamp(3.5rem,8vw,6rem) clamp(1rem,4vw,2.4rem); display:grid; grid-template-columns:repeat(auto-fit,minmax(min(100%,20rem),1fr)); gap:clamp(2rem,4vw,3.5rem); align-items:start;">
+  <section class="path" id="trayectoria">
+    <div class="wrap-pad">
+      <div class="path-head">
+        <span class="sec-num">03</span>
+        <h2 class="sec-h2" data-en="Path">Trayectoria</h2>
+      </div>
+      <div class="path-grid">
+        <article class="path-item" data-reveal="">
+          <p class="path-item__period" data-en="Before DAM · Foundation">Antes de DAM · Base</p>
+          <h3 class="path-item__title" data-en="Networks, telecoms and systems support">Redes, telecomunicaciones y soporte</h3>
+          <p class="path-item__desc" data-en="Where I learned to debug end to end before writing software — infrastructure, hardware and users.">Donde aprendí a diagnosticar de punta a punta antes de escribir software: infraestructura, hardware y usuarios.</p>
+        </article>
+        <article class="path-item" data-reveal="">
+          <p class="path-item__period" data-en="2024 — 2026 · Education">2024 — 2026 · Formación</p>
+          <h3 class="path-item__title" data-en="2nd year DAM · Tenerife">2º de DAM · Tenerife</h3>
+          <p class="path-item__desc" data-en="Multiplatform application development, focused on Java, SQL databases and adaptive interfaces. Hermnet is the final project.">Desarrollo de aplicaciones multiplataforma, con foco en Java, bases de datos SQL e interfaces adaptadas. Hermnet es el proyecto final.</p>
+        </article>
+        <article class="path-item" data-reveal="">
+          <p class="path-item__period">2025 — Erasmus</p>
+          <h3 class="path-item__title">Bowwe · Polonia</h3>
+          <p class="path-item__desc" data-en="Designed and automated web conversion funnels, integration flows and full-stack technical support in an international team.">Diseñé y automaticé embudos de conversión web, flujos de integración y soporte técnico full-stack en un equipo internacional.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="contact" id="contacto">
+    <div class="contact-grid">
       <div>
-        <div style="display:flex; align-items:baseline; gap:1.1rem; margin-bottom:1.2rem;">
-          <span style="font-family:var(--mono); font-size:0.72rem; letter-spacing:0.14em; color:var(--ac);">04</span>
-          <h2 style="margin:0; font-family:var(--disp); font-size:clamp(2.2rem,5vw,4.2rem); font-weight:400; letter-spacing:-0.02em; line-height:1;" data-en="Let's talk">Hablemos</h2>
+        <div class="contact-head">
+          <span class="sec-num">04</span>
+          <h2 class="sec-h2" data-en="Let's talk">Hablemos</h2>
         </div>
-        <p style="margin:0 0 2rem; font-family:var(--disp); font-style:italic; font-size:clamp(1.4rem,2.6vw,2rem); line-height:1.3; max-width:26rem; color:var(--ac);" data-en="Open to internships, a first role and freelance work from Tenerife.">Abierto a prácticas, primer empleo y trabajo freelance desde Tenerife.</p>
-        <div style="border-top:1px solid var(--line2);">
-          <a class="dh12" href="mailto:franciscoyarielrodriguezalfons@gmail.com" style="display:flex; align-items:baseline; justify-content:space-between; gap:1rem; padding:0.95rem 0; border-bottom:1px solid var(--line);">
-            <span style="font-family:var(--mono); font-size:0.66rem; letter-spacing:0.14em; text-transform:uppercase; color:var(--mu);">Email</span>
-            <span style="font-family:var(--disp); font-size:1.2rem; word-break:break-all;">franciscoyarielrodriguezalfons@gmail.com</span>
+        <p class="contact__claim" data-en="Open to internships, a first role and freelance work from Tenerife.">Abierto a prácticas, primer empleo y trabajo freelance desde Tenerife.</p>
+        <div class="ruled">
+          <a class="contact-row" href="mailto:franciscoyarielrodriguezalfons@gmail.com">
+            <span class="label-mono">Email</span>
+            <span class="contact-row__value contact-row__value--break">franciscoyarielrodriguezalfons@gmail.com</span>
           </a>
-          <a class="dh12" href="https://github.com/franciscorodalf" target="_blank" rel="noopener" style="display:flex; align-items:baseline; justify-content:space-between; gap:1rem; padding:0.95rem 0; border-bottom:1px solid var(--line);">
-            <span style="font-family:var(--mono); font-size:0.66rem; letter-spacing:0.14em; text-transform:uppercase; color:var(--mu);">GitHub</span>
-            <span style="font-family:var(--disp); font-size:1.2rem;">@franciscorodalf ↗</span>
+          <a class="contact-row" href="https://github.com/franciscorodalf" target="_blank" rel="noopener">
+            <span class="label-mono">GitHub</span>
+            <span class="contact-row__value">@franciscorodalf ↗</span>
           </a>
-          <a class="dh12" href="https://www.linkedin.com/in/francisco-yariel-rodriguez-alfonso-1569b1371" target="_blank" rel="noopener" style="display:flex; align-items:baseline; justify-content:space-between; gap:1rem; padding:0.95rem 0; border-bottom:1px solid var(--line);">
-            <span style="font-family:var(--mono); font-size:0.66rem; letter-spacing:0.14em; text-transform:uppercase; color:var(--mu);">LinkedIn</span>
-            <span style="font-family:var(--disp); font-size:1.2rem;">Francisco Y. Rodríguez ↗</span>
+          <a class="contact-row" href="https://www.linkedin.com/in/francisco-yariel-rodriguez-alfonso-1569b1371" target="_blank" rel="noopener">
+            <span class="label-mono">LinkedIn</span>
+            <span class="contact-row__value">Francisco Y. Rodríguez ↗</span>
           </a>
-          <a class="dh12" href="https://github.com/franciscorodalf/franciscorodalf/raw/main/CV%20Francisco%20Yariel.pdf" target="_blank" rel="noopener" style="display:flex; align-items:baseline; justify-content:space-between; gap:1rem; padding:0.95rem 0; border-bottom:1px solid var(--line);">
-            <span style="font-family:var(--mono); font-size:0.66rem; letter-spacing:0.14em; text-transform:uppercase; color:var(--mu);">CV</span>
-            <span style="font-family:var(--disp); font-size:1.2rem;" data-en="Download PDF ↗">Descargar PDF ↗</span>
+          <a class="contact-row" href="https://github.com/franciscorodalf/franciscorodalf/raw/main/CV%20Francisco%20Yariel.pdf" target="_blank" rel="noopener">
+            <span class="label-mono">CV</span>
+            <span class="contact-row__value" data-en="Download PDF ↗">Descargar PDF ↗</span>
           </a>
         </div>
       </div>
 
-      <form data-form="" style="display:grid; gap:1rem; background:var(--card); border:1px solid var(--line); padding:clamp(1.3rem,3vw,2.2rem);">
-        <label style="display:grid; gap:0.4rem;">
-          <span style="font-family:var(--mono); font-size:0.66rem; letter-spacing:0.14em; text-transform:uppercase; color:var(--mu);" data-en="Name">Nombre</span>
-          <input class="df1" type="text" name="name" autocomplete="name" style="background:transparent; border:0; border-bottom:1px solid var(--line2); padding:0.6rem 0; color:var(--tx); font-family:var(--sans); font-size:1rem; width:100%; box-sizing:border-box; transition:border-color 0.2s ease;">
+      <form class="form" data-form="">
+        <label class="field">
+          <span class="label-mono" data-en="Name">Nombre</span>
+          <input class="input" type="text" name="name" autocomplete="name">
         </label>
-        <label style="display:grid; gap:0.4rem;">
-          <span style="font-family:var(--mono); font-size:0.66rem; letter-spacing:0.14em; text-transform:uppercase; color:var(--mu);" data-en="Email">Correo</span>
-          <input class="df1" type="email" name="email" autocomplete="email" style="background:transparent; border:0; border-bottom:1px solid var(--line2); padding:0.6rem 0; color:var(--tx); font-family:var(--sans); font-size:1rem; width:100%; box-sizing:border-box; transition:border-color 0.2s ease;">
+        <label class="field">
+          <span class="label-mono" data-en="Email">Correo</span>
+          <input class="input" type="email" name="email" autocomplete="email">
         </label>
-        <label style="display:grid; gap:0.4rem;">
-          <span style="font-family:var(--mono); font-size:0.66rem; letter-spacing:0.14em; text-transform:uppercase; color:var(--mu);" data-en="Message">Mensaje</span>
-          <textarea class="df1" name="message" rows="5" style="background:transparent; border:0; border-bottom:1px solid var(--line2); padding:0.6rem 0; color:var(--tx); font-family:var(--sans); font-size:1rem; width:100%; box-sizing:border-box; resize:vertical; transition:border-color 0.2s ease;"></textarea>
+        <label class="field">
+          <span class="label-mono" data-en="Message">Mensaje</span>
+          <textarea class="input input--area" name="message" rows="5"></textarea>
         </label>
-        <button class="dh13" type="submit" style="cursor:pointer; font-family:var(--mono); display:inline-flex; align-items:center; justify-content:center; min-height:3rem; padding:0 1.3rem; background:var(--tx); color:var(--bg); font-size:0.78rem; letter-spacing:0.08em; text-transform:uppercase; border:0; transition:background 0.2s ease;" data-en="Send message">Enviar mensaje</button>
-        <p data-form-note="" style="margin:0; font-family:var(--mono); font-size:0.7rem; line-height:1.6; color:var(--mu);" data-en="Opens your mail client with the message ready to send.">Abre tu cliente de correo con el mensaje listo para enviar.</p>
+        <button class="btn-submit" type="submit" data-en="Send message">Enviar mensaje</button>
+        <p class="form-note" data-form-note="" data-en="Opens your mail client with the message ready to send.">Abre tu cliente de correo con el mensaje listo para enviar.</p>
       </form>
     </div>
   </section>
 
-  <footer style="position:relative; z-index:1; border-top:1px solid var(--line); max-width:1500px; margin:0 auto; padding:1.5rem clamp(1rem,4vw,2.4rem) 2.4rem; display:flex; flex-wrap:wrap; gap:0.8rem 2rem; justify-content:space-between; align-items:center;">
-    <p style="margin:0; font-family:var(--mono); font-size:0.7rem; letter-spacing:0.08em; color:var(--mu);">© 2026 Francisco Yariel Rodríguez Alfonso</p>
-    <a href="#top" style="font-family:var(--mono); font-size:0.7rem; letter-spacing:0.14em; text-transform:uppercase;" data-en="Back to top ↑">Volver arriba ↑</a>
+  <footer class="site-footer">
+    <p class="footer__copy">© 2026 Francisco Yariel Rodríguez Alfonso</p>
+    <a class="footer__top" href="#top" data-en="Back to top ↑">Volver arriba ↑</a>
   </footer>
 </div>
   <script src="script.js"></script>

@@ -40,8 +40,16 @@ Cada fila de proyecto es un `role="button"` accesible por teclado que despliega 
 ### ✉️ Formulario de contacto
 Valida los tres campos en cliente y compone un `mailto:` con asunto y cuerpo ya rellenados. Sin servicios externos ni claves de API.
 
+### 🧹 Separación de capas
+El marcado no lleva estilos inline: cada elemento se apoya en una clase y todo
+el aspecto vive en `styles.css`, ordenada en tokens → componentes por sección →
+estados → responsive. No hay ni un `!important`: los `:hover` ganan por
+especificidad.
+
 ### ♿ Accesibilidad y movimiento
-Todo el movimiento —intro, reveals, parallax, paneles— se desactiva bajo `prefers-reduced-motion: reduce`.
+Todo el movimiento —intro, reveals, parallax, paneles— se desactiva bajo
+`prefers-reduced-motion: reduce`. Los objetivos táctiles llegan a los 24px que
+pide WCAG 2.2 AA en pantallas estrechas y en dispositivos de puntero grueso.
 
 ---
 
@@ -71,8 +79,8 @@ portfolio/
 │   ├── icons/              # Iconos vectoriales de tecnologías
 │   ├── francisco.jpg       # Retrato del hero
 │   └── hermnet-logo.png    # Logotipo del proyecto estrella
-├── index.html              # Página completa (maquetación con estilos inline)
-├── styles.css              # Base tipográfica y estados hover/focus
+├── index.html              # Marcado semántico, sin un solo estilo inline
+├── styles.css              # Tokens, componentes, estados y ajustes responsive
 ├── script.js               # Canvas, idioma, paneles, reveals y formulario
 └── README.md
 ```

@@ -174,12 +174,10 @@
         var v = en ? n.getAttribute('data-en') : n.getAttribute('data-es');
         if (v != null) n.innerHTML = v;
       });
-      var pillOn = 'display:inline-block; padding:0.24rem 0.5rem; background:var(--tx); color:var(--bg);';
-      var pillOff = 'display:inline-block; padding:0.24rem 0.5rem; color:var(--mu);';
       var es = btn.querySelector('[data-lang-es]');
       var enEl = btn.querySelector('[data-lang-en]');
-      if (es) es.style.cssText = en ? pillOff : pillOn;
-      if (enEl) enEl.style.cssText = en ? pillOn : pillOff;
+      if (es) es.classList.toggle('is-on', !en);
+      if (enEl) enEl.classList.toggle('is-on', en);
       btn.setAttribute('aria-label', en ? 'Switch to Spanish' : 'Cambiar a inglés');
       root.setAttribute('lang', en ? 'en' : 'es');
       document.documentElement.setAttribute('lang', en ? 'en' : 'es');
@@ -297,12 +295,12 @@
       row.setAttribute('aria-expanded', 'false');
 
       var mark = document.createElement('span');
+      mark.className = 'proj-mark';
       mark.setAttribute('aria-hidden', 'true');
-      mark.style.cssText = 'display:inline-flex; align-items:center; gap:0.45rem; justify-self:end; white-space:nowrap; font-family:var(--mono); font-size:0.64rem; letter-spacing:0.14em; text-transform:uppercase; color:var(--ac); border:1px solid var(--line2); padding:0.35rem 0.6rem; transition:background 0.2s ease, color 0.2s ease, border-color 0.2s ease;';
       var markText = document.createElement('span');
       var markIcon = document.createElement('span');
+      markIcon.className = 'proj-mark__icon';
       markIcon.textContent = '+';
-      markIcon.style.cssText = 'display:inline-block; font-size:0.85rem; line-height:1; transform:rotate(0deg);';
       mark.appendChild(markText);
       mark.appendChild(markIcon);
       row.appendChild(mark);
@@ -315,17 +313,6 @@
       }
       setLabel();
       labelers.push(setLabel);
-
-      row.addEventListener('mouseenter', function () {
-        mark.style.background = 'var(--ac)';
-        mark.style.color = 'var(--bg)';
-        mark.style.borderColor = 'var(--ac)';
-      });
-      row.addEventListener('mouseleave', function () {
-        mark.style.background = 'transparent';
-        mark.style.color = 'var(--ac)';
-        mark.style.borderColor = 'var(--line2)';
-      });
 
       var inner = panel.firstElementChild;
       var ease = 'cubic-bezier(.2,.8,.2,1)';
