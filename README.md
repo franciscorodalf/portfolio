@@ -78,6 +78,7 @@ portfolio/
 ├── assets/
 │   ├── icons/              # Iconos vectoriales de tecnologías
 │   ├── francisco.jpg       # Retrato del hero
+│   ├── CV-Francisco-Yariel-Rodriguez.pdf  # CV descargable
 │   └── hermnet-logo.png    # Logotipo del proyecto estrella
 ├── index.html              # Marcado semántico, sin un solo estilo inline
 ├── styles.css              # Tokens, componentes, estados y ajustes responsive
