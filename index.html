@@ -44,6 +44,7 @@
 </head>
 <body>
 <div id="root">
+  <a class="skip-link" href="#top">Saltar al contenido</a>
 
   <div class="veil" data-veil="">
     <div class="veil__name">Francisco Yariel</div>
@@ -83,7 +84,7 @@
 
   <canvas id="field"></canvas>
 
-  <section class="hero" id="top">
+  <section class="hero" id="top" tabindex="-1">
     <div class="hero__inner">
       <div class="hero__portrait" aria-hidden="false">
         <img class="hero__portrait-img" src="./assets/francisco.jpg" width="1100" height="1467" decoding="async" loading="lazy" alt="Retrato de Francisco Yariel Rodríguez Alfonso">
@@ -344,15 +345,15 @@
       <form class="form" data-form="">
         <label class="field">
           <span class="label-mono" data-en="Name">Nombre</span>
-          <input class="input" type="text" name="name" autocomplete="name">
+          <input class="input" type="text" name="name" autocomplete="name" required>
         </label>
         <label class="field">
           <span class="label-mono" data-en="Email">Correo</span>
-          <input class="input" type="email" name="email" autocomplete="email">
+          <input class="input" type="email" name="email" autocomplete="email" required>
         </label>
         <label class="field">
           <span class="label-mono" data-en="Message">Mensaje</span>
-          <textarea class="input input--area" name="message" rows="5"></textarea>
+          <textarea class="input input--area" name="message" rows="5" required></textarea>
         </label>
         <button class="btn-submit" type="submit" data-en="Send message">Enviar mensaje</button>
         <p class="form-note" data-form-note="" data-en="Opens your mail client with the message ready to send.">Abre tu cliente de correo con el mensaje listo para enviar.</p>
