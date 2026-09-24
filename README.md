@@ -46,10 +46,18 @@ el aspecto vive en `styles.css`, ordenada en tokens → componentes por sección
 estados → responsive. No hay ni un `!important`: los `:hover` ganan por
 especificidad.
 
+### 🔍 SEO y compartir
+Imagen dedicada para redes (`assets/og-image.png`, 1200×630, generada a partir
+de los propios tokens de diseño), `og:url` y `canonical` explícitos, y datos
+estructurados `Person` (JSON-LD) para que los buscadores identifiquen la
+página como un perfil profesional.
+
 ### ♿ Accesibilidad y movimiento
 Todo el movimiento —intro, reveals, parallax, paneles— se desactiva bajo
 `prefers-reduced-motion: reduce`. Los objetivos táctiles llegan a los 24px que
-pide WCAG 2.2 AA en pantallas estrechas y en dispositivos de puntero grueso.
+pide WCAG 2.2 AA en pantallas estrechas y en dispositivos de puntero grueso. Un anillo de foco propio
+(`:focus-visible`, color de acento) recorre todo el sitio por teclado sin aparecer con el ratón, y no compite con el estado de foco que ya tenía el
+formulario.
 
 ---
 

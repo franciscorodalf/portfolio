@@ -5,7 +5,6 @@
   'use strict';
 
   var CONFIG = {
-    accentColor: '#8C2F24',
     defaultLang: 'es',
     showIntro: true,
     fieldIntensity: 9
@@ -16,8 +15,6 @@
 
   var lang = 'es';
   var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-  if (CONFIG.accentColor) root.style.setProperty('--ac', CONFIG.accentColor);
 
   /* ---------------------------------------------------------------- intro */
   function initVeil() {
@@ -47,6 +44,17 @@
     if (!canvas) return;
     var ctx = canvas.getContext('2d');
     if (!ctx) return;
+
+    // Los colores salen de los tokens de la CSS: cambiar la paleta ahí
+    // repinta también los puntos, sin tocar este fichero.
+    function tokenRgb(name) {
+      var hex = getComputedStyle(root).getPropertyValue(name).trim().replace('#', '');
+      if (hex.length === 3) hex = hex.replace(/./g, '$&$&');
+      var n = parseInt(hex, 16);
+      return [(n >> 16) & 255, (n >> 8) & 255, n & 255].join(',');
+    }
+    var inkRgb = tokenRgb('--tx');
+    var accentRgb = tokenRgb('--ac');
 
     var gap = 26;
     var amp = typeof CONFIG.fieldIntensity === 'number' ? CONFIG.fieldIntensity : 9;
@@ -150,8 +158,8 @@
           var s = 1 + (wave + 3) / 6 * 0.95 + near * 1.6;
           var a = 0.17 + (wave + 3) / 6 * 0.26 + near * 0.4;
           ctx.fillStyle = near > 0.05
-            ? 'rgba(140,47,36,' + Math.min(1, a + 0.25) + ')'
-            : 'rgba(23,22,20,' + a.toFixed(3) + ')';
+            ? 'rgba(' + accentRgb + ',' + Math.min(1, a + 0.25) + ')'
+            : 'rgba(' + inkRgb + ',' + a.toFixed(3) + ')';
           ctx.fillRect(x + dx - s / 2, y + dy - s / 2, s, s);
         }
       }

@@ -5,6 +5,24 @@
    ahí para repintar el sitio entero.
    =========================================================================== */
 
+/* --- Tokens ---
+   Paleta "tinta y cobalto" y familia Schibsted Grotesk + JetBrains Mono.
+   Cambiando estos valores se repinta todo el sitio, incluido el campo de
+   puntos del canvas, que los lee al arrancar. */
+:root {
+  --bg: #F6F6F4;
+  --bg2: #ECEDEA;
+  --card: #FFFFFF;
+  --tx: #111317;
+  --mu: #5A5F66;
+  --ac: #2447C4;
+  --line: rgba(17, 19, 23, 0.13);
+  --line2: rgba(17, 19, 23, 0.36);
+  --disp: 'Schibsted Grotesk', system-ui, sans-serif;
+  --sans: 'Schibsted Grotesk', system-ui, sans-serif;
+  --mono: 'JetBrains Mono', ui-monospace, monospace;
+}
+
 /* --- Reinicio mínimo --- */
 html {
   scroll-behavior: smooth;
@@ -12,18 +30,31 @@ html {
 }
 body {
   margin: 0;
-  background: #F1EDE4;
+  background: var(--bg);
 }
 a {
   color: inherit;
   text-decoration: none;
 }
 a:hover {
-  color: #8C2F24;
+  color: var(--ac);
 }
+
+/* --- Foco de teclado ---
+   Antes solo .input tenía un estado de foco propio; el resto (nav, botones,
+   tarjetas de proyecto) dependía del outline nativo del navegador, que aquí
+   coincide en tono con el acento y es fácil de perder sobre fondos claros.
+   :focus-visible deja este anillo solo para navegación por teclado — un
+   clic de ratón no lo dispara. */
+:focus-visible {
+  outline: 2px solid var(--ac);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
 ::selection {
-  background: #8C2F24;
-  color: #F1EDE4;
+  background: var(--ac);
+  color: var(--bg);
 }
 /* --- Animaciones --- */
 @keyframes paReveal {
@@ -38,17 +69,6 @@ a:hover {
 /* --- Base y tokens */
 
 #root {
-  --bg:#F1EDE4;
-  --bg2:#E8E2D6;
-  --card:#FBF9F4;
-  --tx:#171614;
-  --mu:#55514A;
-  --ac:#8C2F24;
-  --line:rgba(23,22,20,0.15);
-  --line2:rgba(23,22,20,0.4);
-  --disp:'Instrument Serif',Georgia,serif;
-  --sans:'Archivo',system-ui,sans-serif;
-  --mono:'Geist Mono',ui-monospace,monospace;
   background:var(--bg);
   color:var(--tx);
   font-family:var(--sans);
@@ -141,7 +161,7 @@ a:hover {
   justify-content:space-between;
   gap:1rem;
   padding:0.8rem clamp(1rem,4vw,2.4rem);
-  background:rgba(241,237,228,0.88);
+  background:rgba(246,246,244,0.88);
   backdrop-filter:blur(12px);
   -webkit-backdrop-filter:blur(12px);
   border-bottom:1px solid var(--line);
@@ -160,7 +180,11 @@ a:hover {
 .brand {
   font-family:var(--disp);
   font-size:1.15rem;
-  letter-spacing:-0.01em;
+  letter-spacing:-0.02em;
+  font-weight:600;
+  display:inline-block;
+  padding:0.25rem 0;
+  white-space:nowrap;
 }
 
 .nav {
@@ -289,36 +313,17 @@ a:hover {
   mask-composite:intersect;
 }
 
-.hero__eyebrow {
-  position:relative;
-  z-index:1;
-  display:flex;
-  align-items:center;
-  gap:0.8rem;
-  margin:0 0 clamp(1.4rem,3vw,2.4rem);
-  font-family:var(--mono);
-  font-size:0.72rem;
-  letter-spacing:0.14em;
-  text-transform:uppercase;
-  color:var(--ac);
-  animation:paReveal 0.8s 0.05s cubic-bezier(.2,.8,.2,1) both;
-}
 
-.hero__dash {
-  width:2.4rem;
-  height:1px;
-  background:var(--ac);
-}
 
 .hero__title {
   position:relative;
   z-index:1;
   margin:0 0 clamp(1.6rem,3vw,2.6rem);
   font-family:var(--disp);
-  font-weight:400;
-  font-size:clamp(2.6rem,9.2cqw,8rem);
-  line-height:1.02;
-  letter-spacing:-0.025em;
+  font-weight:600;
+  font-size:clamp(2.4rem,7.4cqw,6.4rem);
+  line-height:1;
+  letter-spacing:-0.045em;
   max-width:20ch;
 }
 
@@ -347,8 +352,9 @@ a:hover {
 
 .hero__line--3 {
   animation-delay:0.3s;
-  font-style:italic;
-  color:var(--ac);
+  font-style:normal;
+  color:var(--tx);
+  font-weight:400;
 }
 
 .hero__lead {
@@ -437,8 +443,10 @@ a:hover {
 .fact__value {
   margin:0;
   font-family:var(--disp);
-  font-size:1.28rem;
+  font-size:1.12rem;
   line-height:1.25;
+  font-weight:500;
+  letter-spacing:-0.01em;
 }
 
 
@@ -463,7 +471,7 @@ a:hover {
 .path {
   position:relative;
   z-index:1;
-  background:rgba(232,226,214,0.78);
+  background:rgba(236,237,234,0.8);
   border-top:1px solid var(--line);
 }
 
@@ -516,9 +524,9 @@ a:hover {
 .sec-h2 {
   margin:0;
   font-family:var(--disp);
-  font-size:clamp(2.2rem,5vw,4.2rem);
-  font-weight:400;
-  letter-spacing:-0.02em;
+  font-size:clamp(2rem,4.4vw,3.6rem);
+  font-weight:600;
+  letter-spacing:-0.04em;
   line-height:1;
 }
 
@@ -530,14 +538,6 @@ a:hover {
   line-height:1.6;
 }
 
-.sec-meta {
-  margin:0;
-  font-family:var(--mono);
-  font-size:0.7rem;
-  letter-spacing:0.14em;
-  text-transform:uppercase;
-  color:var(--mu);
-}
 
 .ruled {
   border-top:1px solid var(--line2);
@@ -570,8 +570,9 @@ a:hover {
 .tech-name {
   margin:0;
   font-family:var(--disp);
-  font-size:1.42rem;
-  font-weight:400;
+  font-size:1.22rem;
+  font-weight:500;
+  letter-spacing:-0.01em;
 }
 
 .text-sm {
@@ -651,19 +652,20 @@ a:hover {
 .flagship__title {
   margin:0 0 0.8rem;
   font-family:var(--disp);
-  font-size:clamp(2.4rem,17cqw,4.6rem);
-  font-weight:400;
+  font-size:clamp(2.2rem,14cqw,4rem);
+  font-weight:600;
   line-height:0.95;
-  letter-spacing:-0.025em;
+  letter-spacing:-0.045em;
 }
 
 .flagship__claim {
   margin:0 0 1.2rem;
-  font-style:italic;
+  font-style:normal;
   font-family:var(--disp);
-  font-size:clamp(1.15rem,1.6vw,1.5rem);
+  font-size:clamp(1.05rem,1.4vw,1.3rem);
   line-height:1.3;
-  color:var(--ac);
+  color:var(--tx);
+  font-weight:500;
 }
 
 .flagship__desc {
@@ -762,9 +764,10 @@ a:hover {
 .proj-name {
   margin:0;
   font-family:var(--disp);
-  font-size:clamp(1.5rem,2.6vw,2.2rem);
-  font-weight:400;
+  font-size:clamp(1.35rem,2.2vw,1.9rem);
+  font-weight:600;
   line-height:1.05;
+  letter-spacing:-0.03em;
 }
 
 .proj-links {
@@ -871,8 +874,9 @@ a:hover {
 .path-item__title {
   margin:0;
   font-family:var(--disp);
-  font-size:1.6rem;
-  font-weight:400;
+  font-size:1.4rem;
+  font-weight:600;
+  letter-spacing:-0.02em;
 }
 
 .path-item__desc {
@@ -898,11 +902,12 @@ a:hover {
 .contact__claim {
   margin:0 0 2rem;
   font-family:var(--disp);
-  font-style:italic;
-  font-size:clamp(1.4rem,2.6vw,2rem);
+  font-style:normal;
+  font-size:clamp(1.25rem,2.2vw,1.7rem);
   line-height:1.3;
   max-width:26rem;
-  color:var(--ac);
+  color:var(--tx);
+  font-weight:500;
 }
 
 .contact-row {
@@ -924,7 +929,8 @@ a:hover {
 
 .contact-row__value {
   font-family:var(--disp);
-  font-size:1.2rem;
+  font-size:1.05rem;
+  font-weight:500;
 }
 
 .contact-row__value--break {
@@ -1104,20 +1110,124 @@ a:hover {
    1. La cabecera medía 691px en un viewport de 390 y dejaba el botón de
       contacto fuera de pantalla, recortado por el overflow-x:hidden de #root.
       Se ocultan los enlaces de sección y los iconos sociales, que están
-      duplicados en la sección Contacto.
+      duplicados en la sección Contacto. El corte está en 820px para que un
+      iPad en vertical (768/810) también use la cabecera compacta.
    2. El retrato iba en posición absoluta y caía encima del h1. Pasa a formar
       parte del flujo, encima del antetítulo. */
-@media (max-width: 720px) {
+@media (max-width: 820px) {
   .nav,
   .header__social {
     display: none;
   }
 
+  /* El retrato se oculta en vertical: ocupaba unos 350px antes de la primera
+     palabra y hundía el titular. La cara sigue estando en el CV descargable. */
   .hero__portrait {
-    position: static;
-    width: min(55%, 15rem);
-    margin: 0 0 1.75rem;
+    display: none;
   }
+}
+
+/* --- Hero en escritorio ---
+   El retrato va en posición absoluta ocupando el 36% derecho. Schibsted es
+   más ancha que la serif del diseño original, así que el titular alcanzaba la
+   cara y los botones caían sobre la foto. Se limita el ancho de la columna de
+   texto para que nunca lleguen ahí. */
+@media (min-width: 821px) {
+  /* El ancho libre es el del contenedor menos lo que ocupa la foto
+     (min(36%,28rem)), menos su separación al borde y un respiro de 2.5rem.
+     Calculado así, el texto nunca la alcanza, sea cual sea el ancho. */
+  .hero__inner {
+    --hero-text: calc(100% - min(36%, 28rem) - clamp(1.5rem, 5vw, 4rem) - 2.5rem);
+  }
+  .hero__title,
+  .hero__lead {
+    max-width: var(--hero-text);
+  }
+}
+
+/* --- Filas en pantallas estrechas ---
+   Stack y Proyectos son rejillas de 4-5 columnas. Por debajo de 700px el
+   nombre se quedaba en ~55px: "TypeScript" se salía de su columna y pisaba
+   la descripción, y esta acababa en una palabra por línea (hasta 23 líneas).
+   Aquí el nombre comparte fila con la etiqueta y la descripción baja debajo,
+   a todo el ancho. */
+@media (max-width: 700px) {
+  .tech-row {
+    grid-template-columns: 1.8rem minmax(0, 1fr) auto;
+    grid-template-areas:
+      "icon name tag"
+      ".    desc desc";
+    gap: 0.35rem 0.9rem;
+  }
+  .tech-row > .tech-icon { grid-area: icon; width: 1.4rem; height: 1.4rem; }
+  .tech-row > .tech-name { grid-area: name; }
+  .tech-row > .text-sm   { grid-area: desc; }
+  .tech-row > .tag       { grid-area: tag; }
+
+  .proj-row {
+    grid-template-columns: 1.8rem minmax(0, 1fr) auto;
+    grid-template-areas:
+      "num name  mark"
+      ".   desc  desc"
+      ".   links links";
+    gap: 0.4rem 0.9rem;
+    align-items: baseline;
+  }
+  .proj-row > :nth-child(1) { grid-area: num; }
+  .proj-row > :nth-child(2) { grid-area: name; }
+  .proj-row > :nth-child(3) { grid-area: desc; }
+  .proj-row > :nth-child(4) { grid-area: links; }
+  .proj-row > .proj-mark    { grid-area: mark; }
+  .proj-links { gap: 1.1rem; }
+
+  /* Los datos del hero (rol, base, stack, experiencia) llevaban la sangría y
+     los separadores verticales de una fila de cuatro columnas. Apilados, eso
+     dejaba el primero pegado al borde y el resto sangrado. Aquí cada dato
+     arranca en el mismo borde y se separa con una línea horizontal. */
+  .facts { column-gap: 1.3rem; }
+  .fact,
+  .fact--first,
+  .fact--last {
+    padding: 0.9rem 0;
+    border-right: 0;
+    border-bottom: 1px solid var(--line);
+  }
+  .fact:last-child { border-bottom: 0; }
+
+  /* dos botones de anchos distintos apilados parecían un descuido */
+  .hero__lead .btn { flex: 1 1 12rem; justify-content: center; }
+
+  /* El email (40 caracteres) se partía en "…@gm / ail.com" por el break-all.
+     Baja a su propia línea a todo el ancho, donde cabe entero; overflow-wrap
+     solo actúa como red en pantallas de 320px. */
+  .contact-row { flex-wrap: wrap; }
+  .contact-row__value--break {
+    flex: 1 1 100%;
+    font-size: 0.95rem;
+    word-break: normal;
+    overflow-wrap: anywhere;
+  }
+
+  /* la ficha desplegable ya no necesita la sangría de la columna del número */
+  .panel__inner { margin-left: 0; }
+
+  /* El titular iba partido en tres bloques fijos; en estrecho cada bloque se
+     partía a su vez y salían seis líneas irregulares. Las dos primeras frases
+     pasan a fluir juntas y la tercera sigue en su propia línea. */
+  .hero__title { font-size: clamp(1.9rem, 8.6vw, 2.6rem); }
+  .hero__mask:not(.hero__mask--wide),
+  .hero__mask:not(.hero__mask--wide) > .hero__line {
+    display: inline;
+    padding: 0;
+    margin: 0;
+  }
+}
+
+/* Por debajo de 380px (iPhone SE) nombre, idioma y contacto no cabían juntos. */
+@media (max-width: 380px) {
+  .brand { font-size: 1rem; }
+  .header__actions { gap: 0.35rem; }
+  .btn-mini { padding: 0 0.6rem; }
 }
 
 /* --- Objetivos táctiles ---
@@ -1126,7 +1236,7 @@ a:hover {
    cualquier dispositivo táctil (un iPad en vertical mide 768 y no entra por
    ancho). El padding crece hacia arriba, así que el subrayado no se despega
    del texto. Con ratón no se aplica: ahí el puntero es preciso. */
-@media (max-width: 720px), (pointer: coarse) {
+@media (max-width: 820px), (pointer: coarse) {
   .link-u {
     display: inline-block;
     padding-top: 0.4rem;
