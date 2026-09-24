@@ -40,6 +40,11 @@
 
   /* ----------------------------------------------------- campo de puntos */
   function initField() {
+    // Oculto por CSS por debajo de 820px (mismo corte que la cabecera
+    // compacta): no tiene sentido correr el bucle de dibujo, el
+    // ResizeObserver y los listeners de puntero para un canvas invisible
+    // en un dispositivo que además no tiene puntero que perseguir.
+    if (window.matchMedia('(max-width: 820px)').matches) return;
     var canvas = document.getElementById('field');
     if (!canvas) return;
     var ctx = canvas.getContext('2d');

@@ -1158,6 +1158,13 @@ a:hover {
   .hero__portrait {
     display: none;
   }
+
+  /* El campo de puntos reacciona al puntero, algo que no existe en pantallas
+     táctiles, y su animación corre igual aunque nadie la vea moverse. Fondo
+     plano en su lugar: script.js no arranca el bucle de dibujo a este ancho. */
+  #field {
+    display: none;
+  }
 }
 
 /* --- Hero en escritorio ---
