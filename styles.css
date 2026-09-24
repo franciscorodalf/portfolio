@@ -307,7 +307,7 @@ a:hover {
   position:relative;
   max-width:1500px;
   margin:0 auto;
-  padding:clamp(7rem,14vh,10rem) clamp(1rem,4vw,2.4rem) clamp(2rem,5vw,3.5rem);
+  padding:clamp(5.5rem,10vh,6rem) clamp(1rem,4vw,2.4rem) clamp(2rem,5vw,3.5rem);
   container-type:inline-size;
 }
 
@@ -508,10 +508,8 @@ a:hover {
 
 .sec-head {
   display:flex;
-  flex-wrap:wrap;
-  align-items:baseline;
-  justify-content:space-between;
-  gap:1.2rem;
+  flex-direction:column;
+  gap:0.9rem;
   margin-bottom:clamp(1.5rem,3vw,2.2rem);
 }
 
@@ -544,7 +542,7 @@ a:hover {
 
 .sec-intro {
   margin:0;
-  max-width:30rem;
+  max-width:65ch;
   color:var(--mu);
   font-size:0.94rem;
   line-height:1.6;
