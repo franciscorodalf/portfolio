@@ -472,6 +472,35 @@ a:hover {
   letter-spacing:-0.01em;
 }
 
+/* --- Listas de stack ---
+   Antes se leían como "Java · Spring Boot · TypeScript · SQL", un único
+   separador encadenado para todo. Con 3 o más elementos, el punto pierde
+   valor de separación y se lee como ruido; aquí cada nombre queda en su
+   propia celda y una línea vertical fina marca el corte, sin puntuación. */
+.stack-list {
+  display:flex;
+  flex-wrap:wrap;
+  align-items:baseline;
+  gap:0;
+  margin:0;
+  padding:0;
+  list-style:none;
+}
+
+.stack-list li {
+  display:flex;
+  align-items:baseline;
+}
+
+.stack-list li:not(:last-child)::after {
+  content:'';
+  width:1px;
+  height:0.85em;
+  margin:0 0.6em;
+  background:var(--line2);
+  align-self:center;
+}
+
 
 /* --- Secciones (común) */
 
